@@ -1,0 +1,40 @@
+{"from": "idea:srn", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea srn addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:srn", "to": "gap:G4", "type": "addresses_gap", "evidence": "idea srn addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:srn", "to": "gap:G5", "type": "addresses_gap", "evidence": "idea srn addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:amcn", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea amcn addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:amcn", "to": "gap:G4", "type": "addresses_gap", "evidence": "idea amcn addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:amcn", "to": "gap:G5", "type": "addresses_gap", "evidence": "idea amcn addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:elos", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea elos addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:elos", "to": "gap:G4", "type": "addresses_gap", "evidence": "idea elos addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:conditional-mixture", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea conditional-mixture addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:conditional-mixture", "to": "gap:G4", "type": "addresses_gap", "evidence": "idea conditional-mixture addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:object-relation", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea object-relation addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:object-relation", "to": "gap:G5", "type": "addresses_gap", "evidence": "idea object-relation addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:prototype-transport", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea prototype-transport addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:prototype-transport", "to": "gap:G4", "type": "addresses_gap", "evidence": "idea prototype-transport addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:rank-calibration", "to": "gap:G2", "type": "addresses_gap", "evidence": "idea rank-calibration addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:rank-calibration", "to": "gap:G3", "type": "addresses_gap", "evidence": "idea rank-calibration addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:temporal-fa", "to": "gap:G2", "type": "addresses_gap", "evidence": "idea temporal-fa addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:temporal-fa", "to": "gap:G3", "type": "addresses_gap", "evidence": "idea temporal-fa addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:counterfactual-retrieval", "to": "gap:G1", "type": "addresses_gap", "evidence": "idea counterfactual-retrieval addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:stress-test-suite", "to": "gap:G2", "type": "addresses_gap", "evidence": "idea stress-test-suite addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:stress-test-suite", "to": "gap:G3", "type": "addresses_gap", "evidence": "idea stress-test-suite addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:masked-distillation", "to": "gap:G5", "type": "addresses_gap", "evidence": "idea masked-distillation addresses gap", "added": "2026-07-06T09:50:05Z"}
+{"from": "idea:srn", "to": "paper:rashidi2026_benchmark_auc_not", "type": "inspired_by", "evidence": "idea srn inspired by paper", "added": "2026-07-06T09:55:40Z"}
+{"from": "idea:srn", "to": "paper:sun2023_hierarchical_semantic_contrast", "type": "inspired_by", "evidence": "idea srn inspired by paper", "added": "2026-07-06T09:55:40Z"}
+{"from": "idea:amcn", "to": "paper:rashidi2026_benchmark_auc_not", "type": "inspired_by", "evidence": "idea amcn inspired by paper", "added": "2026-07-06T09:55:40Z"}
+{"from": "idea:amcn", "to": "paper:ristea2024_selfdistilled_masked_autoencoders", "type": "inspired_by", "evidence": "idea amcn inspired by paper", "added": "2026-07-06T09:55:40Z"}
+{"from": "idea:elos", "to": "paper:cao2023_new_comprehensive_benchmark", "type": "inspired_by", "evidence": "idea elos inspired by paper", "added": "2026-07-06T09:55:41Z"}
+{"from": "idea:elos", "to": "paper:sun2023_hierarchical_semantic_contrast", "type": "inspired_by", "evidence": "idea elos inspired by paper", "added": "2026-07-06T09:55:41Z"}
+{"from": "paper:rashidi2026_benchmark_auc_not", "to": "gap:G1", "type": "addresses_gap", "evidence": "Cross-dataset frozen-feature normality collapses near chance, exposing scene leakage.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:rashidi2026_benchmark_auc_not", "to": "gap:G2", "type": "addresses_gap", "evidence": "Same-dataset AUROC overstates transfer reliability.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:rashidi2026_benchmark_auc_not", "to": "gap:G3", "type": "addresses_gap", "evidence": "Source-calibrated scores produce impractical false alarm rates after transfer.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:sun2023_hierarchical_semantic_contrast", "to": "gap:G1", "type": "addresses_gap", "evidence": "Scene-aware contrast models known scene identity but does not establish unseen-scene invariance.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:sun2023_hierarchical_semantic_contrast", "to": "gap:G4", "type": "addresses_gap", "evidence": "Scene semantics are useful context but can become a transfer shortcut.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:liu2023_generating_anomalies_video", "to": "gap:G5", "type": "addresses_gap", "evidence": "PFMF addresses gaps through synthetic anomaly priors and adaptation, increasing dependency and complexity.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:ristea2024_selfdistilled_masked_autoencoders", "to": "gap:G5", "type": "addresses_gap", "evidence": "Efficient masked distillation still uses synthetic abnormal augmentation in its full recipe.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:singh2023_eval_explainable_video", "to": "gap:G4", "type": "addresses_gap", "evidence": "Location-dependent normality demonstrates that context cannot be removed blindly.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:singh2023_eval_explainable_video", "to": "gap:G5", "type": "addresses_gap", "evidence": "Object and track pipelines depend on detector and tracker reliability.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:ramachandra2020_street_scene_new", "to": "gap:G2", "type": "addresses_gap", "evidence": "Conventional frame and pixel criteria do not measure localization faithfully.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:ramachandra2020_street_scene_new", "to": "gap:G3", "type": "addresses_gap", "evidence": "Operational false positives are poorly reflected by legacy aggregate criteria.", "added": "2026-07-06T11:36:04Z"}
+{"from": "paper:cao2023_new_comprehensive_benchmark", "to": "gap:G4", "type": "addresses_gap", "evidence": "NWPU scene-dependent anomalies make scene context both necessary and potentially confounding.", "added": "2026-07-06T11:36:04Z"}
