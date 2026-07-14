@@ -28,3 +28,25 @@
 - 将 zxVAD、Action Hints、Appearance Blur + Motion-guided Memory 加入 strong partial overlap；
 - 将 HSC/EVAL/NWPU 用于说明 context retention 的必要性，而不是 direct novelty threat；
 - 明确 SRN 不能 claim zero-shot/cross-domain VAD setting novelty。
+
+## Cross-Model Reviewer 后新增 Round 2 TODO
+
+**来源：** 2026-07-14 授权 `llm-chat MCP` / DeepSeek reviewer。  
+**注意：** 以下条目均为 reviewer opinion 或 search lead，尚未核验一手来源；不得直接进入正式 evidence table、bibliography 或冻结文件。
+
+| ID | 新增 TODO | reviewer concern | 当前处理 | Priority |
+|---|---|---|---|---|
+| R2-T01 | 继续核验 domain-invariant / disentangled VAD 是否存在 direct source | reviewer 认为这可能直接威胁 `scene token -> residual` 机制 | 用 primary source 搜索，不引用未核验标题 | 最高 |
+| R2-T02 | 搜索 scene residualization / scene component subtraction / predictable component removal | reviewer 认为只要已有 `scene-predictable component -> residual normality`，SRN novelty 会显著受损 | 扩展到 VAD、one-class AD、OOD、industrial AD | 最高 |
+| R2-T03 | 核验 Meta-AD / episodic VAD / few-shot VAD | reviewer 将 ELOS 风险上调；但其部分表述误读 SRN 为 few-shot/relation-network method | 只核验其是否覆盖 ELOS / held-out scene normality learning，不把 SRN改写成 few-shot task | 高 |
+| R2-T04 | 核验 MoCoDAD、STG-NF、DA-Flow、FG-Diff、Ada-VAD | reviewer 和 Action Hints related work 均指向 skeleton / diffusion / domain-adaptive VAD family | 从 Action Hints、zxVAD references/cited-by 追踪 | 高 |
+| R2-T05 | 核验 graph / ST-GCN / HRN / relation-network VAD | reviewer 误读 SRN 为 relation network，但 object/relation family 仍可能影响 baseline narrative | 作为 object-centric / relation baseline 查新，不作为 SRN direct threat unless mechanism overlaps | 中 |
+| R2-T06 | 核验 threshold transfer / EVT / conformal / FA/hour operating point | reviewer 认为 protocol novelty 不能作为主贡献 | 继续保持 calibration/evaluation track，不作主方法 claim | 中 |
+
+## Reviewer 后的临时状态调整
+
+第一轮本地 verdict 仍记录为 `NOVELTY PLAUSIBLE`，但经 DeepSeek reviewer 审查后，应在内部决策中临时降为：
+
+**`NOVELTY PLAUSIBLE but externally contested; treat as NOVELTY AT RISK until Round 2 closes domain-invariant/disentangled and episodic VAD leads`.**
+
+该状态不是最终 novelty collapse，也不是正式改写冻结文件；它只是 Round 2 查新优先级和 stop/go gate 的保守输入。
