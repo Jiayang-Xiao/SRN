@@ -1,0 +1,23 @@
+# Reviewer Lead Disposition Round 2
+
+**日期：** 2026-07-14  
+**目的：** 关闭 DeepSeek reviewer 和 Round 1 中的高风险 seed。未找到一手来源的条目不得作为论文名继续使用。
+
+| Lead | Reviewer claim | Actual identity | Source found | Disposition | Relevance | Evidence | Follow-up |
+| ---- | -------------- | --------------- | ------------ | ----------- | --------- | -------- | --------- |
+| DIRT | domain-adversarial / residual transformation VAD | 未找到 VAD 相关一手论文；搜索命中多为 unrelated adversarial/security 或其他领域 DIRT | no reliable primary source | LIKELY_HALLUCINATED_OR_NONEXISTENT | 不能作为 prior | 精确标题/acronym + VAD 搜索无结果 | 不再用作论文名；仅保留“domain-invariant residual transformation”关键词 |
+| SDG-Net / SDG-net | possible scene/domain generalization VAD | 未找到 VAD 相关 SDG-Net 一手论文 | no reliable primary source | LIKELY_HALLUCINATED_OR_NONEXISTENT | 不能作为 prior | 精确 acronym + VAD 搜索无结果 | 不再用作论文名；继续查 domain generalization VAD |
+| Domain-Invariant Feature Learning for Video Anomaly Detection | MVA 2023 或类似 venue 的 direct threat | 未找到精确标题；MVA/domain-invariant/VAD 搜索无 primary source | no reliable primary source | LIKELY_HALLUCINATED_OR_NONEXISTENT | 不能引用 | 精确标题、MVA、domain-invariant VAD 搜索无结果 | 以 Lane B 关键词替代 |
+| Disentangled Representations for Domain-General Video Anomaly Detection | CVPRW 2024 direct threat | 未找到精确标题；搜索命中弱监督 disentangled semantic alignment，但不是 normal-only DG VAD | partial unrelated hits | IDENTITY_MISMATCH | 不能引用为该标题 | 弱监督 DSANet uses abnormal/normal separation for weakly-supervised VAD, not SRN | 若后续写 related work，可单独查 weakly supervised disentanglement |
+| Learning Scene-Invariant Normalcy for Video Anomaly Detection | reviewer suggested title | 未找到精确一手来源 | no reliable primary source | LIKELY_HALLUCINATED_OR_NONEXISTENT | 不能引用 | 精确标题搜索无结果 | 用 scene-invariant VAD 关键词继续查 |
+| Deep Scene Decomposition for Unsupervised Anomaly Detection | reviewer suggested title | 未找到精确一手来源 | no reliable primary source | LIKELY_HALLUCINATED_OR_NONEXISTENT | 不能引用 | 精确标题搜索无结果 | 用 scene decomposition / background decomposition 关键词继续查 |
+| Meta-AD | meta-learning / episodic VAD | 未找到 Meta-AD TNNLS 2023 VAD；找到 verified related paper *Learning Normal Dynamics in Videos with Meta Prototype Network* | arXiv:2104.06689 | IDENTITY_MISMATCH | ELOS prior, not SRN direct coverage | MPN/MPU is few-shot normalcy learner with target-scene adaptation, DPU prototypes, no M4/M5 | 引用真实 MPN，而非 Meta-AD |
+| DeepCrowd / scene-gated normality head | scene-gated VAD | 找到 crowd anomaly survey *Deep Crowd Anomaly Detection*，未找到 scene-gated normality method | arXiv:2210.13927 for survey only | IDENTITY_MISMATCH | 不作为 SRN threat | survey is broad crowd AD review, not scene-gated SRN | 不再使用 DeepCrowd 作为 method title |
+| Learning Conditional Motion Priors for VAD | ICCV 2023 conditional motion prior | 未找到精确标题；找到 MoCoDAD and motion-conditioned diffusion | arXiv:2307.07205 | IDENTITY_MISMATCH | AMCN / skeleton baseline threat | MoCoDAD conditions future pose generation on past motion; no scene residualization | 引用 MoCoDAD instead |
+| Few-Shot Anomaly Detection via Episodic Training | likely ICCV 2021 few-shot VAD | 未找到精确标题；真实相关为 Few-shot Scene-adaptive AD and MPN | arXiv:2007.07843; arXiv:2104.06689 | IDENTITY_MISMATCH | ELOS prior family | both use target support / adaptation, not strict source-only SRN | 不使用虚构标题 |
+| Memory-Augmented Meta-Learning for Video Anomaly Detection | WACV 2023 reviewer lead | 未找到精确标题；真实相关为 MPN and memory/prototype VAD | arXiv:2104.06689 | LIKELY_HALLUCINATED_OR_NONEXISTENT | 不能引用 | no primary source found | 用 MPN / memory VAD family 替代 |
+| MoCoDAD | motion-conditioned skeleton VAD | *Multimodal Motion Conditioned Diffusion Model for Skeleton-based VAD* | arXiv:2307.07205 | VERIFIED_RELEVANT | AMCN / skeleton lane threat, not SRN direct | OCC, skeleton, diffusion conditioned on past motion | Add to evidence table |
+| STG-NF | skeleton normalizing flow | *Normalizing Flows for Human Pose Anomaly Detection* | arXiv:2211.10946 | VERIFIED_RELEVANT | skeleton scene-removal baseline, not SRN direct | pose data reduces nuisance parameters, normalizing flow likelihood | Add to evidence table |
+| DA-Flow | skeleton normalizing flow | *DA-Flow: Dual Attention Normalizing Flow for Skeleton-based VAD* | arXiv:2406.02976 | VERIFIED_RELEVANT | skeleton lane, not SRN direct | skeleton input + DAM + flow likelihood | Add to evidence table |
+| FG-Diff | skeleton/diffusion VAD lead | 未找到精确 VAD primary source in this pass | no reliable primary source | UNRESOLVED | uncertain | acronym may be wrong or a related diffusion method | Carry to optional Round 3 if SRN moves forward |
+| Ada-VAD | domain-adaptive VAD lead | 未找到 exact primary source in this pass | no reliable primary source | UNRESOLVED | uncertain | search did not resolve acronym | Carry to optional Round 3 |

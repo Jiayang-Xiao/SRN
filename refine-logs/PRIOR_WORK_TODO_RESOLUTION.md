@@ -50,3 +50,25 @@
 **`NOVELTY PLAUSIBLE but externally contested; treat as NOVELTY AT RISK until Round 2 closes domain-invariant/disentangled and episodic VAD leads`.**
 
 该状态不是最终 novelty collapse，也不是正式改写冻结文件；它只是 Round 2 查新优先级和 stop/go gate 的保守输入。
+
+## Round 2 Resolution
+
+**日期：** 2026-07-14  
+**依据：** `PRIOR_WORK_VERIFICATION_ROUND2.md`、`PRIOR_WORK_EVIDENCE_TABLE_ROUND2.md`、`REVIEWER_LEAD_DISPOSITION.md`
+
+| Item | Round 2 status | Resolution | Remaining action |
+|---|---|---|---|
+| domain-invariant / disentangled VAD direct seeds | 多数 exact titles 未找到 primary source | resolved as hallucinated / identity mismatch for current gate | 若后续写论文，再做 venue-level supplemental search |
+| scene residualization / nuisance subtraction | 未发现 VAD 中 M3-M6 direct coverage；发现 non-VAD InCTRL / ADShift | resolved enough for gate; keep as risk | 不 claim generic residual learning novelty |
+| Meta-AD / episodic VAD | verified real prior family via Few-shot Scene-adaptive AD and MPN | resolved: ELOS not novel | ELOS remains training/validation principle only |
+| MoCoDAD / STG-NF / DA-Flow | verified relevant skeleton VAD | resolved as skeleton / AMCN / baseline threat | not direct SRN coverage |
+| FG-Diff / Ada-VAD | not resolved | unresolved but non-blocking for SRN gate | optional later check if entering paper writing |
+| threshold transfer / FA-hour | Rashidi / Street Scene remain protocol prior | resolved: protocol not method novelty | use as evaluation discipline |
+
+**Verdict evolution：**
+
+1. Round 1 local：`NOVELTY PLAUSIBLE`
+2. DeepSeek Round 1 review：`NOVELTY AT RISK`
+3. Round 2 after seed resolution：`NOVELTY PLAUSIBLE`
+
+**Operational status：** `READY TO REQUEST RESTRICTED BRIDGE`，但 execution remains `HOLD`。

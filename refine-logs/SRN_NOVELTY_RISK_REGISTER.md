@@ -22,3 +22,21 @@
 - Strong partial overlap：已发现，尤其 zxVAD、Action Hints、HSC、Few-shot Scene-adaptive、Appearance Blur + Motion-guided Memory。
 - 最大风险不是“有人做过 cross-domain VAD”，而是下一轮可能发现某个 domain-invariant / residualization 工作已经包含 `scene token → predicted nuisance → residual + retained context`。
 - 当前可保留 SRN，但 contribution 必须写成：**面向 frozen-feature normal-only VAD 的 selective scene-predictable residualization，并显式诊断 context retention 与 fixed-threshold transfer**。
+
+## Round 2 Risk Update
+
+**日期：** 2026-07-14
+
+| Risk ID | Updated risk | Round 2 evidence | Action |
+|---|---|---|---|
+| R01 zxVAD | Medium-high, problem-setting threat | verified cross-domain VAD without target adaptation, but no M4/M5/M6 | cite as setting prior; do not claim cross-domain setting novelty |
+| R02 Action Hints | High, deployment-goal / skeleton threat | verified skeleton-based zero-shot/generalizable VAD; no learned scene residualization | cite as skeleton alternative; compare later if feasible |
+| R03 HSC | Medium-high, context/scene-aware threat | verified scene-aware contrast; no subtraction | use to motivate controlled context and scene-aware baseline |
+| R04 Few-shot Scene-adaptive / MPN | High for ELOS, low for SRN mechanism | verified target-support / meta-learning adaptation; no M3-M6 | ELOS not contribution; strict zero-shot must stay separate |
+| R05 Background-Agnostic AED | High baseline threat | verified object-level background-agnostic cross-database VAD | required conceptual baseline / related work; no direct coverage |
+| R06 STG-NF / DA-Flow / MoCoDAD | Medium-high skeleton / AMCN threat | verified skeleton normalizing flow and motion-conditioned diffusion | baseline narrative; not SRN direct |
+| R07 InCTRL | Medium non-VAD residual threat | verified in-context residual learning on images with normal prompts | do not claim generic residual learning novelty |
+| R08 ADShift / invariant AD | Medium non-VAD DG threat | verified distribution-invariant normality; no subtraction | include as non-VAD mechanism neighbor |
+| R09 reviewer hallucinated seeds | lowered | many exact titles unresolved or likely hallucinated | do not cite; preserve disposition table |
+
+**Round 2 gate risk：** direct SRN novelty is plausible, but only under narrow contribution language and required baselines.
