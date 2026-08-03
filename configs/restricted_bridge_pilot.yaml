@@ -1,0 +1,41 @@
+run_name: restricted_bridge_ped2_avenue_pilot
+seeds: [13, 29, 43]
+
+data:
+  type: npz
+  path: data/frozen_features/ped2_avenue_frozen.npz
+  backbone: dinov2_vits14_frame_pool
+  feature_dim: 384
+  require_whole_video_split: true
+  require_unseen_test_scene: false
+
+model:
+  feature_dim: 384
+  scene_token_dim: 16
+  scene_predictor_rank: 16
+  context_dim: 8
+  context_lambda: 0.25
+  adversarial_weight: 0.1
+
+training:
+  epochs: 30
+  learning_rate: 0.001
+  loss_weights: {normal: 0.05, scene_prediction: 1.0, capacity: 0.01, retention: 1.0}
+
+scorer: {knn_k: 5, gaussian_shrinkage: 0.1, prototype_count: 32}
+evaluation: {source_threshold_fpr: 0.01}
+
+matrix:
+  - {name: raw_knn, method: raw, scorer: knn}
+  - {name: raw_gaussian, method: raw, scorer: gaussian}
+  - {name: raw_prototype, method: raw, scorer: prototype}
+  - {name: scene_mean_prototype, method: scene_mean, scorer: prototype}
+  - {name: adversarial_residual, method: adversarial_residual, scorer: prototype}
+  - {name: full_srn, method: full_srn, scorer: prototype}
+  - {name: srn_without_elos, method: srn_without_elos, scorer: prototype}
+  - {name: elos_without_srn, method: elos_without_srn, scorer: prototype}
+  - {name: srn_residual_only, method: srn_residual_only, scorer: prototype}
+  - {name: calibration_only, method: calibration_only, scorer: prototype}
+
+output:
+  dir: runs/restricted_bridge_ped2_avenue_pilot

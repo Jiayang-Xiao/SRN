@@ -57,3 +57,24 @@
 | 2026-07-13 15:20 | /research-refine | refine-logs/CURRENT_RESEARCH_STATE.md | implementation | 新增当前研究状态总览：primary path、backup path、review verdicts、HOLD 状态、允许/禁止动作和用户决策选项 |
 | 2026-07-13 15:20 | /research-refine | refine-logs/EXPERIMENT_TRACKER.md | implementation | 记录 IDEA_REPORT 已同步最新状态，并保持 READY WITH RESTRICTIONS / HOLD |
 | 2026-07-13 15:20 | /research-refine | MANIFEST.md | implementation | 登记 IDEA_REPORT 状态同步和 CURRENT_RESEARCH_STATE.md |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/RESTRICTED_BRIDGE_AUDIT.md | implementation | Tier A 数据、feature、代码、split、环境、磁盘与 Git 的只读审计 |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/RESTRICTED_BRIDGE_RUN_PLAN.md | implementation | Ped2/Avenue gated pilot 的 matrix、预算、metrics、stop rules 与 leakage checklist |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/EXPERIMENT_CODE_REVIEW.md | implementation | local-only code review、blocking fixes 与正式运行限制 |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/CURRENT_RESEARCH_STATE_20260803_164318.md | implementation | bridge authorization 状态的时间戳版本 |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/CURRENT_RESEARCH_STATE.md | implementation | latest 状态更新为 RESTRICTED BRIDGE AUTHORIZED / IN PROGRESS |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/EXPERIMENT_PLAN_20260803_164318.md | implementation | restricted bridge 现行计划的时间戳版本 |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/EXPERIMENT_PLAN.md | implementation | latest plan；正式实验未启动且受 data/cache gate 阻塞 |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/EXPERIMENT_TRACKER_20260803_164318.md | implementation | bridge milestones 的时间戳 tracker |
+| 2026-08-03 16:43 | /experiment-bridge | refine-logs/EXPERIMENT_TRACKER.md | implementation | latest tracker；RB0-RB5 complete，E1+ not started |
+| 2026-08-03 16:43 | /experiment-bridge | configs/restricted_bridge_dry_run.yaml | implementation | 2-seed synthetic CPU dry-run matrix |
+| 2026-08-03 16:43 | /experiment-bridge | configs/restricted_bridge_pilot.yaml | implementation | blocked Ped2/Avenue frozen-feature pilot config |
+| 2026-08-03 16:43 | /experiment-bridge | scripts/run_restricted_bridge.py | implementation | CPU-only restricted bridge CLI |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/__init__.py | implementation | restricted bridge package entrypoint |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/config.py | implementation | config parsing and method/scorer validation |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/data.py | implementation | NPZ/synthetic data contract and leakage guards |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/models.py | implementation | low-capacity SRN and adversarial residual modules |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/scorers.py | implementation | shared kNN, Gaussian/Mahalanobis and prototype scorers |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/metrics.py | implementation | low-FPR, AUROC/AUPRC, FA/hour and grouped metrics |
+| 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/runner.py | implementation | shared training, ELOS diagnostics, thresholds, logging and aggregation |
+| 2026-08-03 16:43 | /experiment-bridge | tests/test_restricted_bridge.py | implementation | protocol, scorer, model, metric and end-to-end CPU tests |
+| 2026-08-03 16:43 | /experiment-bridge | MANIFEST.md | implementation | 登记 restricted bridge audit、代码、计划与状态 artifacts |
