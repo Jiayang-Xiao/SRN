@@ -13,11 +13,15 @@
 | RB3 | CPU synthetic dry-run | complete, non-scientific | 2 seeds × 11 entries | ignored `runs/restricted_bridge_synthetic_dry_run/`; reproducibility true |
 | RB4 | local code review and tests | complete | no secondary reviewer available | `EXPERIMENT_CODE_REVIEW.md`; 9 unittest pass |
 | RB5 | formal run plan | complete | asset audit + code dry-run | `RESTRICTED_BRIDGE_RUN_PLAN.md` |
-| G0 | Tier A data/cache protocol preflight | blocked: assets absent | legal data copies、checksums、official split、fps、labels、backbone cache | future immutable cache manifest |
-| E1 | Ped2/Avenue frozen-feature audit | not started | G0 + separate data/feature authorization | raw/scorer/threshold tables |
-| E2 | SRN vs mean/adversarial mechanism pilot | not started | E1 confirms meaningful collapse and source-domain labels | minimal mechanism table |
-| E3 | ShanghaiTech whole-scene falsification | gated, not authorized | positive/inconclusive-safe E2 + separate authorization | LOSO whole-scene table |
-| E4 | low-FPR/FA-hour claim | not started | trustworthy fps/alarm definition + E2 | reliability table |
-| E5 | Tier B scale-up | out of scope | positive E2/E3 + separate authorization | none |
+| G0 | Tier A data/cache protocol preflight | complete | official Ped2/Avenue/DINOv2 assets, checksums, split/fps/label audits | `DATA_AND_FEATURE_PROVENANCE.md` + five cache sidecars |
+| E1 | Ped2/Avenue frozen-feature audit | complete, negative transfer finding | 35,212-frame shared DINOv2 catalog | raw scorers + within/cross-dataset tables |
+| E2 | SRN vs mean/adversarial mechanism pilot | complete, mechanism falsified | joint two-seen-domain cache; 3 learned seeds | main/ablation table + independent scene probe |
+| E3 | ShanghaiTech whole-scene falsification | externally blocked | official links inaccessible; unverified mirror rejected | no whole-scene ELOS claim |
+| E4 | low-FPR/FA-hour claim | complete for bounded pilots | chronological/gap-aware alarm metric; official FPS | source-threshold and calibrated tracks |
+| E5 | Tier B scale-up | stopped | E2 STOP verdict; no scientific justification for scale-up | none |
 
-截至 2026-08-03，restricted bridge 的 audit、代码骨架、CPU synthetic dry-run 和正式运行计划已完成。未下载数据，未使用 GPU，未提取 Tier A features，未启动正式训练或正式 evaluation。Synthetic outputs 不是科研证据。当前正式运行阻塞于 Ped2/Avenue 合法数据与统一 frozen feature cache；ShanghaiTech 和 Tier B 均未获本轮实际运行授权。
+截至 2026-08-17，Ped2/Avenue 官方数据、统一 DINOv2 frozen features、within/cross-dataset
+baselines、joint seen-domain SRN/ablation matrix、独立 integrity review、自动结果分析与
+negative-result paper draft 均已完成。Synthetic outputs 仍不属于科研证据。ShanghaiTech
+官方资源访问失败，因此 genuine whole-scene ELOS 未测试。当前结论为 `STOP` tested SRN
+mechanism claim；不继续 Tier B scale-up。

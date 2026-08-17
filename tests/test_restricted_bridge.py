@@ -17,8 +17,10 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from restricted_bridge.config import load_config  # noqa: E402
 from restricted_bridge.data import make_synthetic_features, validate_feature_data  # noqa: E402
 from restricted_bridge.metrics import (  # noqa: E402
+    average_precision,
     binary_auroc,
     evaluate_scores,
+    false_alarm_events_per_hour,
     source_normal_threshold,
 )
 from restricted_bridge.models import SRN  # noqa: E402
@@ -65,11 +67,12 @@ class DataProtocolTests(unittest.TestCase):
 class ModelAndScorerTests(unittest.TestCase):
     def test_srn_context_ablation_changes_only_output_interface(self) -> None:
         features = torch.randn(5, 16)
-        full = SRN(16, 4, 2, 3, 0.25, True, 0.1)
-        residual_only = SRN(16, 4, 2, 3, 0.25, False, 0.1)
+        full = SRN(16, 4, 2, 2, 3, 0.25, True, 0.1)
+        residual_only = SRN(16, 4, 2, 2, 3, 0.25, False, 0.1)
         self.assertEqual(full(features).embedding.shape, (5, 18))
         self.assertEqual(residual_only(features).embedding.shape, (5, 16))
         self.assertEqual(full(features).scene_component.shape, (5, 16))
+        self.assertEqual(full.scene_predictor[0].out_features, 2)
 
     def test_all_scorers_rank_far_points_higher(self) -> None:
         train = np.asarray([[0.0, 0.0], [0.1, -0.1], [-0.1, 0.1]])
@@ -99,14 +102,43 @@ class ModelAndScorerTests(unittest.TestCase):
         groups = np.asarray(["a", "a", "b", "b"])
         result = evaluate_scores(
             labels, scores, 0.5, groups, groups,
-            np.full(4, 25.0), np.asarray([-1, 0, -1, 1]),
+            np.asarray([0, 1, 0, 1]), np.full(4, 25.0),
+            np.asarray([-1, 0, -1, 1]),
         )
         self.assertEqual(result["per_scene_auroc"], {"a": 1.0, "b": 1.0})
         self.assertEqual(result["worst_scene_auroc"], 1.0)
         self.assertEqual(result["scene_auroc_std"], 0.0)
 
+    def test_average_precision_is_invariant_to_input_order_under_ties(self) -> None:
+        labels = np.asarray([1, 0])
+        scores = np.asarray([0.5, 0.5])
+        self.assertEqual(average_precision(labels, scores), 0.5)
+        self.assertEqual(average_precision(labels[::-1], scores[::-1]), 0.5)
+
+    def test_false_alarm_events_sort_frames_and_split_on_gaps(self) -> None:
+        labels = np.zeros(4, dtype=np.int64)
+        predictions = np.ones(4, dtype=bool)
+        videos = np.asarray(["v", "v", "v", "v"])
+        frames = np.asarray([3, 0, 2, 10])
+        fps = np.full(4, 25.0)
+        rate = false_alarm_events_per_hour(labels, predictions, videos, frames, fps)
+        expected_hours = 11 / 25.0 / 3600.0
+        self.assertAlmostEqual(rate, 3 / expected_hours)
+
 
 class EndToEndDryRunTests(unittest.TestCase):
+    def test_matrix_entry_can_limit_deterministic_seed_repeats(self) -> None:
+        config = load_config(PROJECT_ROOT / "configs" / "restricted_bridge_dry_run.yaml")
+        config = copy.deepcopy(config)
+        config["seeds"] = [5, 7]
+        config["training"]["epochs"] = 1
+        config["matrix"] = [
+            {"name": "raw_knn", "method": "raw", "scorer": "knn", "seeds": [7]},
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            result = run_experiment(config, temp_dir)
+            self.assertEqual([run["seed"] for run in result["runs"]], [7])
+
     def test_minimal_matrix_writes_checkpoint_metrics_and_logs(self) -> None:
         config = load_config(PROJECT_ROOT / "configs" / "restricted_bridge_dry_run.yaml")
         config = copy.deepcopy(config)
@@ -124,6 +156,11 @@ class EndToEndDryRunTests(unittest.TestCase):
             self.assertTrue((Path(temp_dir) / "results.csv").is_file())
             self.assertTrue((Path(temp_dir) / "run.log").is_file())
             self.assertTrue((Path(temp_dir) / "seed_5" / "full_srn" / "checkpoint.pt").is_file())
+            self.assertTrue((Path(temp_dir) / "seed_5" / "full_srn" / "scores.npz").is_file())
+            full_run = next(run for run in result["runs"] if run["name"] == "full_srn")
+            self.assertEqual(full_run["diagnostics"]["scene_probe_protocol"],
+                             "independent_nearest_centroid_train_to_source_val")
+            self.assertIsNotNone(full_run["model_selection"])
             with (Path(temp_dir) / "results.json").open(encoding="utf-8") as handle:
                 self.assertEqual(json.load(handle)["device"], "cpu")
 

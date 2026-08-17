@@ -1,0 +1,8 @@
+\section{Conclusion}
+
+This study tested a specific explanation for poor normal-only transfer: scene-predictable components in frozen visual features harm anomaly scoring, and low-capacity residualization can remove them. The first part of that premise receives bounded support. Ped2/Avenue score scales shift so severely that source-normal thresholds flag every target normal frame, even when AUROC remains nontrivial. The proposed remedy does not. Full SRN trails raw Gaussian scoring, barely changes its matched prototype head, and leaves dataset/camera identity perfectly decodable.
+
+The result is a mechanism falsification, not evidence that scene dependence is irrelevant or that all invariant VAD methods fail. Genuine unseen-scene ELOS remains untested because no multi-scene asset is present in the audited experiment set. A future study should first secure such data, freeze the split and thresholds, and require simultaneous success on identity suppression, event retention, and source-fixed low-FPR behavior. The current evidence does not justify further tuning of this SRN formulation.
+
+\paragraph{Reproducibility and broader impact.}
+The repository records dataset and checkpoint hashes, whole-video split identities, extraction preprocessing, all configurations and seeds, per-frame score artifacts, audit results, and figure-generation scripts. VAD errors can burden operators or miss harmful events; the failure of source-fixed thresholds reported here is a reason to validate calibration under deployment shift, not to deploy the tested system.

@@ -31,6 +31,8 @@ Scene context is both a nuisance variable and part of the anomaly definition; bl
 
 Many cross-scene approaches depend on complex object pipelines, synthetic anomalies, or expensive adaptation.
 
+## Failed Ideas (avoid repeating)
+- **Scene-Residual Normality**:
 ## Key Papers (7 total)
 - [paper:cao2023_new_comprehensive_benchmark] A New Comprehensive Benchmark for Semi-Supervised Video Anomaly Detection and Anticipation
 - [paper:liu2023_generating_anomalies_video] Generating Anomalies for Video Anomaly Detection With Prompt-Based Feature Mapping
@@ -39,8 +41,7 @@ Many cross-scene approaches depend on complex object pipelines, synthetic anomal
 - [paper:ristea2024_selfdistilled_masked_autoencoders] Self-Distilled Masked Auto-Encoders are Efficient Video Anomaly Detectors
 - [paper:singh2023_eval_explainable_video] EVAL: Explainable Video Anomaly Localization
 - [paper:sun2023_hierarchical_semantic_contrast] Hierarchical Semantic Contrast for Scene-Aware Video Anomaly Detection
-## Recent Relationships (40 total)
-  idea:stress-test-suite --addresses_gap--> gap:G3
+## Recent Relationships (41 total)
   idea:masked-distillation --addresses_gap--> gap:G5
   idea:srn --inspired_by--> paper:rashidi2026_benchmark_auc_not
   idea:srn --inspired_by--> paper:sun2023_hierarchical_semantic_contrast
@@ -53,4 +54,5 @@ Many cross-scene approaches depend on complex object pipelines, synthetic anomal
   paper:rashidi2026_benchmark_auc_not --addresses_gap--> gap:G3
   paper:sun2023_hierarchical_semantic_contrast --addresses_gap--> gap:G1
   paper:sun2023_hierarchical_semantic_contrast --addresses_gap--> gap:G4
-  paper:liu2023_generating_anom
+  paper:liu2023_generating_anomalies_video --addresses_gap--> gap:G5
+  paper:riste

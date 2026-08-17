@@ -1,0 +1,36 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{The tested residual does not improve the joint diagnostic}
+
+\input{../figures/TABLE_main_results.tex}
+
+\Cref{tab:main_results,fig:method_comparison} compare methods on the joint two-seen-domain cache. Raw Gaussian is strongest by frame AUROC ($0.6885$) and AUPRC ($0.5536$); full SRN reaches $0.6677$ and $0.5014$. Their video-bootstrap intervals, $[0.5927,0.7994]$ and $[0.6066,0.7246]$, overlap broadly. Because Gaussian and SRN use different scorers, the stricter capacity-matched comparison is full SRN versus raw prototype. That delta is only $+0.002439\pm0.002456$ AUROC over three seeds, $+0.001272\pm0.002627$ AUPRC, and $-0.000311\pm0.001892$ oracle TPR at 0.1\% FPR. It does not support a practical or mechanistic advantage.
+
+Scene-mean subtraction, adversarial residualization, and the learned ablations cluster near raw prototype. ELOS without SRN exactly equals raw prototype because the raw representation has no checkpoint. Removing ELOS or removing the context path changes AUROC by less than $0.0021$ relative to full SRN. The bounded lower-learning-rate diagnostic also fails to reduce scene decodability or improve the ordering. No component is justified by a consistent low-FPR gain.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{fig2_method_comparison.pdf}
+    \caption{Joint two-seen-domain results. (a) Frame AUROC with descriptive 95\% hierarchical video/seed bootstrap intervals. The dashed line marks raw prototype. (b) Oracle test-curve TPR at 1\% and 0.1\% FPR; these bars use final test negatives to locate ROC operating points and are not deployable thresholds. Raw-G, Raw-P, Mean, Adv., No-ELOS, and Resid. denote raw Gaussian, raw prototype, scene mean, adversarial residual, SRN without ELOS, and SRN residual-only.}
+    \label{fig:method_comparison}
+\end{figure*}
+
+\subsection{Source-fixed thresholds collapse across datasets}
+
+\input{../figures/TABLE_threshold_transfer.tex}
+
+The cross-dataset result is stronger than the small joint-method differences. Every scorer in both directions produces source-threshold test-normal FPR $1.0$ (\cref{tab:threshold_transfer,fig:threshold_transfer}). Consequently, the corresponding source-threshold recall of $1.0$ is an all-frames-flagged failure, not successful detection. Ped2-to-Avenue AUROC is also below chance for all three scorers ($0.3567$--$0.3759$). Avenue-to-Ped2 Gaussian reaches AUROC $0.6929$, demonstrating the central metric discrepancy: useful ordering can coexist with a completely unusable fixed threshold.
+
+The numerical scale shift is large. Target-normal score q99 divided by source-normal validation q99 is $12.66$, $32.42$, and $13.22$ for Ped2-to-Avenue kNN, Gaussian, and prototype. In the reverse direction the ratios are $6.50$, $10.57$, and $6.68$. A 99th-percentile threshold calibrated on declared target-normal videos restores test-normal FPR to $0$--$0.0028$, but anomaly recall is only $0$--$0.0038$ for Ped2-to-Avenue and $0.0087$--$0.1620$ for Avenue-to-Ped2. Calibration changes the question and does not recover a strong detector here.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{fig3_threshold_transfer.pdf}
+    \caption{Cross-dataset threshold transfer for (a) Ped2 $\rightarrow$ Avenue and (b) Avenue $\rightarrow$ Ped2. Orange bars are test-normal FPR under a threshold fixed at 1\% source-normal validation FPR. Insets show the separate target-normal calibration track. All source thresholds flag every target normal frame.}
+    \label{fig:threshold_transfer}
+\end{figure*}
+
+\subsection{Within-dataset checks do not predict transfer}
+
+Within-dataset checks confirm that the pipeline can produce meaningful rankings. Ped2 raw Gaussian obtains AUROC $0.8982$, AUPRC $0.9780$, source-threshold recall $0.6238$, and test-normal FPR $0.0028$. Avenue is harder: the three-seed raw prototype obtains AUROC $0.6197\pm0.0008$, AUPRC $0.4235$, recall $0.1431\pm0.0056$, and FPR $0.0208\pm0.0014$. These results are engineering sanity checks, not state-of-the-art comparisons. Their contrast with cross-dataset FPR $1.0$ shows that successful within-dataset calibration does not imply score-scale transfer.

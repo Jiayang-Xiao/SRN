@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\caption{Cross-dataset threshold transfer. Strict thresholds use source-normal validation only.}
+\label{tab:threshold_transfer}
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrrr}
+\toprule
+Direction & Scorer & AUROC & Src. recall & Src. FPR & q99 ratio & Cal. recall & Cal. FPR \\
+\midrule
+Ped2$\to$Avenue & Gaussian & 0.3567 & 1.000 & 1.000 & 32.42 & 0.0038 & 0.0000 \\
+Ped2$\to$Avenue & kNN & 0.3738 & 1.000 & 1.000 & 12.66 & 0.0000 & 0.0000 \\
+Ped2$\to$Avenue & Prototype & 0.3759 & 1.000 & 1.000 & 13.22 & 0.0000 & 0.0000 \\
+Avenue$\to$Ped2 & Gaussian & 0.6929 & 1.000 & 1.000 & 10.57 & 0.1620 & 0.0028 \\
+Avenue$\to$Ped2 & kNN & 0.6541 & 1.000 & 1.000 & 6.50 & 0.0516 & 0.0028 \\
+Avenue$\to$Ped2 & Prototype & 0.5353 & 1.000 & 1.000 & 6.68 & 0.0087 & 0.0018 \\
+\bottomrule
+\end{tabular}}
+\vspace{1mm}\parbox{0.95\columnwidth}{\footnotesize Source thresholds are selected from source-normal validation only. q99 ratio is target-test-normal q99 divided by source-validation-normal q99. Target-calibrated thresholds use separately declared target-normal videos.}
+\end{table}

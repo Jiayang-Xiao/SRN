@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS",
+  "checks": {
+    "source_hash_match": "pass",
+    "information_fidelity": "pass",
+    "structure": "pass",
+    "math_code_tables": "pass",
+    "callouts": "not_applicable",
+    "safety_escaping": "pass",
+    "placeholder_leak": "pass"
+  },
+  "blocking_issues": [],
+  "warnings": [],
+  "summary": "The HTML faithfully and safely renders the claim-audit Markdown and parse-equivalent JSON sidecar.",
+  "reviewer_model": "gpt-5.5",
+  "reviewer_reasoning": "xhigh"
+}

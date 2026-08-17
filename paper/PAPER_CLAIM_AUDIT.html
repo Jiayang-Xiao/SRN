@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRN Paper Claim Audit</title>
+
+<meta name="generator" content="ARIS render-html (academic, v1)">
+<meta name="aris:source-path" content="paper/PAPER_CLAIM_AUDIT.md">
+<meta name="aris:source-sha256" content="8efb909d038b5e912c11ef10939792730591385bf61361bbdd2b556f5d197b28">
+<meta name="aris:generated-at" content="2026-08-16 19:44 UTC">
+
+<!-- MathJax 3 -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+<!-- highlight.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+
+
+<style>
+:root {
+  --bg: #fdfcf7;
+  --bg-soft: #f4f1ea;
+  --bg-code: #f8f5ec;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #6b6b6b;
+  --primary: #1a4a8c;
+  --primary-soft: #2d6cb8;
+  --accent: #b8390e;
+  --warn: #b45309;
+  --warn-bg: #fef3c7;
+  --info-bg: #dbeafe;
+  --good-bg: #d1fae5;
+  --good: #065f46;
+  --bad-bg: #fee2e2;
+  --bad: #991b1b;
+  --border: #d6d0c0;
+  --border-soft: #e8e3d5;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Source Serif Pro", "Source Serif 4", "Crimson Pro", "Georgia", "Songti SC", "STSong", serif;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  padding: 40px 32px;
+}
+
+nav.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  font-size: 13px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-right: 1px solid var(--border-soft);
+  padding-right: 16px;
+}
+nav.toc h3 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+nav.toc ol li { margin: 5px 0; counter-increment: toc; }
+nav.toc ol li::before { content: counter(toc) ". "; color: var(--ink-muted); margin-right: 4px; }
+nav.toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+}
+nav.toc a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+nav.toc ul { list-style: none; padding-left: 14px; margin: 3px 0; font-size: 12px; }
+nav.toc ul li::before { content: "→ "; color: var(--border); }
+
+main { min-width: 0; }
+
+header.hero {
+  border-bottom: 3px double var(--primary);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+header.hero .eyebrow {
+  color: var(--accent);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+header.hero h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+header.hero .subtitle {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  font-style: italic;
+}
+header.hero .byline {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+header.hero .byline strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+header.hero .meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 14px;
+}
+header.hero .meta span strong { color: var(--ink-soft); }
+header.hero .meta code {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 11px;
+  background: var(--bg-soft);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 44px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 700;
+}
+h2 .num { color: var(--primary); font-weight: 600; margin-right: 8px; }
+h3 { font-size: 19px; margin: 28px 0 10px; color: var(--primary); font-weight: 600; }
+h4 { font-size: 16px; margin: 20px 0 8px; color: var(--ink); font-weight: 600; }
+
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+ul li, ol li { margin: 4px 0; }
+ul li::marker { color: var(--primary); }
+
+strong { color: var(--accent); font-weight: 600; }
+em { color: var(--ink-soft); }
+
+a { color: var(--primary); }
+a:hover { color: var(--accent); }
+
+code:not(.hljs) {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 0.86em;
+  background: var(--bg-code);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+  color: var(--accent);
+}
+
+pre {
+  background: #fafaf6;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  padding: 0;
+  overflow-x: auto;
+  border-radius: 4px;
+  margin: 14px 0;
+}
+pre code, pre code.hljs {
+  background: transparent !important;
+  display: block;
+  padding: 14px 18px !important;
+  font-size: 13px;
+  line-height: 1.55;
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+  color: var(--ink);
+}
+pre.diagram {
+  background: #f9f6ed;
+  border-left: 4px solid var(--accent);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.callout {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-left: 4px solid;
+  font-size: 15px;
+}
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.callout-info { background: var(--info-bg); border-left-color: var(--primary); }
+.callout-info .callout-title { color: var(--primary); }
+.callout-warn { background: var(--warn-bg); border-left-color: var(--warn); }
+.callout-warn .callout-title { color: var(--warn); }
+.callout-good { background: var(--good-bg); border-left-color: var(--good); }
+.callout-good .callout-title { color: var(--good); }
+.callout-bad { background: var(--bad-bg); border-left-color: var(--bad); }
+.callout-bad .callout-title { color: var(--bad); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+thead { background: var(--primary); color: white; }
+th, td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+th { font-weight: 600; font-size: 13px; letter-spacing: 0.02em; }
+tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+
+details.qa, details {
+  background: white;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 0;
+}
+details summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary);
+  list-style: none;
+  user-select: none;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: "▸ ";
+  margin-right: 4px;
+  display: inline-block;
+  transition: transform 0.15s;
+}
+details[open] summary::before { transform: rotate(90deg); }
+details[open] summary { border-bottom: 1px solid var(--border-soft); }
+details > :not(summary) { padding: 10px 14px; }
+details p:first-of-type { margin-top: 8px; }
+
+mjx-container[display="true"] { margin: 12px 0 !important; }
+
+footer.aris-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+footer.aris-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--border); }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px; }
+  nav.toc {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+    padding-right: 0;
+    padding-bottom: 14px;
+  }
+  header.hero h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+}
+@media print {
+  nav.toc { display: none; }
+  .layout { grid-template-columns: 1fr; padding: 0; }
+  body { background: white; }
+  header.hero { border-bottom-color: var(--ink); }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <ol>
+<li><a href="#claims-verified">Claims verified</a>
+</li>
+<li><a href="#overall-finding">Overall finding</a>
+</li>
+<li><a href="#high-value-checks">High-value checks</a>
+</li>
+<li><a href="#non-blocking-scope-notes">Non-blocking scope notes</a>
+</li>
+<li><a href="#traceability">Traceability</a>
+</li>
+</ol>
+</nav>
+
+<main>
+<header class="hero">
+  
+  <h1>SRN Paper Claim Audit</h1>
+  
+  
+  <div class="meta">
+    <span><strong>Source:</strong> <code>paper/PAPER_CLAIM_AUDIT.md</code></span>
+    <span><strong>SHA256:</strong> <code>8efb909d038b</code></span>
+    <span><strong>Rendered:</strong> 2026-08-16 19:44 UTC</span>
+    
+  </div>
+</header>
+
+<h1 id="paper-claim-audit-report">Paper Claim Audit Report</h1>
+<ul><li><strong>Date:</strong> 2026-08-17</li><li><strong>Auditor:</strong> GPT-5.5 xhigh, fresh zero-context thread</li><li><strong>Paper:</strong> <em>A Two-Dataset Falsification Study of Scene Residualization for Normal-Only Video Anomaly Detection</em></li><li><strong>Overall verdict:</strong> <code>PASS</code></li></ul>
+<h2 id="claims-verified">Claims verified</h2>
+<table><thead><tr><th>Audit group</th><th style="text-align:right">Count</th><th style="text-align:right">Mismatches</th></tr></thead><tbody><tr><td>Reported table numeric cells</td><td style="text-align:right">111</td><td style="text-align:right">0</td></tr><tr><td>Narrative result values</td><td style="text-align:right">23</td><td style="text-align:right">0</td></tr><tr><td>Protocol/config/split/hash values</td><td style="text-align:right">57</td><td style="text-align:right">0</td></tr><tr><td>Comparison or scope claim groups</td><td style="text-align:right">28</td><td style="text-align:right">0</td></tr></tbody></table>
+<p>The auditor also opened 61 per-row score artifacts and recomputed 976 core metrics from <code>scores.npz</code>; every recomputed metric matched its corresponding structured result.</p>
+<h2 id="overall-finding">Overall finding</h2>
+<p>All audited numerical, comparison, configuration, split, hash, threshold, and scope claims in the frozen paper source match the declared current raw evidence under standard rounding. No missing evidence or material mismatch remains.</p>
+<h2 id="high-value-checks">High-value checks</h2>
+<ul><li>All 48 numeric cells in the joint main table match the joint mechanism results.</li><li>All 36 numeric cells in the threshold-transfer table match the analysis outputs; q99 ratios were also recomputed from per-frame score arrays.</li><li>Every Ped2/Avenue appendix mean and shown standard deviation rounds correctly from the within-dataset results.</li><li>The SRN dimensions, loss weights, scorer settings, seeds, epochs, learning rates, and source-threshold rule match the frozen configurations and implementation.</li><li>Split sizes, whole-video separation, zero non-test anomaly labels, preprocessing, DINOv2 checkpoint/hash prefix, and CPU device records are supported by provenance.</li><li>The text correctly limits SRN/ELOS conclusions to the two-seen-dataset diagnostic and makes no genuine unseen-scene generalization claim.</li></ul>
+<h2 id="non-blocking-scope-notes">Non-blocking scope notes</h2>
+<ul><li>Literature/context truth is handled by <code>CITATION_AUDIT</code>, which passes independently.</li><li>The catalog hash is repeated in every experiment provenance sidecar; the top-level catalog sidecar does not redundantly store a field named <code>catalog_sha256</code>.</li><li>Cross-dataset configs also contain scene-mean diagnostic rows that the paper does not tabulate; these rows likewise collapse to source-threshold target-normal FPR 1.0.</li></ul>
+<h2 id="traceability">Traceability</h2>
+<p>The authoritative ledger, input hashes, and result-file list are in <code>PAPER_CLAIM_AUDIT.json</code>. The fresh reviewer trace is under <code>.aris/traces/paper-claim-audit/2026-08-17_run03/</code>.</p>
+<h2 id="sidecar-json">Sidecar — <code>PAPER_CLAIM_AUDIT.json</code></h2>
+<details><summary>Sidecar JSON: <code>/home/xjy/ARIS/paper/PAPER_CLAIM_AUDIT.json</code></summary><pre><code class="language-json">{
+  &quot;audit_skill&quot;: &quot;paper-claim-audit&quot;,
+  &quot;verdict&quot;: &quot;PASS&quot;,
+  &quot;reason_code&quot;: &quot;all_numbers_match&quot;,
+  &quot;summary&quot;: &quot;All audited numerical, comparison, configuration, split, hash, threshold, and scope claims match the declared raw evidence under standard rounding.&quot;,
+  &quot;audited_input_hashes&quot;: {
+    &quot;main.tex&quot;: &quot;sha256:adc4028ecd56b96d768b27d90ce3fcb2e9f390062a6a55f6d3b941b2a95611ae&quot;,
+    &quot;sections/0_abstract.tex&quot;: &quot;sha256:4d96f4c4857e4422f1d833105b166c7eaea4e0e7ec3160047cfe7a94ab5daef7&quot;,
+    &quot;sections/1_introduction.tex&quot;: &quot;sha256:394d24f720670c8b2531d26ebb83a2683da30076d0f6883c47cbe4328d429bc6&quot;,
+    &quot;sections/2_related_work.tex&quot;: &quot;sha256:133064af0fc6f0c40a246c2e39d2429a9d35060c1fd904dae0a02c30d484be0f&quot;,
+    &quot;sections/3_problem_and_method.tex&quot;: &quot;sha256:905bd8327d4cc4bdf27c248a48ed5c8c032ff5c3a5d45ee007af911d4aa15bd4&quot;,
+    &quot;sections/4_protocol.tex&quot;: &quot;sha256:67ff5dc4cbbc7504f64d49b4536fbf97a5d85af28d8442afb8dfacce71769195&quot;,
+    &quot;sections/5_results.tex&quot;: &quot;sha256:2f17a3ea8839e6f331ebad5b055ccccd13267179f62691e0b097c22cac945cf9&quot;,
+    &quot;sections/6_diagnostics_limitations.tex&quot;: &quot;sha256:c6b28a8865ba2e4c1dc5abece524d1d8c2026ddfd32396c116dc7df5b8c1cdd0&quot;,
+    &quot;sections/7_conclusion.tex&quot;: &quot;sha256:a895982171416841e364df2d6c653f0545494d16362178a37e761b2456251850&quot;,
+    &quot;sections/A_appendix.tex&quot;: &quot;sha256:8cb0ef99514083e960a6262b21933162477a604b68ee8b66dcd3494343f401bb&quot;,
+    &quot;/home/xjy/ARIS/figures/TABLE_main_results.tex&quot;: &quot;sha256:0fc62a0a031f0de0bd495ed64e0c20729d205acb742a6b0e066bf0f089040d0e&quot;,
+    &quot;/home/xjy/ARIS/figures/TABLE_threshold_transfer.tex&quot;: &quot;sha256:25a823ea6d2fffa50ebc532feb96a04e8af21f6c5bdcdc9d94a859dfb5cd7aa1&quot;,
+    &quot;/home/xjy/ARIS/runs/ped2_within_raw/results.json&quot;: &quot;sha256:e6fd3bd2c641d73c78a54e7ad68e0fa3d626aa9a767b135ff51974495990f1e2&quot;,
+    &quot;/home/xjy/ARIS/runs/avenue_within_raw/results.json&quot;: &quot;sha256:0fd207e0eb1a5637f3f009f63d4d3c29e59bedb4949ee43180cb73604a730eb4&quot;,
+    &quot;/home/xjy/ARIS/runs/ped2_to_avenue_raw/results.json&quot;: &quot;sha256:661ad731f9b8c632c7e2d21593de2343a8c28c2d78449b916ad6c9bb24d0ef03&quot;,
+    &quot;/home/xjy/ARIS/runs/avenue_to_ped2_raw/results.json&quot;: &quot;sha256:ae33efbd8542ee45f0609c9da4461df0f8414101c1ce86d6c4985e99d84ebaf9&quot;,
+    &quot;/home/xjy/ARIS/runs/ped2_avenue_joint_seen_mechanism/results.json&quot;: &quot;sha256:4db6ea1039a3ae4b99d2f22954b3135f628d023bae11dc999e60865bf49b674e&quot;,
+    &quot;/home/xjy/ARIS/runs/ped2_avenue_joint_lr_diagnostic/results.json&quot;: &quot;sha256:91968fbfb815e6be256cd374f8a4da9c9379f9dd86f826f5c88ea42717cd9627&quot;,
+    &quot;/home/xjy/ARIS/data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.provenance.json&quot;: &quot;sha256:fd63486608d859ff113124548d2f35328a4e0cf7c6fea18b6780fe2c976836e0&quot;,
+    &quot;/home/xjy/ARIS/data/frozen_features/dinov2_vits14/experiments/avenue_within.provenance.json&quot;: &quot;sha256:4173f1d0862cab649380c404b9dc4d27fc3678c8ce8697e10bbef659006cc106&quot;,
+    &quot;/home/xjy/ARIS/data/frozen_features/dinov2_vits14/experiments/ped2_avenue_joint_seen.provenance.json&quot;: &quot;sha256:9a54bace8a234f0d3ba7ccb8a4540e6000fa92f7bf23fc5a5a03c681d0c91295&quot;,
+    &quot;/home/xjy/ARIS/data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.provenance.json&quot;: &quot;sha256:3056a0b891793dc6bd543fd4c3fbdee155b1f942d359967f54f49a4d83bc7748&quot;,
+    &quot;/home/xjy/ARIS/data/frozen_features/dinov2_vits14/experiments/ped2_within.provenance.json&quot;: &quot;sha256:f56cdbb2abc52a23acc1c90f03310d3b72f96037f9dda5fd0705cbfc9c4c55fd&quot;,
+    &quot;/home/xjy/ARIS/data/frozen_features/dinov2_vits14/ped2_avenue_catalog.provenance.json&quot;: &quot;sha256:98fafc120d5368d04a58ebd5513d42497d7f9f4c62d994faa93eddf7e71002e0&quot;,
+    &quot;/home/xjy/ARIS/analysis/main_comparison.csv&quot;: &quot;sha256:d8bb22edbcf79a90554f2a9cffd6a4fa09e6662fc2eea3e35deb1152347e23fb&quot;,
+    &quot;/home/xjy/ARIS/analysis/score_distribution_shift.csv&quot;: &quot;sha256:c1982aef4391d9a4cb411064c89f8fdb7a54960e3e3f10c79b6f8524b9d9b217&quot;,
+    &quot;/home/xjy/ARIS/configs/ped2_within_raw.yaml&quot;: &quot;sha256:67fffcddd800c9f7468226f371be3a521a8d47d6b62e2a634355f29caf54c53f&quot;,
+    &quot;/home/xjy/ARIS/configs/avenue_within_raw.yaml&quot;: &quot;sha256:3d8768b280d52ef2fbcab9719a1b262dd63085ac96569d93c97c29bb874e4acc&quot;,
+    &quot;/home/xjy/ARIS/configs/ped2_to_avenue_raw.yaml&quot;: &quot;sha256:89aeba24ad347c5728087968d110ff7abf8f128a56f31eb91f77616ebb2ac011&quot;,
+    &quot;/home/xjy/ARIS/configs/avenue_to_ped2_raw.yaml&quot;: &quot;sha256:bc30210287bbab7ca9469b658e0108397a70ffe4b05204d6055483c54e48f797&quot;,
+    &quot;/home/xjy/ARIS/configs/ped2_avenue_joint_mechanism.yaml&quot;: &quot;sha256:c71fa64f7ab545aa97bf264599c7d8ccbee9f7beb8b63a5e8752fde131cd50c8&quot;,
+    &quot;/home/xjy/ARIS/configs/ped2_avenue_joint_lr_diagnostic.yaml&quot;: &quot;sha256:36159c64ca2e8aad903d3d757de0712764ed043d2b84cf353606b01d8bfe58a7&quot;,
+    &quot;/home/xjy/ARIS/EXPERIMENT_AUDIT.json&quot;: &quot;sha256:3d1b4fa548bd5e46c25aceaa1f94812132900f55fe08cfb8020449380f3456f2&quot;
+  },
+  &quot;trace_path&quot;: &quot;.aris/traces/paper-claim-audit/2026-08-17_run03/&quot;,
+  &quot;thread_id&quot;: &quot;paper_claim_audit_submission_fresh&quot;,
+  &quot;reviewer_model&quot;: &quot;gpt-5.5&quot;,
+  &quot;reviewer_reasoning&quot;: &quot;xhigh&quot;,
+  &quot;generated_at&quot;: &quot;2026-08-16T19:21:28Z&quot;,
+  &quot;details&quot;: {
+    &quot;total_claims&quot;: 219,
+    &quot;mismatches&quot;: [],
+    &quot;reported_table_numeric_cells_checked&quot;: 111,
+    &quot;narrative_result_values_checked&quot;: 23,
+    &quot;protocol_config_split_hash_values_checked&quot;: 57,
+    &quot;comparison_or_scope_claim_groups_checked&quot;: 28,
+    &quot;scores_npz_artifacts_checked&quot;: 61,
+    &quot;score_metrics_recomputed_from_npz&quot;: 976,
+    &quot;result_files&quot;: [
+      &quot;/home/xjy/ARIS/runs/ped2_within_raw/results.json&quot;,
+      &quot;/home/xjy/ARIS/runs/avenue_within_raw/results.json&quot;,
+      &quot;/home/xjy/ARIS/runs/ped2_to_avenue_raw/results.json&quot;,
+      &quot;/home/xjy/ARIS/runs/avenue_to_ped2_raw/results.json&quot;,
+      &quot;/home/xjy/ARIS/runs/ped2_avenue_joint_seen_mechanism/results.json&quot;,
+      &quot;/home/xjy/ARIS/runs/ped2_avenue_joint_lr_diagnostic/results.json&quot;
+    ],
+    &quot;scope_risks&quot;: [
+      &quot;Literature contexts are owned by the separate citation audit.&quot;,
+      &quot;Conclusions remain limited to Ped2/Avenue and the two-seen-domain mechanism diagnostic.&quot;,
+      &quot;Cross-dataset configs include unreported scene-mean rows; these also have source-threshold target-normal FPR 1.0 and do not alter the reported raw-scorer claim.&quot;
+    ]
+  }
+}</code></pre></details>
+
+<footer class="aris-footer">
+  Generated by <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md">ARIS <code>/render-html</code></a> ·
+  source path <code>paper/PAPER_CLAIM_AUDIT.md</code> ·
+  SHA256 <code>8efb909d038b</code> ·
+  generated at 2026-08-16 19:44 UTC.
+  This is a generated view — edit the source Markdown, then re-render.
+</footer>
+</main>
+
+</div>
+</body>
+</html>

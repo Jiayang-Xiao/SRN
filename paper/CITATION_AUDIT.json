@@ -1,0 +1,43 @@
+{
+  "audit_skill": "citation-audit",
+  "verdict": "PASS",
+  "reason_code": "all_entries_keep",
+  "summary": "All 12 cited works exist, their final metadata are defensible, and every cited context is supported after precision fixes.",
+  "audited_input_hashes": {
+    "references.bib": "sha256:0bb8f3360c2f8b02945db7143129251fc2548b7f434c45d32a6993e2a92de2e5",
+    "main.tex": "sha256:adc4028ecd56b96d768b27d90ce3fcb2e9f390062a6a55f6d3b941b2a95611ae",
+    "sections/0_abstract.tex": "sha256:4d96f4c4857e4422f1d833105b166c7eaea4e0e7ec3160047cfe7a94ab5daef7",
+    "sections/1_introduction.tex": "sha256:394d24f720670c8b2531d26ebb83a2683da30076d0f6883c47cbe4328d429bc6",
+    "sections/2_related_work.tex": "sha256:133064af0fc6f0c40a246c2e39d2429a9d35060c1fd904dae0a02c30d484be0f",
+    "sections/3_problem_and_method.tex": "sha256:905bd8327d4cc4bdf27c248a48ed5c8c032ff5c3a5d45ee007af911d4aa15bd4",
+    "sections/4_protocol.tex": "sha256:67ff5dc4cbbc7504f64d49b4536fbf97a5d85af28d8442afb8dfacce71769195",
+    "sections/5_results.tex": "sha256:2f17a3ea8839e6f331ebad5b055ccccd13267179f62691e0b097c22cac945cf9",
+    "sections/6_diagnostics_limitations.tex": "sha256:c6b28a8865ba2e4c1dc5abece524d1d8c2026ddfd32396c116dc7df5b8c1cdd0",
+    "sections/7_conclusion.tex": "sha256:a895982171416841e364df2d6c653f0545494d16362178a37e761b2456251850",
+    "sections/A_appendix.tex": "sha256:8cb0ef99514083e960a6262b21933162477a604b68ee8b66dcd3494343f401bb",
+    ".aris/citation-audit/contexts.txt": "sha256:949e6f952833997a706ba48283d24a7de0f6cec44d4c6f637b22b81dd2300720"
+  },
+  "trace_path": ".aris/traces/citation-audit/2026-08-17_run01/",
+  "thread_id": "12_fresh_per_entry_codex_agents",
+  "reviewer_model": "gpt-5.5",
+  "reviewer_reasoning": "xhigh",
+  "generated_at": "2026-08-16T19:21:28Z",
+  "details": {
+    "total_entries": 12,
+    "counts": {"KEEP": 12, "FIX": 0, "REPLACE": 0, "REMOVE": 0},
+    "per_entry": [
+      {"key": "li2014anomaly", "verdict": "KEEP", "axis_failures": [], "note": "TPAMI metadata and dynamic-texture/saliency contexts verified; exact archive counts are separately local-audited."},
+      {"key": "lu2013abnormal", "verdict": "KEEP", "axis_failures": [], "note": "ICCV metadata and sparse-combination context verified; protocol now separates study origin from local official-archive counts."},
+      {"key": "liu2018future", "verdict": "KEEP", "axis_failures": [], "note": "CVPR metadata and future-frame prediction context verified."},
+      {"key": "gong2019memorizing", "verdict": "KEEP", "axis_failures": [], "note": "ICCV metadata and memory-augmented normal-prototype context verified."},
+      {"key": "park2020memory", "verdict": "KEEP", "axis_failures": [], "note": "CVPR metadata and compactness/separateness context verified; CVF pagination retained, DOI added."},
+      {"key": "ramachandra2020street", "verdict": "KEEP", "axis_failures": [], "note": "WACV metadata and event/region evaluation critique verified; prose no longer attributes events/hour directly to Street Scene."},
+      {"key": "aich2023crossdomain", "verdict": "KEEP", "axis_failures": [], "note": "WACV metadata and zxVAD no-target-adaptation/Normalcy Classifier contexts verified."},
+      {"key": "ganin2016domain", "verdict": "KEEP", "axis_failures": [], "note": "JMLR metadata and gradient-reversal contexts verified."},
+      {"key": "oquab2024dinov2", "verdict": "KEEP", "axis_failures": [], "note": "TMLR metadata and general-purpose feature claim verified; exact checkpoint/dimension additionally grounded in official model card and local provenance."},
+      {"key": "rashidi2026benchmark", "verdict": "KEEP", "axis_failures": [], "note": "arXiv existence, metadata, cross-dataset frozen-feature audit, kNN, Mahalanobis control, and false-alarms/hour verified."},
+      {"key": "cho2024multidomain", "verdict": "KEEP", "axis_failures": [], "note": "NeurIPS metadata and leave-one-out multi-source/unseen-target protocol verified; prose and pages corrected."},
+      {"key": "zhu2024advancing", "verdict": "KEEP", "axis_failures": [], "note": "NeurIPS Datasets and Benchmarks metadata and 14-scenario MSAD claim verified."}
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "all_cross_dataset_source_threshold_test_fpr": [
+    1.0
+  ],
+  "joint_full_srn_auroc": 0.6677126466797464,
+  "joint_full_srn_delta_vs_raw_prototype": 0.0024389493986555952,
+  "joint_full_srn_scene_probe": 1.0,
+  "joint_raw_gaussian_auroc": 0.6884609284045781,
+  "joint_raw_prototype_auroc": 0.6652736972810908,
+  "joint_scene_mean_scene_probe": 0.2827529021558872,
+  "results_rows": 27,
+  "scientific_ceiling": "Real-GT within/cross-dataset reliability evidence and seen-domain mechanism diagnostic; no genuine whole-scene ELOS evidence without ShanghaiTech.",
+  "score_shift_rows": 61,
+  "verdict_signal": "STOP_CURRENT_MECHANISM_CLAIM"
+}

@@ -1,0 +1,46 @@
+\section{Problem Formulation and Tested Mechanism}
+\label{sec:method}
+
+\subsection{Normal-only transfer tracks}
+
+Let $f$ be a frozen frame encoder and $z=f(x)\in\R^d$. Source training and validation sets contain only videos from the official training partitions. Final test labels are unavailable to feature extraction, representation learning, checkpoint selection, score fitting, and threshold selection. We distinguish two tracks.
+
+In \emph{strict source-threshold transfer}, a scorer $A$ is fit on source-normal training embeddings and a threshold $\tau_{\mathrm{src}}$ is the empirical 99th percentile of source-normal validation scores. The target prediction is $\mathbb{1}[A(x)>\tau_{\mathrm{src}}]$. In \emph{target-normal calibration}, a separate, predeclared collection of target-normal training videos sets $\tau_{\mathrm{cal}}$ at the same quantile. This second track is adaptation to normal target data and is never called zero-shot. Target anomalies enter only the final evaluation of either fixed threshold.
+
+Frame AUROC, average precision, and TPR at 1\% or 0.1\% FPR are also reported. The latter TPR values are \emph{oracle test-curve statistics}: test negatives locate the operating point on the final ROC curve. They measure ranking near the left edge but are not deployable thresholds.
+
+\subsection{Scene-Residual Normality}
+
+SRN starts from a frozen feature and predicts a removable component:
+\begin{align}
+    c &= g_{\phi}(z)\in\R^k, &
+    \hat u &= h_{\psi}(c)\in\R^d, \\
+    r &= P(z-\hat u), &
+    q &= a_{\omega}(c), \\
+    e &= [r;\lambda q].
+\end{align}
+Here $g_{\phi}$ is a linear 16-dimensional token, $h_{\psi}$ is a rank-8 linear factorization, and $P$ is a linear residual projection initialized to the identity. The optional context path has dimension eight and fixed weight $\lambda=0.25$. The scorer operates on $e$; the residual-only ablation operates on $r$.
+
+For a normal frame $i$ with source identity $s_i$, the scene-prediction target $\mu_{s_i}$ is the mean frozen feature of that identity in the source training split. Training minimizes
+\begin{equation}
+\mathcal{L}=w_n\mathcal{L}_{\mathrm{compact}}
++w_p\lVert \hat u-\mu_s\rVert_2^2
++w_c\lVert\hat u\rVert_2^2
++w_r\lVert P-I\rVert_F^2
++\mathcal{L}_{\mathrm{scene}}^{\mathrm{GRL}},
+\end{equation}
+where the gradient-reversal term makes a scene classifier predict $s_i$ while reversing its gradient into the residual \citep{ganin2016domain}. The weights are $(w_n,w_p,w_c,w_r)=(0.05,1,0.01,1)$ and the gradient-reversal weight is $0.1$. This is deliberately a low-capacity test of the stated mechanism, not an architecture search.
+
+For a batch $B$, the compactness term is
+\begin{equation}
+\mathcal{L}_{\mathrm{compact}}=\frac{1}{|B|D_e}
+\sum_{i\in B}\left\lVert e_i-\operatorname{stopgrad}(\bar e_B)\right\rVert_2^2,
+\qquad \bar e_B=\frac{1}{|B|}\sum_{i\in B}e_i,
+\end{equation}
+where $D_e$ is the embedding dimension. The normality head is fit after representation learning: kNN averages squared Euclidean distance to the five nearest training frames, the Gaussian head uses squared Mahalanobis distance with covariance shrinkage $0.1$, and the prototype head returns squared distance to the nearest of 32 centers learned by 20-step k-means.
+
+\subsection{ELOS model selection and scope}
+
+Episodic leave-one-scene-out (ELOS) cycles over source identities. At each epoch, one identity is excluded from the update; after the update, every source identity is treated in turn as held out, and the mean normal compactness relative to the remaining-source center selects a checkpoint. Only source-normal features are used. SRN without ELOS uses the ordinary source-normal validation score instead. ELOS without SRN is numerically identical to the raw representation because there is no learned representation checkpoint to select.
+
+The joint experiment supplies only two identities---Ped2 and Avenue---and both appear during training and final testing. Thus it is a two-seen-domain diagnostic. It checks implementation behavior and source-normal selection, but it cannot establish whole-scene generalization. A legitimate ELOS claim requires multiple authoritative camera scenes and a final scene excluded from every training and selection operation.

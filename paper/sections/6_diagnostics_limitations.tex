@@ -1,0 +1,20 @@
+\section{Diagnostics, Interpretation, and Limitations}
+\label{sec:diagnostics}
+
+\paragraph{The identity-removal mechanism failed.}
+The independent two-way dataset/camera probe scores $1.000$ on raw features, adversarial residuals, and the full SRN residual. Thus the learned residual leaves the measured identity accessible to nearest-centroid classification. Scene-mean subtraction changes probe accuracy to $0.283$, but a below-chance binary accuracy is label-direction sensitive and is not evidence of invariance; we therefore draw no identity-removal conclusion from that row. It also does not improve anomaly AUROC over the matched raw prototype. Identity suppression and anomaly detection are separate requirements, and neither result alone validates SRN.
+
+\paragraph{Optimization is not the parsimonious explanation.}
+Source-normal validation chooses the earliest post-update checkpoint for the main trainable variants. This could indicate a poorly aligned objective, so we ran one controlled diagnostic at learning rate $10^{-4}$. It permits later adversarial checkpoint selection but leaves the SRN probe at $1.000$ and AUROC near $0.668$. Broader tuning would use the same two datasets repeatedly and risks converting a mechanism test into test-specific architecture search. We stop rather than tune on final anomaly labels or select the best seed.
+
+\paragraph{Threshold failure and mechanism failure are distinct.}
+The raw-score q99 ratios establish a large source-to-target scale shift. That evidence supports the nuisance premise: frozen features and their normality scores are dataset/camera dependent. It does not identify scene-predictable feature subtraction as the remedy. Conversely, the joint SRN comparison is a mechanism diagnostic with both identities seen in training, so it cannot demonstrate or refute performance on a genuinely unseen camera scene. The safe conclusion is narrow: the premise motivates further calibration research, while the tested low-capacity residualization mechanism has no supported advantage on Ped2/Avenue.
+
+\paragraph{Dataset and representation limits.}
+Ped2 and Avenue differ in camera, resolution, frame rate, content, and anomaly definitions. Cross-dataset labels therefore measure both covariate and task shift. Avenue's official training partition has documented outliers that we retain without label-based filtering. The frame encoder is image-based, so it lacks explicit motion and object tracks. We apply no temporal smoothing; false-alarm events per hour are consequently diagnostic rather than an optimized alarm policy. The joint probe uses dataset identity as a camera/scene surrogate, not within-dataset camera labels.
+
+\paragraph{Statistical and baseline limits.}
+Only two dataset identities are available, Gaussian and kNN are deterministic one-run baselines, and three seeds cannot establish broad stability. Bootstrap intervals resample observed test videos, not new scenes. Background subtraction is omitted because no label-free background cache exists. We do not compare end-to-end prediction, object-centric, skeleton, language-model, or pseudo-anomaly systems, so the tables are controlled falsification experiments rather than a leaderboard.
+
+\paragraph{ELOS remains unresolved.}
+The implementation performs source-normal episodic selection, but the audited data do not contain a final identity unseen throughout training and model selection. ShanghaiTech is not part of the experiment artifacts. We therefore make no ELOS generalization claim. Reconsidering SRN requires an authoritative multi-scene cache, a preregistered held-out-scene protocol, a substantial reduction in independent residual scene-probe accuracy, and non-degraded source-fixed low-FPR detection. Until then, the current evidence does not justify further tuning of this SRN formulation.

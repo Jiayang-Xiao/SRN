@@ -1,0 +1,41 @@
+{
+  "title": "Tested SRN mechanism and falsification evidence",
+  "canvas": {"width": 1200, "height": 500},
+  "style": {
+    "font_family": "DejaVu Sans, sans-serif",
+    "font_size": 14,
+    "bg_color": "#FFFFFF",
+    "palette": ["#E8F1FA", "#E7F5EF", "#FFF4D6", "#FBE8E6"]
+  },
+  "nodes": [
+    {"id": "z", "label": "Frozen feature\nz", "x": 85, "y": 175, "width": 125, "height": 62, "fill": "#E8F1FA", "stroke": "#0072B2"},
+    {"id": "c", "label": "Scene token\nc = g(z)", "x": 245, "y": 82, "width": 135, "height": 62, "fill": "#FFF4D6", "stroke": "#E69F00"},
+    {"id": "u", "label": "Low-rank scene\ncomponent û = h(c)", "x": 425, "y": 82, "width": 165, "height": 62, "fill": "#FFF4D6", "stroke": "#E69F00"},
+    {"id": "subtract", "label": "subtract", "x": 555, "y": 175, "width": 90, "height": 70, "shape": "diamond", "fill": "#FFFFFF", "stroke": "#4B5563", "font_size": 11},
+    {"id": "r", "label": "Residual\nr = P(z - û)", "x": 690, "y": 175, "width": 145, "height": 62, "fill": "#E7F5EF", "stroke": "#009E73"},
+    {"id": "q", "label": "Controlled context\nλq = λa(c)", "x": 425, "y": 250, "width": 165, "height": 62, "fill": "#FFF4D6", "stroke": "#E69F00"},
+    {"id": "e", "label": "Final embedding\ne = [r; λq]", "x": 855, "y": 175, "width": 150, "height": 62, "fill": "#E7F5EF", "stroke": "#009E73"},
+    {"id": "score", "label": "Normal-only\nscorer", "x": 1050, "y": 175, "width": 150, "height": 70, "fill": "#E8F1FA", "stroke": "#0072B2", "font_size": 12},
+    {"id": "probe_fail", "label": "Identity remains", "sublabel": "SRN residual scene probe = 1.0", "x": 245, "y": 405, "width": 250, "height": 72, "fill": "#FBE8E6", "stroke": "#D55E00"},
+    {"id": "performance_fail", "label": "No method advantage", "sublabel": "SRN 0.6677 < raw Gaussian 0.6885 AUROC", "x": 600, "y": 405, "width": 285, "height": 72, "fill": "#FBE8E6", "stroke": "#D55E00"},
+    {"id": "scope_fail", "label": "ELOS unresolved", "sublabel": "two seen domains; no whole-scene test", "x": 970, "y": 405, "width": 260, "height": 72, "fill": "#FBE8E6", "stroke": "#D55E00"}
+  ],
+  "edges": [
+    {"from": "z", "to": "c", "label": "encode"},
+    {"from": "c", "to": "u", "label": "predict"},
+    {"from": "z", "to": "subtract", "label": "identity path"},
+    {"from": "u", "to": "subtract"},
+    {"from": "subtract", "to": "r"},
+    {"from": "c", "to": "q"},
+    {"from": "r", "to": "e"},
+    {"from": "q", "to": "e", "curve": true},
+    {"from": "e", "to": "score"},
+    {"from": "r", "to": "probe_fail", "style": "dashed", "color": "#D55E00"},
+    {"from": "score", "to": "performance_fail", "style": "dashed", "curve": true, "color": "#D55E00"},
+    {"from": "score", "to": "scope_fail", "style": "dashed", "color": "#D55E00"}
+  ],
+  "groups": [
+    {"id": "mechanism", "label": "Tested SRN representation", "node_ids": ["z", "c", "u", "subtract", "r", "q", "e", "score"], "fill": "#F8FAFC", "stroke": "#CBD5E1", "padding": 20},
+    {"id": "evidence", "label": "Observed falsification evidence", "node_ids": ["probe_fail", "performance_fail", "scope_fail"], "fill": "#FFF8F6", "stroke": "#F2B8AE", "padding": 18}
+  ]
+}

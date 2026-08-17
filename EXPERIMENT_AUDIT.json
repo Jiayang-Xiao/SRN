@@ -1,0 +1,33 @@
+{
+  "date": "2026-08-17",
+  "auditor": "gpt-5.5-xhigh-independent-post-run",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "invalidated_runs": [],
+  "evaluation_scope": "real_gt_ped2_avenue_pilot_and_two_seen_domain_diagnostic",
+  "checks": {
+    "gt_provenance": "pass",
+    "label_leakage": "pass",
+    "dataset_split_identity": "pass",
+    "score_normalization": "pass",
+    "threshold_separation": "pass_with_oracle_terminology_warning",
+    "fa_hour_ordering": "pass",
+    "independent_scene_probe": "pass_implementation_fail_mechanism_signal",
+    "scene_predictor_rank": "pass",
+    "elos_model_selection": "pass_implementation_warn_scope",
+    "seed_coverage": "warn_deterministic_raw_one_run",
+    "failed_run_selection": "pass",
+    "artifact_completeness": "pass"
+  },
+  "claims": {
+    "srn_improves_vad": "unsupported",
+    "srn_removes_scene_identity": "contradicted_in_tested_module",
+    "fixed_source_threshold_transfer": "contradicted",
+    "whole_scene_elos": "not_tested"
+  },
+  "scope_caveats": [
+    "Ped2 and Avenue are two seen dataset/camera identities, not a genuine unseen-scene benchmark.",
+    "Avenue official training contains documented outliers retained without anomaly-label filtering.",
+    "Oracle TPR@FPR uses final test negatives and is not a deployable threshold metric."
+  ]
+}

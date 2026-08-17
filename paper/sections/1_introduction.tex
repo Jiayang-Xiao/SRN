@@ -1,0 +1,26 @@
+\section{Introduction}
+
+A normal-only anomaly detector can rank anomalous frames above normal frames and still be unusable after a camera change. A receiver operating characteristic curve permits the decision threshold to move after all test labels are known. A deployed detector instead carries a threshold estimated from available normal source video, or it declares and isolates a target-normal calibration phase. Conflating these settings can hide a complete operating-point failure.
+
+Video anomaly detection (VAD) makes this distinction especially important because normality is tied to viewpoint, layout, and local rules. Pedestrians, bicycles, and vehicles can be ordinary in one camera and anomalous in another. Classical and learned approaches establish strong within-dataset normality modeling \citep{li2014anomaly,liu2018future,gong2019memorizing,park2020memory}, while cross-domain work studies transfer without target adaptation \citep{aich2023crossdomain}. A recent audit also shows that frozen-feature rankings and operating behavior can deteriorate sharply across datasets \citep{rashidi2026benchmark}. Deployment-oriented benchmarks have argued for event and false-alarm criteria beyond frame AUROC \citep{ramachandra2020street}. The narrower question here is whether scene-predictable components in a strong frozen representation are themselves the obstacle to normal-only transfer.
+
+We formulate that question as a falsifiable mechanism test. Scene-Residual Normality (SRN) maps a frozen feature $z$ to a low-dimensional scene token $c$, predicts a low-rank scene component $\hat u$, and scores a residual $r=P(z-\hat u)$. A small context path may return $\lambda q$ when scene context is necessary to define an anomaly. The companion episodic leave-one-scene-out (ELOS) rule uses held-out source-normal scenes for checkpoint selection; it is a training and selection principle, not a separate algorithm. The intended mechanism predicts that SRN should make source identity harder to decode while preserving anomaly evidence and improving fixed-threshold behavior.
+
+The experiment rejects that prediction for the tested implementation and data. On a joint Ped2/Avenue diagnostic with both datasets seen during normal training, SRN does not beat the strongest raw-feature scorer and its residual preserves perfect two-way dataset/camera decodability. SRN is not evaluated in the single-source cross-dataset tests because a one-identity source cannot train or select the stated scene-removal mechanism. In those raw-feature tests, Gaussian, kNN, and prototype scores all shift above their source thresholds, producing false-positive rate $1.0$ on target normal frames. The target-normal-to-source-normal 99th-percentile score ratios range from $6.50$ to $32.42$. These two findings are related but distinct: the threshold experiment establishes severe score shift in raw frozen features, whereas the joint diagnostic shows that the tested residualization module does not remove the measured identity signal or improve detection.
+
+Our contributions are therefore diagnostic rather than algorithmic:
+\begin{itemize}
+    \item We provide a leakage-checked, every-frame frozen-feature protocol that separates oracle test-curve metrics, fixed source-normal thresholds, and separately declared target-normal calibration.
+    \item We document catastrophic Ped2/Avenue threshold transfer for three normality scorers despite nontrivial AUROC in one direction.
+    \item We test SRN against raw Gaussian, kNN, matched prototype, scene-mean subtraction, adversarial residualization, and component ablations; the results falsify the tested mechanism rather than support a method claim.
+    \item We state the evidence ceiling explicitly: Ped2 and Avenue constitute two seen dataset/camera identities, not a genuine multi-scene unseen-scene ELOS benchmark.
+\end{itemize}
+
+\Cref{fig:srn_falsification} summarizes the representation and the three failure signals. The rest of the paper relates the study to normal-only and cross-domain VAD, defines the two evaluation tracks and SRN, reports the reproducible protocol, and separates supported observations from unresolved hypotheses.
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{fig1_srn_falsification.pdf}
+    \caption{The tested SRN representation and its falsification evidence. A low-rank component predicted from a scene token is removed, and a controlled context vector is optionally returned before normal-only scoring. On the two-seen-dataset diagnostic, identity remains perfectly decodable from the residual, raw Gaussian scoring is stronger, and the data cannot test genuine unseen-scene ELOS.}
+    \label{fig:srn_falsification}
+\end{figure*}

@@ -1,0 +1,54 @@
+\section{Additional Protocol and Results}
+
+\subsection{Exact split sizes}
+
+\begin{table}[h]
+\centering
+\caption{Whole-video split sizes, shown as videos/frames. Source and calibration partitions contain official training videos only; final test partitions are the complete official test splits.}
+\label{tab:splits}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Track & Train & Source val. & Target cal. & Test \\
+\midrule
+Joint seen & 24/15,775 & 4/1,206 & 4/897 & 33/17,334 \\
+Ped2$\to$Avenue & 12/1,920 & 4/630 & 4/5,873 & 21/15,324 \\
+Avenue$\to$Ped2 & 12/13,855 & 4/1,473 & 4/600 & 12/2,010 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Within-dataset sanity checks}
+
+\begin{table}[h]
+\centering
+\caption{Within-dataset raw-feature sanity checks. Prototype means use three seeds, with selected standard deviations shown; deterministic rows use one run. Oracle TPR uses the final test ROC curve.}
+\label{tab:within}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Dataset & Scorer & AUROC & AUPRC & Oracle TPR@1\% & Source-thr. FPR \\
+\midrule
+Ped2 & Gaussian & 0.8982 & 0.9780 & 0.6845 & 0.0028 \\
+Ped2 & kNN & 0.8806 & 0.9741 & 0.6614 & 0.0000 \\
+Ped2 & Prototype & $0.8802\pm0.0018$ & 0.9740 & 0.6608 & 0.0000 \\
+Avenue & Gaussian & 0.6109 & 0.4183 & 0.1061 & 0.0158 \\
+Avenue & kNN & 0.6148 & 0.4155 & 0.1032 & 0.0196 \\
+Avenue & Prototype & $0.6197\pm0.0008$ & 0.4235 & 0.1043 & $0.0208\pm0.0014$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Artifact and leakage gates}
+
+Each feature cache contains feature dimension, dataset identity, scene/video key, split, label, FPS, and frame index arrays plus a JSON provenance sidecar. The loader requires a dataset identifier, verifies array lengths and finite features, rejects nonzero anomaly labels outside the final test split, and requires whole-video separation when configured. The feature-catalog and DINOv2-checkpoint SHA-256 prefixes are \texttt{9d048d0fadeb9d} and \texttt{b938bf1bc15c}; the complete hashes and source URLs are retained in the project provenance file.
+
+All final run directories contain a configuration snapshot, structured result JSON, per-frame compressed score arrays, and logs. Expected matrix row counts match observed outputs. No failed seed was removed. The target-normal calibration split never contains test anomalies and is reported separately from strict source-threshold transfer.
+
+\subsection{Alarm counting}
+
+For each normal test video, frames are sorted by frame index. A false-alarm event begins when the score crosses above the fixed threshold after a below-threshold frame or an index gap. Event counts are divided by total normal-frame duration using the dataset FPS. This prevents shuffled result rows or discontinuous normal intervals from merging unrelated alarms.
+
+\subsection{Evidence classes}
+
+The frozen-feature extractor, cache guards, tests, and within-dataset results provide engineering validation. The Ped2/Avenue cross-dataset and joint-seen results are real-ground-truth pilot evidence. They are formal for the exact stored splits and metrics but insufficient for population-level or unseen-scene claims. No result in this paper supports general SRN efficacy or ELOS generalization.

@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Joint two-seen-domain real-GT diagnostic. The protocol is not unseen-scene evaluation.}
+\label{tab:main_results}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+Method & AUROC $\uparrow$ & AUPRC $\uparrow$ & Oracle TPR@1\% $\uparrow$ & Oracle TPR@0.1\% $\uparrow$ & Source-thr. FPR $\downarrow$ & Scene probe \\
+\midrule
+Raw + Gaussian & 0.6885 & 0.5536 & 0.1082 & 0.0524 & 0.1686 & 1.000 \\
+Raw + kNN & 0.6723 & 0.5025 & 0.0877 & 0.0321 & 0.2224 & 1.000 \\
+Raw + prototype & 0.6653 & 0.5001 & 0.0857 & 0.0361 & 0.2058 & 1.000 \\
+Scene mean + prototype & 0.6658 & 0.4985 & 0.0832 & 0.0360 & 0.2201 & 0.283 \\
+Adversarial residual & 0.6657 & 0.5001 & 0.0854 & 0.0356 & 0.2056 & 1.000 \\
+Full SRN + ELOS & 0.6677 & 0.5014 & 0.0880 & 0.0358 & 0.2054 & 1.000 \\
+SRN without ELOS & 0.6657 & 0.4992 & 0.0864 & 0.0369 & 0.2045 & 1.000 \\
+SRN residual only & 0.6665 & 0.5020 & 0.0838 & 0.0348 & 0.2050 & 1.000 \\
+\bottomrule
+\end{tabular}}
+\vspace{1mm}\parbox{0.97\textwidth}{\footnotesize Raw Gaussian and kNN are deterministic (one run); stochastic prototype and learned rows use three seeds. Scene probe is held-video nearest-centroid dataset/camera accuracy. A value of 1.0 establishes decodability; below-chance binary accuracy is label-direction sensitive and is not interpreted as invariance. Oracle TPR columns are not deployable thresholds.}
+\end{table*}

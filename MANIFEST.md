@@ -78,3 +78,27 @@
 | 2026-08-03 16:43 | /experiment-bridge | src/restricted_bridge/runner.py | implementation | shared training, ELOS diagnostics, thresholds, logging and aggregation |
 | 2026-08-03 16:43 | /experiment-bridge | tests/test_restricted_bridge.py | implementation | protocol, scorer, model, metric and end-to-end CPU tests |
 | 2026-08-03 16:43 | /experiment-bridge | MANIFEST.md | implementation | 登记 restricted bridge audit、代码、计划与状态 artifacts |
+| 2026-08-17 01:34 | /research-pipeline | refine-logs/AUTONOMOUS_SPRINT_LOG.md | implementation | Append-only unattended sprint provenance log initialized from bootstrap audit |
+| 2026-08-17 01:34 | /research-pipeline | refine-logs/AUTONOMOUS_DECISIONS.md | implementation | Autonomous decision register initialized with gate and GPU dispositions |
+| 2026-08-17 01:34 | /research-pipeline | refine-logs/AUTONOMOUS_REVIEW.md | review | Adversarial review record initialized with pre-experiment protocol concerns |
+| 2026-08-17 01:34 | /research-pipeline | refine-logs/RESULTS_SUMMARY.md | implementation | Evidence-class summary initialized; no real results claimed |
+| 2026-08-17 01:39 | /research-pipeline | requirements-srn-autonomous.txt | implementation | Pinned project-local additions for data conversion, testing, and plotting |
+| 2026-08-17 01:39 | /research-pipeline | refine-logs/AUTONOMOUS_ENVIRONMENT.md | implementation | Reproducible environment path, creation commands, versions, and CUDA status |
+| 2026-08-17 01:42 | /experiment-audit | EXPERIMENT_AUDIT.md | review | Independent pre-experiment integrity audit with claim gate and exact repair actions |
+| 2026-08-17 01:42 | /experiment-audit | EXPERIMENT_AUDIT.json | review | Machine-readable integrity verdict and per-check statuses |
+| 2026-08-17 02:03 | /research-pipeline | refine-logs/DATA_AND_FEATURE_PROVENANCE.md | implementation | Official Ped2/Avenue/DINOv2 sources, hashes, preprocessing, cache invariants, and ShanghaiTech blocker |
+| 2026-08-17 02:03 | /research-pipeline | scripts/extract_ped2_avenue_dinov2.py | implementation | Resumable label-blind official DINOv2 frame-feature extraction with per-video shards and provenance |
+| 2026-08-17 02:03 | /research-pipeline | scripts/build_ped2_avenue_experiment_caches.py | implementation | Whole-video within-domain, cross-dataset, and joint seen-domain cache assembly |
+| 2026-08-17 02:12 | /research-pipeline | configs/ped2_avenue_joint_lr_diagnostic.yaml | implementation | Bounded source-normal learning-rate diagnostic after every learned main run selected epoch zero |
+| 2026-08-17 02:25 | /result-to-claim | CLAIMS_FROM_RESULTS_20260817_022500.md | review | Independent high-confidence claim gate: nuisance premise partial, central SRN+ELOS efficacy rejected |
+| 2026-08-17 02:25 | /paper-plan | PAPER_PLAN_20260817_022500.md | writing | Evidence-grounded ICLR-style negative-result paper outline and claims-evidence matrix |
+| 2026-08-17 02:25 | /paper-plan | PAPER_PLAN.md | writing | Fixed-name pointer to current timestamped paper plan |
+| 2026-08-17 02:47 | /experiment-audit | EXPERIMENT_AUDIT.md | review | Independent post-run integrity audit: valid real-GT pilots, WARN for scope, no invalidated runs |
+| 2026-08-17 02:47 | /analyze-results | analysis/ | analysis | Aggregated results, score-shift diagnostics, bootstrap intervals, and machine-readable summary |
+| 2026-08-17 02:47 | /paper-figure | figures/ | writing | Traceable method, comparison, threshold-transfer figures and generated LaTeX tables |
+| 2026-08-17 02:47 | /paper-write | paper/ | writing | Evidence-grounded negative-result XeLaTeX source and verified bibliography |
+| 2026-08-17 02:47 | /paper-compile | paper/main.pdf | writing | Project-local XeLaTeX build; final 11 pages including appendix, main body through page 8 |
+| 2026-08-17 02:50 | /research-wiki | research-wiki/experiments/exp-srn-ped2-avenue-20260817.md | review | Negative high-confidence experiment verdict linked to SRN idea |
+| 2026-08-17 03:25 | /paper-claim-audit | paper/PAPER_CLAIM_AUDIT.{md,json,html} | review | Fresh zero-context audit PASS; all 219 grouped numerical/config/scope items reconcile to raw evidence |
+| 2026-08-17 03:25 | /citation-audit | paper/CITATION_AUDIT.{md,json,html} | review | Twelve fresh per-entry web audits PASS after precision fixes; HTML fidelity review PASS |
+| 2026-08-17 03:25 | /research-pipeline | AUTONOMOUS_SPRINT_REPORT.md | review | Terminal unattended sprint report with STOP verdict, provenance, blockers, and exact next experiments |

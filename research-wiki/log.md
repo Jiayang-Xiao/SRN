@@ -24,3 +24,5 @@ _Append-only timeline._
 - `2026-07-06T09:55:40Z` upsert_idea: updated idea:amcn [stage=proposed outcome=pending]
 - `2026-07-06T09:55:41Z` upsert_idea: updated idea:elos [stage=proposed outcome=pending]
 - `2026-07-06T11:36:04Z` Added prior-method defect traceability matrix, independent-review bundle, manual-review instructions, and paper-gap relations
+- `2026-08-16T18:50:25Z` upsert_idea: updated idea:srn [stage=piloted outcome=negative]
+- `2026-08-16T18:50:25Z` add_experiment: added exp:exp-srn-ped2-avenue-20260817 [verdict=no confidence=high]

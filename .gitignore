@@ -1,4 +1,4 @@
-# secrets
+# Secrets
 .env
 .env.*
 *.key
@@ -7,21 +7,21 @@
 *api_key*
 deepseek_env
 
-# python/cache
+# Python and environments
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# envs
 .venv/
 venv/
 env/
+.envs/
+.cache/
 *.egg-info/
 
-# data / features / checkpoints
+# Data, features, checkpoints, and experiment outputs
 data/
 datasets/
 features/
@@ -30,13 +30,17 @@ checkpoints/
 weights/
 outputs/
 runs/
+logs/
 wandb/
+tensorboard/
 *.pt
 *.pth
 *.ckpt
+*.onnx
 *.npy
 *.npz
 *.pkl
+*.wav
 *.mp4
 *.avi
 *.mov
@@ -44,11 +48,22 @@ wandb/
 *.tar
 *.tar.gz
 
-# ARIS/Codex internal
+# LaTeX build products
+paper/build/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.xdv
+
+# ARIS/Codex internals
 .agents/
 .aris/
 
-# system/editor
+# System and editors
 .DS_Store
 .vscode/
 .idea/

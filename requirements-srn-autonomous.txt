@@ -1,0 +1,8 @@
+# Additions installed into .envs/srn-autonomous. The environment inherits the
+# project-recommended aris-torch environment for torch/torchvision/numpy/PyYAML.
+scipy==1.15.3
+opencv-python-headless==4.12.0.88
+matplotlib==3.10.5
+pytest==8.4.1
+tqdm==4.67.1
+cairosvg==2.8.2

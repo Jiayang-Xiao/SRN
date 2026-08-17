@@ -8,6 +8,8 @@ data:
   feature_dim: 384
   require_whole_video_split: true
   require_unseen_test_scene: false
+  require_target_calibration: true
+  min_train_scenes: 2
 
 model:
   feature_dim: 384
@@ -22,7 +24,7 @@ training:
   learning_rate: 0.001
   loss_weights: {normal: 0.05, scene_prediction: 1.0, capacity: 0.01, retention: 1.0}
 
-scorer: {knn_k: 5, gaussian_shrinkage: 0.1, prototype_count: 32}
+scorer: {knn_k: 5, gaussian_shrinkage: 0.1, prototype_count: 32, distance_batch_size: 1024}
 evaluation: {source_threshold_fpr: 0.01}
 
 matrix:
@@ -35,7 +37,6 @@ matrix:
   - {name: srn_without_elos, method: srn_without_elos, scorer: prototype}
   - {name: elos_without_srn, method: elos_without_srn, scorer: prototype}
   - {name: srn_residual_only, method: srn_residual_only, scorer: prototype}
-  - {name: calibration_only, method: calibration_only, scorer: prototype}
 
 output:
   dir: runs/restricted_bridge_ped2_avenue_pilot

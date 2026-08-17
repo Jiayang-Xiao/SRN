@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRN Citation Audit</title>
+
+<meta name="generator" content="ARIS render-html (academic, v1)">
+<meta name="aris:source-path" content="paper/CITATION_AUDIT.md">
+<meta name="aris:source-sha256" content="994013581ea589c35a36a8802299c32daae53b999647fd2912fddcb28b4c3f78">
+<meta name="aris:generated-at" content="2026-08-16 19:44 UTC">
+
+<!-- MathJax 3 -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+<!-- highlight.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-light.min.css">
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+
+
+<style>
+:root {
+  --bg: #fdfcf7;
+  --bg-soft: #f4f1ea;
+  --bg-code: #f8f5ec;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #6b6b6b;
+  --primary: #1a4a8c;
+  --primary-soft: #2d6cb8;
+  --accent: #b8390e;
+  --warn: #b45309;
+  --warn-bg: #fef3c7;
+  --info-bg: #dbeafe;
+  --good-bg: #d1fae5;
+  --good: #065f46;
+  --bad-bg: #fee2e2;
+  --bad: #991b1b;
+  --border: #d6d0c0;
+  --border-soft: #e8e3d5;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Source Serif Pro", "Source Serif 4", "Crimson Pro", "Georgia", "Songti SC", "STSong", serif;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  padding: 40px 32px;
+}
+
+nav.toc {
+  position: sticky;
+  top: 24px;
+  align-self: start;
+  font-size: 13px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  border-right: 1px solid var(--border-soft);
+  padding-right: 16px;
+}
+nav.toc h3 {
+  margin: 0 0 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+nav.toc ol li { margin: 5px 0; counter-increment: toc; }
+nav.toc ol li::before { content: counter(toc) ". "; color: var(--ink-muted); margin-right: 4px; }
+nav.toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+}
+nav.toc a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+nav.toc ul { list-style: none; padding-left: 14px; margin: 3px 0; font-size: 12px; }
+nav.toc ul li::before { content: "→ "; color: var(--border); }
+
+main { min-width: 0; }
+
+header.hero {
+  border-bottom: 3px double var(--primary);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+header.hero .eyebrow {
+  color: var(--accent);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+header.hero h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+header.hero .subtitle {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+  font-style: italic;
+}
+header.hero .byline {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0 0 20px;
+}
+header.hero .byline strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+header.hero .meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--border-soft);
+  padding-top: 14px;
+}
+header.hero .meta span strong { color: var(--ink-soft); }
+header.hero .meta code {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 11px;
+  background: var(--bg-soft);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+}
+
+h2 {
+  font-size: 24px;
+  margin: 44px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink);
+  font-weight: 700;
+}
+h2 .num { color: var(--primary); font-weight: 600; margin-right: 8px; }
+h3 { font-size: 19px; margin: 28px 0 10px; color: var(--primary); font-weight: 600; }
+h4 { font-size: 16px; margin: 20px 0 8px; color: var(--ink); font-weight: 600; }
+
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+ul li, ol li { margin: 4px 0; }
+ul li::marker { color: var(--primary); }
+
+strong { color: var(--accent); font-weight: 600; }
+em { color: var(--ink-soft); }
+
+a { color: var(--primary); }
+a:hover { color: var(--accent); }
+
+code:not(.hljs) {
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 0.86em;
+  background: var(--bg-code);
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid var(--border-soft);
+  color: var(--accent);
+}
+
+pre {
+  background: #fafaf6;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  padding: 0;
+  overflow-x: auto;
+  border-radius: 4px;
+  margin: 14px 0;
+}
+pre code, pre code.hljs {
+  background: transparent !important;
+  display: block;
+  padding: 14px 18px !important;
+  font-size: 13px;
+  line-height: 1.55;
+  font-family: "JetBrains Mono", "SF Mono", "Menlo", monospace;
+  color: var(--ink);
+}
+pre.diagram {
+  background: #f9f6ed;
+  border-left: 4px solid var(--accent);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.callout {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border-left: 4px solid;
+  font-size: 15px;
+}
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.callout-info { background: var(--info-bg); border-left-color: var(--primary); }
+.callout-info .callout-title { color: var(--primary); }
+.callout-warn { background: var(--warn-bg); border-left-color: var(--warn); }
+.callout-warn .callout-title { color: var(--warn); }
+.callout-good { background: var(--good-bg); border-left-color: var(--good); }
+.callout-good .callout-title { color: var(--good); }
+.callout-bad { background: var(--bad-bg); border-left-color: var(--bad); }
+.callout-bad .callout-title { color: var(--bad); }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+thead { background: var(--primary); color: white; }
+th, td {
+  text-align: left;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+th { font-weight: 600; font-size: 13px; letter-spacing: 0.02em; }
+tr:last-child td { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+
+details.qa, details {
+  background: white;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  margin: 10px 0;
+  padding: 0;
+}
+details summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--primary);
+  list-style: none;
+  user-select: none;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before {
+  content: "▸ ";
+  margin-right: 4px;
+  display: inline-block;
+  transition: transform 0.15s;
+}
+details[open] summary::before { transform: rotate(90deg); }
+details[open] summary { border-bottom: 1px solid var(--border-soft); }
+details > :not(summary) { padding: 10px 14px; }
+details p:first-of-type { margin-top: 8px; }
+
+mjx-container[display="true"] { margin: 12px 0 !important; }
+
+footer.aris-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+footer.aris-footer a { color: var(--ink-muted); border-bottom: 1px dotted var(--border); }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px; }
+  nav.toc {
+    position: static;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+    padding-right: 0;
+    padding-bottom: 14px;
+  }
+  header.hero h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+}
+@media print {
+  nav.toc { display: none; }
+  .layout { grid-template-columns: 1fr; padding: 0; }
+  body { background: white; }
+  header.hero { border-bottom-color: var(--ink); }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="toc">
+  <h3>Contents</h3>
+  <ol>
+<li><a href="#summary">Summary</a>
+</li>
+<li><a href="#corrections-applied-during-the-audit">Corrections applied during the audit</a>
+</li>
+<li><a href="#all-clean-entries">All-clean entries</a>
+</li>
+<li><a href="#metadata-notes">Metadata notes</a>
+</li>
+</ol>
+</nav>
+
+<main>
+<header class="hero">
+  
+  <h1>SRN Citation Audit</h1>
+  
+  
+  <div class="meta">
+    <span><strong>Source:</strong> <code>paper/CITATION_AUDIT.md</code></span>
+    <span><strong>SHA256:</strong> <code>994013581ea5</code></span>
+    <span><strong>Rendered:</strong> 2026-08-16 19:44 UTC</span>
+    
+  </div>
+</header>
+
+<h1 id="citation-audit-report">Citation Audit Report</h1>
+<ul><li><strong>Date:</strong> 2026-08-17</li><li><strong>Bib file:</strong> <code>references.bib</code></li><li><strong>Cited entries audited:</strong> 12</li><li><strong>Verdict:</strong> <code>PASS</code></li></ul>
+<h2 id="summary">Summary</h2>
+<table><thead><tr><th>Verdict</th><th style="text-align:right">Count</th></tr></thead><tbody><tr><td>KEEP</td><td style="text-align:right">12</td></tr><tr><td>FIX</td><td style="text-align:right">0</td></tr><tr><td>REPLACE</td><td style="text-align:right">0</td></tr><tr><td>REMOVE</td><td style="text-align:right">0</td></tr></tbody></table>
+<p>Twelve independent fresh reviewers checked one cited entry each using primary or authoritative web sources. All works exist and all final citation contexts are supported. No hallucinated, wrong-context, or unverifiable citation remains.</p>
+<h2 id="corrections-applied-during-the-audit">Corrections applied during the audit</h2>
+<ul><li>Separated the Lu et al. Avenue study citation from exact official-archive counts, which are established by the official project page and local decode audit.</li><li>Changed “sparse reconstruction” to the source's more precise “sparse-combination learning.”</li><li>Rephrased Street Scene as motivation for explicit false-positive burden rather than as the source of the events/hour metric.</li><li>Clarified zxVAD's Normalcy Classifier and relative-normalcy learning.</li><li>Changed “recent audits” to “a recent audit” and identified Rashidi's Mahalanobis experiment as a control.</li><li>Described MDVAD as a formalized leave-one-out multi-source/unseen-target protocol.</li><li>Added verified DOIs and NeurIPS page ranges where authoritative metadata were available.</li></ul>
+<h2 id="all-clean-entries">All-clean entries</h2>
+<ul><li><code>li2014anomaly</code> — TPAMI paper, method context, and Ped2 origin verified.</li><li><code>lu2013abnormal</code> — ICCV paper, method context, and Avenue origin verified.</li><li><code>liu2018future</code> — future-frame prediction context verified.</li><li><code>gong2019memorizing</code> — memory-augmented autoencoder context verified.</li><li><code>park2020memory</code> — memory items and compactness/separateness losses verified.</li><li><code>ramachandra2020street</code> — single-/multi-scene distinction and practical evaluation critique verified.</li><li><code>aich2023crossdomain</code> — target-adaptation-free zxVAD setting verified.</li><li><code>ganin2016domain</code> — gradient-reversal mechanism verified.</li><li><code>oquab2024dinov2</code> — TMLR record and general-purpose frozen-feature context verified.</li><li><code>rashidi2026benchmark</code> — 2026 arXiv audit and stated evaluation components verified.</li><li><code>cho2024multidomain</code> — NeurIPS 2024 MDVAD leave-one-out protocol verified.</li><li><code>zhu2024advancing</code> — NeurIPS 2024 MSAD 14-scenario benchmark verified.</li></ul>
+<h2 id="metadata-notes">Metadata notes</h2>
+<p>CVF Open Access and IEEE/Crossref assign different page ranges to several CVPR/WACV papers. The bibliography consistently retains the defensible CVF pagination while adding verified DOI identifiers. This is a source-pagination discrepancy, not a paper-identity or attribution failure.</p>
+<p>The machine-readable ledger and source hashes are in <code>CITATION_AUDIT.json</code>; per-entry reviewer traces are under <code>.aris/traces/citation-audit/2026-08-17_run01/</code>.</p>
+<h2 id="sidecar-json">Sidecar — <code>CITATION_AUDIT.json</code></h2>
+<details><summary>Sidecar JSON: <code>/home/xjy/ARIS/paper/CITATION_AUDIT.json</code></summary><pre><code class="language-json">{
+  &quot;audit_skill&quot;: &quot;citation-audit&quot;,
+  &quot;verdict&quot;: &quot;PASS&quot;,
+  &quot;reason_code&quot;: &quot;all_entries_keep&quot;,
+  &quot;summary&quot;: &quot;All 12 cited works exist, their final metadata are defensible, and every cited context is supported after precision fixes.&quot;,
+  &quot;audited_input_hashes&quot;: {
+    &quot;references.bib&quot;: &quot;sha256:0bb8f3360c2f8b02945db7143129251fc2548b7f434c45d32a6993e2a92de2e5&quot;,
+    &quot;main.tex&quot;: &quot;sha256:adc4028ecd56b96d768b27d90ce3fcb2e9f390062a6a55f6d3b941b2a95611ae&quot;,
+    &quot;sections/0_abstract.tex&quot;: &quot;sha256:4d96f4c4857e4422f1d833105b166c7eaea4e0e7ec3160047cfe7a94ab5daef7&quot;,
+    &quot;sections/1_introduction.tex&quot;: &quot;sha256:394d24f720670c8b2531d26ebb83a2683da30076d0f6883c47cbe4328d429bc6&quot;,
+    &quot;sections/2_related_work.tex&quot;: &quot;sha256:133064af0fc6f0c40a246c2e39d2429a9d35060c1fd904dae0a02c30d484be0f&quot;,
+    &quot;sections/3_problem_and_method.tex&quot;: &quot;sha256:905bd8327d4cc4bdf27c248a48ed5c8c032ff5c3a5d45ee007af911d4aa15bd4&quot;,
+    &quot;sections/4_protocol.tex&quot;: &quot;sha256:67ff5dc4cbbc7504f64d49b4536fbf97a5d85af28d8442afb8dfacce71769195&quot;,
+    &quot;sections/5_results.tex&quot;: &quot;sha256:2f17a3ea8839e6f331ebad5b055ccccd13267179f62691e0b097c22cac945cf9&quot;,
+    &quot;sections/6_diagnostics_limitations.tex&quot;: &quot;sha256:c6b28a8865ba2e4c1dc5abece524d1d8c2026ddfd32396c116dc7df5b8c1cdd0&quot;,
+    &quot;sections/7_conclusion.tex&quot;: &quot;sha256:a895982171416841e364df2d6c653f0545494d16362178a37e761b2456251850&quot;,
+    &quot;sections/A_appendix.tex&quot;: &quot;sha256:8cb0ef99514083e960a6262b21933162477a604b68ee8b66dcd3494343f401bb&quot;,
+    &quot;.aris/citation-audit/contexts.txt&quot;: &quot;sha256:949e6f952833997a706ba48283d24a7de0f6cec44d4c6f637b22b81dd2300720&quot;
+  },
+  &quot;trace_path&quot;: &quot;.aris/traces/citation-audit/2026-08-17_run01/&quot;,
+  &quot;thread_id&quot;: &quot;12_fresh_per_entry_codex_agents&quot;,
+  &quot;reviewer_model&quot;: &quot;gpt-5.5&quot;,
+  &quot;reviewer_reasoning&quot;: &quot;xhigh&quot;,
+  &quot;generated_at&quot;: &quot;2026-08-16T19:21:28Z&quot;,
+  &quot;details&quot;: {
+    &quot;total_entries&quot;: 12,
+    &quot;counts&quot;: {
+      &quot;KEEP&quot;: 12,
+      &quot;FIX&quot;: 0,
+      &quot;REPLACE&quot;: 0,
+      &quot;REMOVE&quot;: 0
+    },
+    &quot;per_entry&quot;: [
+      {
+        &quot;key&quot;: &quot;li2014anomaly&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;TPAMI metadata and dynamic-texture/saliency contexts verified; exact archive counts are separately local-audited.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;lu2013abnormal&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;ICCV metadata and sparse-combination context verified; protocol now separates study origin from local official-archive counts.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;liu2018future&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;CVPR metadata and future-frame prediction context verified.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;gong2019memorizing&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;ICCV metadata and memory-augmented normal-prototype context verified.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;park2020memory&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;CVPR metadata and compactness/separateness context verified; CVF pagination retained, DOI added.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;ramachandra2020street&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;WACV metadata and event/region evaluation critique verified; prose no longer attributes events/hour directly to Street Scene.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;aich2023crossdomain&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;WACV metadata and zxVAD no-target-adaptation/Normalcy Classifier contexts verified.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;ganin2016domain&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;JMLR metadata and gradient-reversal contexts verified.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;oquab2024dinov2&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;TMLR metadata and general-purpose feature claim verified; exact checkpoint/dimension additionally grounded in official model card and local provenance.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;rashidi2026benchmark&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;arXiv existence, metadata, cross-dataset frozen-feature audit, kNN, Mahalanobis control, and false-alarms/hour verified.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;cho2024multidomain&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;NeurIPS metadata and leave-one-out multi-source/unseen-target protocol verified; prose and pages corrected.&quot;
+      },
+      {
+        &quot;key&quot;: &quot;zhu2024advancing&quot;,
+        &quot;verdict&quot;: &quot;KEEP&quot;,
+        &quot;axis_failures&quot;: [],
+        &quot;note&quot;: &quot;NeurIPS Datasets and Benchmarks metadata and 14-scenario MSAD claim verified.&quot;
+      }
+    ]
+  }
+}</code></pre></details>
+
+<footer class="aris-footer">
+  Generated by <a href="https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/render-html/SKILL.md">ARIS <code>/render-html</code></a> ·
+  source path <code>paper/CITATION_AUDIT.md</code> ·
+  SHA256 <code>994013581ea5</code> ·
+  generated at 2026-08-16 19:44 UTC.
+  This is a generated view — edit the source Markdown, then re-render.
+</footer>
+</main>
+
+</div>
+</body>
+</html>

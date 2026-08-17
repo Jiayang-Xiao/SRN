@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{../.agents/skills/paper-write/templates/iclr2026_conference}
+\usepackage{fontspec}
+\setmainfont{texgyretermes-regular.otf}[
+  BoldFont=texgyretermes-bold.otf,
+  ItalicFont=texgyretermes-italic.otf,
+  BoldItalicFont=texgyretermes-bolditalic.otf]
+\setsansfont{texgyreheros-regular.otf}[
+  BoldFont=texgyreheros-bold.otf,
+  ItalicFont=texgyreheros-italic.otf,
+  BoldItalicFont=texgyreheros-bolditalic.otf]
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+\usepackage[capitalize,noabbrev]{cleveref}
+\input{math_commands.tex}
+
+\graphicspath{{../figures/}}
+\title{A Two-Dataset Falsification Study of Scene Residualization\\
+for Normal-Only Video Anomaly Detection}
+
+\author{Anonymous Authors}
+
+% \iclrfinalcopy
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/0_abstract}
+\end{abstract}
+
+\input{sections/1_introduction}
+\input{sections/2_related_work}
+\input{sections/3_problem_and_method}
+\input{sections/4_protocol}
+\input{sections/5_results}
+\input{sections/6_diagnostics_limitations}
+\input{sections/7_conclusion}
+
+\bibliography{references}
+\bibliographystyle{iclr2026_conference}
+
+\appendix
+\input{sections/A_appendix}
+\end{document}

@@ -8,6 +8,8 @@ data:
   synthetic_frames_per_video: 12
   require_whole_video_split: true
   require_unseen_test_scene: true
+  require_target_calibration: true
+  min_train_scenes: 2
 
 model:
   feature_dim: 16
@@ -30,6 +32,7 @@ scorer:
   knn_k: 5
   gaussian_shrinkage: 0.1
   prototype_count: 6
+  distance_batch_size: 512
 
 evaluation:
   source_threshold_fpr: 0.01
@@ -54,7 +57,6 @@ matrix:
   - {name: srn_without_elos, method: srn_without_elos, scorer: prototype}
   - {name: elos_without_srn, method: elos_without_srn, scorer: prototype}
   - {name: srn_residual_only, method: srn_residual_only, scorer: prototype}
-  - {name: calibration_only, method: calibration_only, scorer: prototype}
 
 output:
   dir: runs/restricted_bridge_synthetic_dry_run

@@ -1,0 +1,11 @@
+run_name: ped2_avenue_joint_lr_diagnostic
+seeds: [13, 29, 43]
+data: {type: npz, path: data/frozen_features/dinov2_vits14/experiments/ped2_avenue_joint_seen.npz, backbone: dinov2_vits14, feature_dim: 384, require_whole_video_split: true, require_unseen_test_scene: false, require_target_calibration: true, min_train_scenes: 2}
+model: {feature_dim: 384, scene_token_dim: 16, scene_predictor_rank: 8, context_dim: 8, context_lambda: 0.25, adversarial_weight: 0.1}
+training: {epochs: 30, learning_rate: 0.0001, loss_weights: {normal: 0.05, scene_prediction: 1.0, capacity: 0.01, retention: 1.0}}
+scorer: {knn_k: 5, gaussian_shrinkage: 0.1, prototype_count: 32, distance_batch_size: 512}
+evaluation: {source_threshold_fpr: 0.01}
+matrix:
+  - {name: adversarial_residual_lr1e4, method: adversarial_residual, scorer: prototype}
+  - {name: full_srn_lr1e4, method: full_srn, scorer: prototype}
+output: {dir: runs/ped2_avenue_joint_lr_diagnostic}

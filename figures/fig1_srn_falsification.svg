@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" font-family="DejaVu Sans, sans-serif">
+  <rect width="1200" height="500" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arrow-default" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 8 4, 0 8" fill="#555555"/>
+    </marker>
+    <marker id="arrow-c0" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 8 4, 0 8" fill="#E8F1FA"/>
+    </marker>
+    <marker id="arrow-c1" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 8 4, 0 8" fill="#E7F5EF"/>
+    </marker>
+    <marker id="arrow-c2" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 8 4, 0 8" fill="#FFF4D6"/>
+    </marker>
+    <marker id="arrow-c3" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 8 4, 0 8" fill="#FBE8E6"/>
+    </marker>
+  </defs>
+  <rect x="2.5" y="31.0" width="1142.5" height="270.0" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" rx="8"/>
+  <text x="10.5" y="47.0" font-size="12" fill="#999999" font-weight="bold">Tested SRN representation</text>
+  <rect x="102.0" y="351.0" width="1016.0" height="108.0" fill="#FFF8F6" stroke="#F2B8AE" stroke-width="1" rx="8"/>
+  <text x="110.0" y="367.0" font-size="12" fill="#999999" font-weight="bold">Observed falsification evidence</text>
+  <path d="M 138.3,144.0 L 191.7,113.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <rect x="141.2" y="110.5" width="47.6" height="16" fill="#FFFFFF" rx="3" opacity="0.85"/>
+  <text x="165.0" y="122.5" font-size="11" fill="#777777" text-anchor="middle">encode</text>
+  <path d="M 312.5,82.0 L 342.5,82.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <rect x="300.4" y="64.0" width="54.2" height="16" fill="#FFFFFF" rx="3" opacity="0.85"/>
+  <text x="327.5" y="76.0" font-size="11" fill="#777777" text-anchor="middle">predict</text>
+  <path d="M 147.5,175.0 L 510.0,175.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <rect x="281.9" y="157.0" width="93.8" height="16" fill="#FFFFFF" rx="3" opacity="0.85"/>
+  <text x="328.8" y="169.0" font-size="11" fill="#777777" text-anchor="middle">identity path</text>
+  <path d="M 468.3,113.0 L 531.6,158.2" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <path d="M 600.0,175.0 L 617.5,175.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <path d="M 278.2,113.0 L 391.8,219.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <path d="M 762.5,175.0 L 780.0,175.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <path d="M 507.5,235.6 Q 648.9,241.4 780.0,188.1" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <path d="M 930.0,175.0 L 975.0,175.0" stroke="#555555" stroke-width="2" fill="none" marker-end="url(#arrow-default)"/>
+  <path d="M 630.0,206.0 L 314.7,369.0" stroke="#D55E00" stroke-width="2" fill="none" marker-end="url(#arrow-default)" stroke-dasharray="8,4"/>
+  <path d="M 981.5,210.0 Q 812.3,262.8 670.4,369.0" stroke="#D55E00" stroke-width="2" fill="none" marker-end="url(#arrow-default)" stroke-dasharray="8,4"/>
+  <path d="M 1037.8,210.0 L 982.5,369.0" stroke="#D55E00" stroke-width="2" fill="none" marker-end="url(#arrow-default)" stroke-dasharray="8,4"/>
+  <rect x="22.5" y="144.0" width="125.0" height="62.0" fill="#E8F1FA" stroke="#0072B2" stroke-width="2" rx="8"/>
+  <text x="85.0" y="171.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Frozen feature</text>
+  <text x="85.0" y="187.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">z</text>
+  <rect x="177.5" y="51.0" width="135.0" height="62.0" fill="#FFF4D6" stroke="#E69F00" stroke-width="2" rx="8"/>
+  <text x="245.0" y="78.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Scene token</text>
+  <text x="245.0" y="94.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">c = g(z)</text>
+  <rect x="342.5" y="51.0" width="165.0" height="62.0" fill="#FFF4D6" stroke="#E69F00" stroke-width="2" rx="8"/>
+  <text x="425.0" y="78.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Low-rank scene</text>
+  <text x="425.0" y="94.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">component û = h(c)</text>
+  <polygon points="555.0,140.0 600.0,175.0 555.0,210.0 510.0,175.0" fill="#FFFFFF" stroke="#4B5563" stroke-width="2"/>
+  <text x="555.0" y="178.8" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">subtract</text>
+  <rect x="617.5" y="144.0" width="145.0" height="62.0" fill="#E7F5EF" stroke="#009E73" stroke-width="2" rx="8"/>
+  <text x="690.0" y="171.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Residual</text>
+  <text x="690.0" y="187.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">r = P(z - û)</text>
+  <rect x="342.5" y="219.0" width="165.0" height="62.0" fill="#FFF4D6" stroke="#E69F00" stroke-width="2" rx="8"/>
+  <text x="425.0" y="246.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Controlled context</text>
+  <text x="425.0" y="262.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">λq = λa(c)</text>
+  <rect x="780.0" y="144.0" width="150.0" height="62.0" fill="#E7F5EF" stroke="#009E73" stroke-width="2" rx="8"/>
+  <text x="855.0" y="171.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Final embedding</text>
+  <text x="855.0" y="187.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">e = [r; λq]</text>
+  <rect x="975.0" y="140.0" width="150.0" height="70.0" fill="#E8F1FA" stroke="#0072B2" stroke-width="2" rx="8"/>
+  <text x="1050.0" y="172.2" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">Normal-only</text>
+  <text x="1050.0" y="186.2" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">scorer</text>
+  <rect x="120.0" y="369.0" width="250.0" height="72.0" fill="#FBE8E6" stroke="#D55E00" stroke-width="2" rx="8"/>
+  <text x="245.0" y="401.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">Identity remains</text>
+  <text x="245.0" y="417.9" font-size="11" fill="#888888" text-anchor="middle">SRN residual scene probe = 1.0</text>
+  <rect x="457.5" y="369.0" width="285.0" height="72.0" fill="#FBE8E6" stroke="#D55E00" stroke-width="2" rx="8"/>
+  <text x="600.0" y="401.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">No method advantage</text>
+  <text x="600.0" y="417.9" font-size="11" fill="#888888" text-anchor="middle">SRN 0.6677 &lt; raw Gaussian 0.6885 AUROC</text>
+  <rect x="840.0" y="369.0" width="260.0" height="72.0" fill="#FBE8E6" stroke="#D55E00" stroke-width="2" rx="8"/>
+  <text x="970.0" y="401.9" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">ELOS unresolved</text>
+  <text x="970.0" y="417.9" font-size="11" fill="#888888" text-anchor="middle">two seen domains; no whole-scene test</text>
+</svg>

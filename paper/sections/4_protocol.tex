@@ -1,0 +1,24 @@
+\section{Experimental Protocol}
+\label{sec:protocol}
+
+\subsection{Data, representation, and splits}
+
+Ped2 and Avenue originate in the corresponding UCSD and CUHK studies \citep{li2014anomaly,lu2013abnormal}. We use archives served by those official project pages and audit the decoded files locally. Ped2 contains 16 official training videos (2,550 frames) and 12 test videos (2,010 frames) at 10 FPS. Avenue contains 16 training videos (15,328 decoded frames) and 21 test videos (15,324 frames) at 25 FPS, with one aligned frame-mask file per test video. The Avenue project notes a few outliers in its training data; we retain the official partition without consulting anomaly annotations and therefore describe it as the official training split, not guaranteed anomaly-free data.
+
+Every decoded frame is transformed by RGB conversion, bicubic resize to 256, center crop to $224\times224$, and ImageNet normalization. The official DINOv2 ViT-S/14 checkpoint \citep{oquab2024dinov2} produces one 384-dimensional class-token feature per frame. Checkpoint loading is strict. All methods share one immutable catalog of 35,212 features. Labels are joined only after each feature shard is complete.
+
+Splits operate on whole videos. For the joint diagnostic, the first 12 training videos of each dataset form representation/scorer training; videos 13--14 form source-normal validation; videos 15--16 form the separately declared target-normal calibration set; all official test videos form final evaluation. The single-source cross-dataset caches similarly reserve whole source training videos for source validation and four target training videos for calibration. Assertions reject duplicate video keys, nonzero labels outside the test split, and declared dimensionality or dataset-identity mismatches.
+
+\subsection{Comparisons and optimization}
+
+Raw frozen features are scored with five-nearest-neighbor distance, shrinkage Gaussian/Mahalanobis distance, and distance to one of 32 normal prototypes. The mechanism matrix adds scene-mean subtraction, an adversarial residual, full SRN with ELOS, SRN without ELOS, ELOS without SRN, and SRN residual-only. A background-subtraction baseline is inapplicable because the cache has no label-free background feature; we do not synthesize one post hoc. Prototype and learned variants use seeds 13, 29, and 43. Gaussian and kNN are deterministic and run once. Learned representations use Adam for 30 epochs at learning rate $10^{-3}$; a bounded $10^{-4}$ diagnostic checks whether slower training changes the mechanism conclusion.
+
+The prototype scorer is matched across SRN, its ablations, scene-mean subtraction, and the raw prototype control. Gaussian and kNN provide strong raw-feature reference points but do not share the prototype head. This distinction prevents the $0.0024$ SRN-versus-prototype delta from being presented as a win over the strongest scorer.
+
+\subsection{Metrics and audit}
+
+The main tables report frame micro AUROC, AUPRC, oracle test-curve TPR at 1\% and 0.1\% FPR, fixed-threshold recall and test-normal FPR, and the cross-domain q99 score ratio. Complete artifacts additionally contain macro-video AUROC, calibrated-track metrics, and false-alarm events per hour. False-alarm events are contiguous above-threshold normal runs after sorting by frame index and splitting on frame gaps. The independent scene probe is nearest-centroid identity classification: centroids are fit on held-out-from-test source training videos and evaluated on disjoint source-validation videos. It is not the adversarial training classifier.
+
+Uncertainty for the joint comparison uses 500 hierarchical bootstrap replicates over test videos and, for stochastic methods, seeds. With two seen identities these intervals are descriptive, not population-level cross-scene confidence statements. A post-run independent integrity audit found no anomaly-label leakage, test-score normalization, failed-run selection, missing score artifacts, or frame-order bug. It classified the evidence as valid real-ground-truth pilot/diagnostic evidence with a scope warning. All reported runs executed on CPU.
+
+ShanghaiTech Campus is the intended multi-scene ELOS stage, but it is absent from the audited experiment artifacts. We therefore report no ShanghaiTech result and make no unseen-scene claim; this omission does not invalidate the narrower Ped2/Avenue diagnostic.
