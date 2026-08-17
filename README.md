@@ -5,30 +5,37 @@ detection under scene and dataset shift**.
 
 ## Current Verdict
 
-The tested low-capacity SRN mechanism is **stopped**. The bounded Ped2/Avenue evidence is
-valid, but it does not support SRN superiority or whole-scene ELOS generalization.
+The tested low-capacity SRN mechanism remains **stopped**. The follow-up dual-track sprint
+closed with:
+
+- Track A, genuine unseen-scene SRN/ELOS closure: `EXTERNALLY_BLOCKED` because no
+  authoritative multi-scene raw archive passed the acquisition gate.
+- Track B, score calibration and threshold transfer: `NO_CALIBRATION_ADVANTAGE`.
+- Final dual-track integrity audit: `PASS` after complete regeneration and independent
+  recomputation of all 170 result rows.
 
 - Six real-ground-truth experiment batches completed on official UCSD Ped2 and CUHK
   Avenue data with frozen DINOv2 ViT-S/14 features.
-- The post-run integrity audit found no invalidated run and issued `WARN` only for scope.
 - Full SRN reaches 0.6677 joint-seen AUROC, below raw Gaussian at 0.6885 and only 0.0024
   above its matched raw-prototype head.
 - The independent residual identity probe remains 1.000, so the tested module does not
   remove dataset/camera identity.
-- Every strict Ped2-to-Avenue and Avenue-to-Ped2 source threshold produces target-normal
-  FPR 1.0 for all three tested raw scorers.
+- Every tested strict source-only calibration method retains target-normal FPR 1.0 in the
+  Ped2-to-Avenue and Avenue-to-Ped2 stress tests.
+- Declared target-normal calibration lowers FPR but misses the frozen recall gate; at a
+  four-video budget the best median recall is 0.00624.
 - A negative-result paper draft and independent claim/citation audits are included.
 
 ## Review Entry Points
 
-1. `paper/main.pdf`: 11-page negative-result paper, including appendix.
-2. `AUTONOMOUS_SPRINT_REPORT.md`: full execution record, findings, limitations, and next
-   experiments.
-3. `CLAIMS_FROM_RESULTS.md`: supported and unsupported claims.
-4. `EXPERIMENT_AUDIT.md`: post-run integrity audit and evidence classification.
-5. `paper/PAPER_CLAIM_AUDIT.md`: numerical and scope-claim reconciliation.
-6. `paper/CITATION_AUDIT.md`: independent verification of all bibliography entries.
-7. `analysis/summary.json`: machine-readable aggregate results.
+1. `DUAL_TRACK_SCIENTIFIC_REVIEW_BUNDLE.txt`: self-contained latest review bundle.
+2. `DUAL_TRACK_AUTONOMOUS_SPRINT_REPORT.md`: complete dual-track execution record.
+3. `findings.md`: concise scientific findings and constraints.
+4. `refine-logs/CURRENT_RESEARCH_STATE.md`: authoritative terminal research state.
+5. `EXPERIMENT_AUDIT.md`: final dual-track integrity audit.
+6. `analysis/track_b/summary.json`: machine-readable calibration verdict and gates.
+7. `paper/main.pdf`: preserved 11-page SRN falsification paper, including appendix.
+8. `paper/PAPER_CLAIM_AUDIT.md` and `paper/CITATION_AUDIT.md`: paper assurance records.
 
 ## Main Results
 
@@ -45,12 +52,29 @@ a two-seen-domain mechanism diagnostic, not an unseen-scene generalization test.
 cross-dataset threshold experiments use raw frozen-feature scorers and must not be cited as
 direct SRN transfer evidence.
 
+## Dual-Track Calibration Results
+
+| Protocol and method | Median FPR | Worst FPR | Median recall | Median AUROC |
+|---|---:|---:|---:|---:|
+| Source-only pooled q99 | 1.0000 | 1.0000 | 1.0000 | 0.4556 |
+| Source-only video-balanced q99 | 1.0000 | 1.0000 | 1.0000 | 0.4556 |
+| Source-only conditional location | 1.0000 | 1.0000 | 1.0000 | 0.3787 |
+| Four-video target q99 | 0.00092 | n/a | 0.00623 | unchanged by monotone mapping |
+| Four-video target mean/std | 0.00000 | n/a | 0.00425 | unchanged by affine mapping |
+| Four-video target empirical CDF | 0.00000 | n/a | 0.00492 | unchanged by monotone mapping |
+
+Target-normal calibration is adaptation, not zero-shot transfer. Its apparent FPR repair
+is operationally unusable here because it largely eliminates anomaly detections. Track A
+produced no new unseen-scene numbers and does not reopen the negative SRN verdict.
+
 ## Repository Map
 
 - `src/restricted_bridge/`: SRN, baselines, scoring, metrics, and experiment runner.
 - `scripts/`: feature extraction, cache construction, execution, and result analysis.
 - `configs/`: frozen configurations for the six formal experiment batches.
-- `analysis/`: aggregate tables, score-shift diagnostics, and machine-readable summaries.
+- `analysis/track_a/`: authoritative multi-scene asset availability audit.
+- `analysis/track_b/`: 170-row calibration study, seed-balanced summaries, provenance,
+  invalidated-attempt records, and reliability figures.
 - `figures/`: generated paper figures, tables, plotting code, and figure specifications.
 - `paper/`: LaTeX sources, compiled PDF, and claim/citation audits.
 - `refine-logs/`: protocol, provenance, decisions, reviews, and experiment state.
@@ -67,15 +91,16 @@ python -m unittest discover -s tests -v
 python -m py_compile scripts/*.py src/restricted_bridge/*.py
 ```
 
-The current suite contains 12 tests and runs on CPU. Dataset archives, DINOv2 weights,
+The current suite contains 15 tests and runs on CPU. Dataset archives, DINOv2 weights,
 feature caches, raw per-frame score arrays, checkpoints, and experiment run directories are
 not published. Their sources, hashes, split identities, and preprocessing contracts are
 recorded in `refine-logs/DATA_AND_FEATURE_PROVENANCE.md`.
 
 ## Evidence Boundary
 
-This repository supports a bounded mechanism falsification and deployment-reliability
-warning. It does not support state-of-the-art claims, general SRN efficacy, whole-scene
-ELOS validation, or conclusions about other backbones, temporal models, or object-centric
-methods. A genuine ELOS test still requires an authoritative multi-scene dataset with a
-scene held out from both representation learning and checkpoint selection.
+This repository supports a bounded SRN mechanism falsification and a negative
+cross-dataset operating-point audit. It does not support state-of-the-art claims, general
+SRN efficacy, whole-scene ELOS validation, a novel calibration algorithm, or calibration
+conclusions beyond Ped2/Avenue. A genuine ELOS test still requires an authoritative
+multi-scene dataset with a scene held out from both representation learning and checkpoint
+selection.

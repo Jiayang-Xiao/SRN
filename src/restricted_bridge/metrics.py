@@ -37,7 +37,9 @@ def evaluate_scores(
 
     Returns:
         指标字典。包含整体 AUROC、AUPRC、TPR@FPR、阈值召回、阈值误报率、
-        false alarm events per hour、按场景/视频 AUROC，以及位置相关分组召回。
+        false alarm events per total represented test-video hour、按场景/视频 AUROC，
+        以及位置相关分组召回。事件只由正常帧上的假阳性构成，但分母是每个视频
+        从第一个到最后一个所表示的总时长，而不是仅正常帧时长。
         当某项指标缺少正样本或负样本而不可定义时，对应值为 ``None``。
     """
     labels = np.asarray(labels, dtype=np.int64)

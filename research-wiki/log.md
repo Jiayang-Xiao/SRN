@@ -26,3 +26,14 @@ _Append-only timeline._
 - `2026-07-06T11:36:04Z` Added prior-method defect traceability matrix, independent-review bundle, manual-review instructions, and paper-gap relations
 - `2026-08-16T18:50:25Z` upsert_idea: updated idea:srn [stage=piloted outcome=negative]
 - `2026-08-16T18:50:25Z` add_experiment: added exp:exp-srn-ped2-avenue-20260817 [verdict=no confidence=high]
+- `2026-08-17T13:30:56Z` ingest_paper: ingested paper:wilkinghoff2025_local_densitybased_anomaly (arxiv:2509.10951)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:zhou2026_when_eer_hides (arxiv:2606.21584)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:aich2023_crossdomain_video_anomaly (arxiv:)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:cho2024_towards_multidomain_learning (arxiv:)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:carvalho2023_invariant_anomaly_detection (arxiv:)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:perini2022_transferring_contamination_factor (arxiv:)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:tibshirani2019_conformal_prediction_under (arxiv:)
+- `2026-08-17T13:30:57Z` ingest_paper: ingested paper:zhang2025_conformal_anomaly_detection (arxiv:)
+- `2026-08-17T13:31:38Z` research-lit: added 8 threshold-transfer papers and topic map; broad method novelty rejected
+- `2026-08-17T13:42:58Z` add_experiment: added exp:exp-score-calibration-ped2-avenue-20260817 [verdict=no confidence=high]
+- `2026-08-17T13:43:15Z` result-to-claim: exp:exp-score-calibration-ped2-avenue-20260817 verdict=no for idea:rank-calibration

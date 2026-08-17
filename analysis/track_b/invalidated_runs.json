@@ -1,0 +1,28 @@
+{
+  "invalidated_attempts": [
+    {
+      "time": "2026-08-17T21:31:00+08:00",
+      "classification": "report_serialization_bug",
+      "failure": "NumPy boolean was not JSON serializable while writing summary.json",
+      "scientific_outputs_accepted": false,
+      "raw_score_equality_checks_passed": true,
+      "repair": "convert gate flags to built-in booleans and regenerate"
+    },
+    {
+      "time": "2026-08-17T21:34:00+08:00",
+      "classification": "aggregate_reporting_bug",
+      "failure": "worst-column direction was inverted for threshold_false_positive_rate",
+      "scientific_outputs_accepted": false,
+      "per_run_metrics_affected": false,
+      "frozen_gate_affected": false,
+      "repair": "use an explicit higher-is-worse field set and regenerate"
+    }
+  ],
+  "final_run": {
+    "exit_status": 0,
+    "tests_passed": 15,
+    "result_rows": 170,
+    "primary_status": "NO_CALIBRATION_ADVANTAGE",
+    "post_review_regenerated": true
+  }
+}

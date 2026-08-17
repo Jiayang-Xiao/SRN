@@ -39,3 +39,4 @@
 {"from": "paper:ramachandra2020_street_scene_new", "to": "gap:G3", "type": "addresses_gap", "evidence": "Operational false positives are poorly reflected by legacy aggregate criteria.", "added": "2026-07-06T11:36:04Z"}
 {"from": "paper:cao2023_new_comprehensive_benchmark", "to": "gap:G4", "type": "addresses_gap", "evidence": "NWPU scene-dependent anomalies make scene context both necessary and potentially confounding.", "added": "2026-07-06T11:36:04Z"}
 {"from": "idea:srn", "to": "exp:exp-srn-ped2-avenue-20260817", "type": "tested_by", "evidence": "exp exp-srn-ped2-avenue-20260817 tests idea", "added": "2026-08-16T18:50:25Z"}
+{"from": "idea:rank-calibration", "to": "exp:exp-score-calibration-ped2-avenue-20260817", "type": "tested_by", "evidence": "exp exp-score-calibration-ped2-avenue-20260817 tests idea", "added": "2026-08-17T13:42:58Z"}

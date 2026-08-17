@@ -1,0 +1,1202 @@
+============================================================
+DUAL_TRACK_AUTONOMOUS_SPRINT_REPORT.md
+============================================================
+# SRN Dual-Track Autonomous Sprint Report
+
+**Sprint date:** 2026-08-17 (Asia/Shanghai)
+**Track A:** `EXTERNALLY_BLOCKED`
+**Track B:** `NO_CALIBRATION_ADVANTAGE`
+
+## 1. Starting state
+
+The sprint began on branch `autonomous-dual-track-20260817` at
+`de85cab7f85370563667bc120d571f6bfa47d74b` (“Complete autonomous SRN
+falsification sprint”) with a clean worktree. The requested published object
+`9a13a4f7b183c452de34c17de54b761f20a5d085` is absent from the local Git object
+database, so an object-level diff was impossible; the local divergent history was
+preserved. The requested root `README.md` is also absent.
+
+## 2. Environment and runtime
+
+| Item | Value |
+|---|---|
+| project | `/home/xjy/ARIS` |
+| project environment | `.envs/srn-autonomous` |
+| Python | 3.10.20 |
+| NumPy / SciPy | 2.2.6 / 1.15.3 |
+| PyTorch / torchvision | 2.4.1 / 0.19.1 |
+| OpenCV / Matplotlib | 4.12.0 / 3.10.5 |
+| pytest / PyYAML | 8.4.1 / 6.0.3 |
+| GPU | unavailable; `nvidia-smi` fails and PyTorch reports zero CUDA devices |
+| storage at bootstrap | about 1.1 TiB free in workspace; 706 GiB free in `/tmp` |
+| tests | 15 passed |
+| Python compilation | passed |
+
+Project-local `gdown==5.2.0` and `openpyxl==3.1.5` were installed for official
+asset/metadata acquisition. No system package or service was modified.
+
+## 3. Acquired data and assets
+
+The official MSAD metadata, train/test lists, ground truth, and 720-video workbook were
+downloaded to `data/raw/msad/metadata/`. No raw dataset, large feature cache, or model
+weight was added to Git scope.
+
+ShanghaiTech, MSAD raw video, and UBnormal were evaluated as authoritative Track A
+candidates. ShanghaiTech official links were inaccessible; MSAD raw video requires a
+reviewed request form; the official UBnormal archive returned a quota-exceeded HTML page.
+No community copy was substituted.
+
+## 4. Provenance and checksums
+
+Previously recorded hashes were reverified:
+
+- DINOv2 checkpoint:
+  `b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9`
+- Avenue archive:
+  `fc9cb8432a11ca79c18aa180c72524011411b69d3b0ff27c8816e41c0de61531`
+- Avenue ground truth:
+  `60fec1728ec8f73a58aad3aeb5729d70a805a47e0b8eb4bf91ab67ef06386d77`
+- UCSD archive:
+  `2329af326951f5097fdd114c50e853957d3e569493a49d22fc082a9fd791915b`
+- immutable DINOv2 parent catalog:
+  `9d048d0fadeb9dd19393e1f04a507d6292c70abcf743e50a7b46093c6807cfd1`
+- DINOv2 code commit:
+  `7764ea0f912e53c92e82eb78a2a1631e92725fc8`
+
+MSAD per-file hashes and the 2,009-byte UBnormal failure response are recorded in
+`analysis/track_a/asset_audit.json`.
+
+## 5. Code changes
+
+Added:
+
+- `src/restricted_bridge/calibration.py`: robust/affine calibration, empirical-CDF
+  mapping, video-balanced thresholds, and a source-only PCA-ridge conditional calibrator.
+- `scripts/run_score_calibration_study.py`: frozen B-ZS/B-CAL study, historical
+  score equality checks, per-method NPZ artifacts, summaries, gates, and provenance.
+- `scripts/analyze_score_calibration.py`: seed-balanced tables and deterministic
+  PNG/PDF figures.
+- `tests/test_score_calibration.py`: affine decision invariance, calibration-only CDF
+  mapping, and whole-video conditional cross-fitting tests.
+
+The existing metric documentation was clarified: false-alarm events/hour uses total
+represented test-video duration. Independent-review repairs made gate aggregation
+seed-balanced and retained all computed grouped diagnostics and B-CAL calibration samples.
+
+## 6. Track A protocol
+
+`TRACK_A_PROTOCOL_FREEZE.md` contains an unactivated protocol shell. Had an
+authoritative archive passed the barrier, it would have frozen whole-scene source/held-out
+identity, DINOv2 preprocessing, seeds, the full raw/control/SRN/ELOS matrix, independent
+scene probing, low-FPR metrics, and a practical simultaneous success gate before final
+anomaly labels.
+
+## 7. Track A experiments
+
+No Track A model run was activated. This is a deliberate scientific no-run, not a missing
+result:
+
+- no authoritative raw multi-scene asset crossed the activation barrier;
+- no scene allocation was selected after labels;
+- no DINOv2 multi-scene cache was fabricated;
+- no SRN/ELOS checkpoint or baseline matrix was run.
+
+**Evidence label:** engineering validation of external availability only.
+
+## 8. Track A numerical results
+
+There are no new Track A unseen-scene numbers. Historical results were independently
+recomputed as background:
+
+| Prior two-seen-domain diagnostic | Recomputed |
+|---|---:|
+| raw Gaussian AUROC | 0.6884609 |
+| raw prototype AUROC | 0.6652737 |
+| full SRN AUROC | 0.6677126 |
+| SRN − raw prototype | +0.0024389 |
+| SRN residual identity probe | 1.0000 |
+| source-fixed cross-dataset target-normal FPR | 1.0000 |
+
+**Evidence label:** exact prior protocol, not Track A unseen-scene evidence.
+
+## 9. Track A mechanism diagnostics
+
+No new identity probe or event/motion-retention diagnostic was possible. Event/motion
+retention remains unavailable rather than being replaced with an invented proxy.
+Historical residual variance remains an engineering diagnostic only.
+
+## 10. Track A verdict
+
+`EXTERNALLY_BLOCKED`
+
+This does not reopen SRN. The earlier Ped2/Avenue study remains negative for its own
+scope, but the final genuine held-out-scene closure was not executed.
+
+## 11. Track B prior-work findings
+
+The focused primary-source audit found:
+
+- WACV 2023 zero-shot cross-domain VAD;
+- NeurIPS 2024 multi-domain VAD;
+- NeurIPS 2023 invariant anomaly detection under shift;
+- IEEE TASLP 2026 local-density anomaly-score normalization for a shared cross-domain
+  threshold in anomalous sound detection;
+- a 2026 speech-deepfake transferred-threshold audit;
+- AAAI 2022 target-mixture contamination transfer;
+- conformal prediction/anomaly detection with explicit calibration or shift assumptions.
+
+Therefore generic score-scale calibration or the ranking-versus-threshold distinction is
+not novel. A VAD-specific operating-point audit is the only defensible narrow positioning.
+
+## 12. Track B protocol
+
+`TRACK_B_PROTOCOL_FREEZE.md` separates:
+
+- B-ZS source-only B0--B4 with no target statistics;
+- B-CAL target-normal budgets of 1, 2, and 4 sorted training videos;
+- final official test labels used only by metrics;
+- 1% desired normal FPR;
+- three scorer families and prototype seeds 13/29/43;
+- seed-first, direction-by-scorer gate aggregation;
+- joint FPR, stability, and recall success gates.
+
+## 13. Track B experiments
+
+Two directions were run on the immutable shared DINOv2 cache:
+
+- Ped2 → Avenue;
+- Avenue → Ped2.
+
+Each used kNN, Gaussian/Mahalanobis, and prototype scoring. B-ZS compared pooled q99,
+two affine invariance controls, video-balanced q99, and one low-capacity conditional
+location model. B-CAL compared quantile, mean/std, median/MAD, and empirical-CDF mappings
+at all budgets. The accepted output contains 170 per-run rows.
+
+## 14. Track B numerical results
+
+Source-only seed-balanced summary:
+
+| Method | Median FPR | Worst FPR | Median recall | Median AUROC |
+|---|---:|---:|---:|---:|
+| B0 pooled q99 | 1.0000 | 1.0000 | 1.0000 | 0.4556 |
+| B3 video-balanced q99 | 1.0000 | 1.0000 | 1.0000 | 0.4556 |
+| B4 conditional location | 1.0000 | 1.0000 | 1.0000 | 0.3787 |
+
+Four-video target-normal summary:
+
+| Method | Median FPR | Median absolute FPR error | Median recall |
+|---|---:|---:|---:|
+| target q99 | 0.0009208 | 0.0090792 | 0.0062345 |
+| mean/std | 0.0000000 | 0.0100000 | 0.0042476 |
+| median/MAD | 0.0000000 | 0.0100000 | 0.0000000 |
+| empirical CDF | 0.0000000 | 0.0100000 | 0.0049198 |
+
+## 15. Strict zero-shot findings
+
+All B-ZS variants retain FPR 1.0. The learned B4 model selects alpha 0.001 in every run,
+fails to alter the deployed decision failure, and worsens ranking. The source-only
+positive claim receives `claim_supported = no` with high confidence within this exact
+protocol.
+
+**Evidence label:** exact-protocol scientific evidence; not unseen-scene evidence.
+
+## 16. Target-normal calibration-budget findings
+
+Target-normal data can numerically lower FPR, but the tested mappings become
+over-conservative. At four videos every median recall is below 0.00624, far below the
+frozen 0.05 gate. The target-normal claim receives `claim_supported = partial` only for
+FPR repair, not for a useful operating point. It is adaptation, never zero-shot.
+
+**Evidence label:** exact-protocol target-normal adaptation evidence.
+
+## 17. Low-FPR and false-alarm findings
+
+B0’s seed-balanced median false-alarm rate is 321.25 events per total represented video
+hour (range 143.28–499.22 across cells). Four-video target-q99 calibration lowers the
+median to 5.97 but also lowers median recall to 0.00623. One-video target-q99 calibration
+has median FPR 0.01873 yet 350.43 events/hour, illustrating that fragmented isolated false
+positives can increase event rate even when frame FPR falls.
+
+Oracle TPR@1%/0.1% and AUROC are retained separately; no oracle test threshold is used for
+deployment claims.
+
+## 18. Invalidated runs
+
+Two attempts are preserved in `analysis/track_b/invalidated_runs.json`:
+
+1. NumPy-boolean JSON serialization failure after scoring;
+2. inverted aggregate `worst` FPR column.
+
+Both were reporting bugs. The final run was regenerated end to end; no failed evidence was
+deleted or silently accepted.
+
+## 19. Independent audit findings
+
+A fresh read-only reviewer found no fake ground truth, normalization fraud, phantom
+results, or leakage and independently recomputed all 170 rows with zero mismatches. Its
+initial `WARN` identified seed weighting, unretained diagnostics, an ambiguous FA/hour
+denominator, and missing calibration samples in artifacts. After repair and full
+regeneration, follow-up verdict is `PASS`.
+
+A separate result-to-claim reviewer confirms:
+
+- B-ZS claim: `no`;
+- B-CAL claim: `partial` for FPR repair only;
+- Track A: `EXTERNALLY_BLOCKED`;
+- Track B: `NO_CALIBRATION_ADVANTAGE`.
+
+These are same-family Type-A reviews. A configured DeepSeek cross-family call was
+attempted with raw artifacts and cancelled by the runtime; no Type-B acquittal is claimed.
+
+## 20. Supported claims
+
+- **Engineering validation:** tests, compilation, official label/cache provenance,
+  historical score reproduction, and result recomputation pass.
+- **Exact-protocol scientific evidence:** tested source-only normalization does not repair
+  Ped2↔Avenue thresholds.
+- **Exact-protocol scientific evidence:** limited target-normal calibration lowers FPR but
+  fails the recall gate.
+- **Exact-protocol scientific evidence:** ranking quality and operating-point reliability
+  are distinct; B4 has no advantage in this stress test.
+- **Engineering validation:** Track A authoritative acquisition is externally blocked.
+
+## 21. Unsupported claims
+
+- SRN/ELOS succeeds or fails on a genuinely unseen multi-scene benchmark.
+- The Track B result generalizes beyond Ped2/Avenue.
+- Target-normal calibration is zero-shot.
+- Calibration is impossible in general.
+- A novel source-only calibration algorithm has been established.
+- Frame samples provide IID population confidence.
+- A positive method paper is warranted.
+
+## 22. Paper status
+
+Outcome 3 applies: Track A is blocked and Track B is negative. The existing SRN
+falsification XeLaTeX paper and compiled PDF are preserved unchanged. No new numeric paper
+table or calibration-method draft was created because the evidence does not justify a
+positive story. The rigorous research reports are the terminal writing output.
+
+## 23. External blockers
+
+- ShanghaiTech official Google link is empty; OneDrive returns 403; historical official
+  mirrors time out.
+- MSAD raw videos require an identity-bearing reviewed request.
+- UBnormal official Google Drive archive is quota-blocked.
+- CUDA/NVML are unavailable.
+- DeepSeek cross-family reviewer call was cancelled.
+- `.git` is read-only in this runtime.
+
+## 24. Exact next experiments
+
+1. Obtain one authoritative multi-scene raw archive through its official channel.
+2. Verify checksum, license, official split, and scene mapping.
+3. Activate the frozen Track A whole-scene protocol before final labels.
+4. Extract the immutable DINOv2 ViT-S/14 catalog and run the full baseline/SRN/ELOS matrix.
+5. For future calibration, begin from local-density score normalization, freeze a joint
+   FPR/recall objective on source-held scenes, and reserve new final scenes.
+6. Seek a true cross-family audit after artifacts are frozen.
+
+Do not continue tuning B4 on Ped2/Avenue final labels.
+
+## 25. Git commit and push status
+
+No commit or push was possible because `.git` is readable but not writable. The branch
+and HEAD remain unchanged. The starting worktree was clean; all sprint changes remain
+visible in the working tree. No published history was rewritten and no raw dataset,
+checkpoint, large feature cache, or secret was staged.
+
+## 26. Important artifact paths
+
+- `TRACK_A_PROTOCOL_FREEZE.md`
+- `TRACK_B_PROTOCOL_FREEZE.md`
+- `refine-logs/DUAL_TRACK_AUTONOMOUS_DECISIONS.md`
+- `refine-logs/DUAL_TRACK_AUTONOMOUS_SPRINT_LOG.md`
+- `refine-logs/TRACK_A_SRN_FINAL_REPORT.md`
+- `refine-logs/TRACK_B_CALIBRATION_REPORT.md`
+- `refine-logs/TRACK_B_PRIOR_WORK.md`
+- `EXPERIMENT_AUDIT.md` / `EXPERIMENT_AUDIT.json`
+- `analysis/track_a/`
+- `analysis/track_b/`
+- `findings.md`
+- `refine-logs/CURRENT_RESEARCH_STATE.md`
+- `.aris/traces/experiment-audit/2026-08-17_run02/`
+- `.aris/traces/result-to-claim/2026-08-17_run01/`
+
+Accepted Track B output hashes:
+
+- `results_long.csv`:
+  `a2a5baa927a4618bbcef54f789bc9768e8d96771745a8f400ce9e5964906a1d1`
+- `results_aggregate.csv`:
+  `24fb850ac34f72ae53a8e807dd3cbe7c80e42bc6fac8cea6dd68decfb826f256`
+- `summary.json`:
+  `d421eb617b78c0550ce1f525a0b8c54b4676d0f87ae12a91a1d7afc49a63ea01`
+- `provenance.json`:
+  `16199f0c163155a47790f28caeda8dc65c8eadcf2a232be728e0322a03a46b2d`
+
+
+============================================================
+TRACK_A_PROTOCOL_FREEZE.md
+============================================================
+# Track A Protocol Freeze
+
+**Created:** 2026-08-17 21:13 +0800
+**State:** `NOT_ACTIVATED_EXTERNAL_ASSET_BLOCKER`
+**Scientific track:** feature-level scene residualization on genuinely unseen scenes
+
+## Activation barrier
+
+No Track A model run is permitted until an authoritative multi-scene video-anomaly
+asset is locally acquired, checksum-recorded, and shown to contain normal source videos,
+normal held-out-scene calibration videos, and labeled final held-out-scene videos.
+
+The authoritative ShanghaiTech page currently has an empty Google Drive anchor; its
+OneDrive share returns HTTP 403; both historical institutional mirrors time out. MSAD
+raw videos require a reviewed identity-bearing request form. The official UBnormal
+archive is public and protocol-compatible, but its only official download returned a
+Google Drive quota-exceeded page on 2026-08-17. Community re-uploads are excluded.
+
+Because no valid asset crossed this barrier, scene IDs, source scenes, and final held-out
+scenes cannot be honestly frozen. This document freezes the no-run decision rather than
+inventing a dataset-specific protocol.
+
+## Protocol shell if the barrier is later crossed
+
+- Whole scene IDs, never adjacent frames, define source and final holdout units.
+- Held-out scenes are chosen from documented scene/video availability before anomaly
+  scores or labels are inspected; no best-scene selection is allowed.
+- Source-normal videos are partitioned by whole video into representation/scorer train
+  and source-normal model-selection validation.
+- Any target-normal calibration videos are declared separately and are unavailable to
+  the strict source-only track.
+- The primary backbone is the existing strict-loaded DINOv2 ViT-S/14 checkpoint and its
+  fixed RGB 256-resize/224-center-crop preprocessing. A different official frozen
+  representation is allowed only when raw videos are authoritatively unavailable, and
+  that run must be labeled a backbone-substitution study.
+- Feature shards are per-video, deterministic, resumable, SHA-256 cataloged, and joined
+  to labels only after inference.
+- Seeds for stochastic methods: 13, 29, 43. Deterministic scorers are run once.
+- SRN dimensions: scene token 16, predictor rank 8, context 8, identity-initialized
+  residual projection, capacity penalty, GRL scene suppression, source-normal
+  compactness. Epoch and learning-rate budgets remain those of the current minimal
+  formulation unless a correctness defect is established before evaluation.
+- Matrix: raw kNN, raw Gaussian/Mahalanobis, raw prototype, scene mean, legitimate
+  label-free background subtraction if available, adversarial residual, full SRN+ELOS,
+  SRN without ELOS, ELOS without SRN, SRN residual-only, and a separately labeled
+  target-normal calibration control.
+- Metrics: micro AUROC, macro scene/video AUROC, AUPRC, TPR@1% and 0.1% oracle FPR,
+  source-fixed target-normal FPR and anomaly recall, FA events/hour when FPS is known,
+  worst scene, scene variance, and a train-to-disjoint-normal independent identity probe.
+- Event/motion retention is reported only when defensible annotations exist.
+- Practical gate fixed before results: SRN must improve both raw Gaussian and matched raw
+  prototype by at least 0.01 absolute macro-scene AUROC on average, have a positive
+  paired delta in every declared seed/holdout, reduce source-fixed target-normal FPR by
+  at least 0.10 absolute without materially lowering oracle TPR@1% FPR (no more than
+  0.01 absolute), reduce independent scene-probe balanced accuracy by at least 0.15,
+  beat scene-mean/adversarial controls, and show a nonzero ELOS contribution. Failure of
+  any simultaneous gate yields `STOP_CURRENT_SRN_FORMULATION`.
+
+## Frozen current disposition
+
+Track A performs no scientific model run in this sprint unless an authoritative asset
+becomes available. Current primary status is therefore `EXTERNALLY_BLOCKED`.
+
+
+============================================================
+TRACK_B_PROTOCOL_FREEZE.md
+============================================================
+# Track B Protocol Freeze
+
+**Frozen:** 2026-08-17 21:13 +0800, before executing any new calibration method
+**Scientific track:** score-level operating-point transfer under normal-only shift
+
+**Post-run audit clarification (2026-08-17 22:03 +0800):** the original freeze declared
+seeds, directions, and scorer families but did not state whether three prototype seeds
+should receive three times the weight of deterministic scorers. A fresh reviewer flagged
+that ambiguity. Final gates therefore average stochastic seeds first and weight each
+direction-by-scorer cell equally. Both the original row-weighted and corrected
+seed-balanced calculations give `NO_CALIBRATION_ADVANTAGE`; no method, label access, or
+numeric gate was changed. The FA/hour denominator was also documented explicitly after
+review; its computation did not change.
+
+## Data and claim scope
+
+The immutable DINOv2 ViT-S/14 caches are:
+
+- Ped2 to Avenue: `data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.npz`
+- Avenue to Ped2: `data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.npz`
+- parent catalog SHA-256: `9d048d0fadeb9dd19393e1f04a507d6292c70abcf743e50a7b46093c6807cfd1`
+
+These are two cross-dataset stress tests, not multi-source unseen-scene evidence. The
+source train and source validation partitions contain official training videos only.
+Target calibration contains the first four sorted official normal training videos.
+Final test contains the complete official labeled test partition. Whole videos are
+disjoint. Test labels are supplied only to the final metric function.
+
+Primary scorers share the same raw cache: 5-NN mean squared distance, shrinkage-0.1
+Gaussian/Mahalanobis distance, and 32-prototype distance. Prototype seeds are 13, 29,
+and 43; deterministic methods run once.
+
+## B-ZS: strict source-only methods
+
+No target features, score statistics, calibration videos, test-score distribution, or
+target labels may enter fitting, selection, normalization, or threshold derivation.
+Desired normal FPR is 0.01.
+
+- **B0 pooled quantile:** pooled source-validation q99 threshold.
+- **B1 mean/std:** source-validation affine standardization with the correspondingly
+  transformed source q99 threshold. This is retained as an explicit invariance control.
+- **B2 median/MAD:** source-validation robust affine standardization (MAD scaled by
+  1.4826, epsilon floor) with the correspondingly transformed q99 threshold.
+- **B3 video-balanced threshold:** median of the per-source-validation-video q99 raw
+  thresholds. It is the only simple source-only control expected to differ from B0.
+- **B4 conditional-location residual:** a deliberately low-capacity source-only model.
+  It predicts `log1p(raw_score)` from an intercept plus eight PCA context coordinates of
+  the frozen feature. PCA and ridge regression are fit only on source-normal validation
+  videos. Ridge alpha is selected from `[0.001, 0.01, 0.1, 1, 10]` by leave-one-video-out
+  mean absolute q99-FPR error on the held source video. The deployable model is refit on
+  all source-validation videos. Its source threshold is the q99 of cross-fitted residuals;
+  no target statistic is used. The global source residual MAD is an affine numerical
+  scale only and cannot be target-fitted.
+
+B4 is discarded if it does not beat the best simple source-only control on the frozen
+operating-point metrics. No extra architecture or hyperparameter search is allowed.
+
+## B-CAL: declared target-normal calibration
+
+This track is adaptation, never zero-shot. Sorted target-normal calibration videos define
+budgets of 1, 2, and 4 videos; `all` is identical to 4 in these caches. No final test
+score contributes to a mapping. For each budget/scorer compare:
+
+- target-normal q99 threshold (quantile recalibration);
+- target mean/std mapped to source mean/std, with the frozen source threshold;
+- target median/MAD mapped to source median/MAD, with the frozen source threshold;
+- fixed empirical target-CDF to source-quantile mapping, estimated only from calibration
+  scores, with the frozen source threshold.
+
+Ties and extrapolation behavior are deterministic. Calibration videos are cumulative in
+sorted video-ID order. Hyperparameters are not changed after final labels are read.
+
+## Metrics and gates
+
+Primary metrics are target-normal FPR, absolute error from 0.01 FPR, anomaly recall at
+the frozen threshold, false-alarm events/hour, normal q95/q99 transfer ratios, worst
+direction FPR, and cross-direction FPR variance. Secondary metrics are AUROC, AUPRC, and
+oracle TPR@1%/0.1% FPR. Ranking and operating reliability are reported separately.
+False-alarm events/hour uses the total represented test-video duration as denominator;
+events themselves are contiguous false-positive runs on normal frames. Stochastic seeds
+are averaged first, then direction-by-scorer cells are weighted equally for gates.
+
+`PROMISING_SOURCE_ONLY_CALIBRATION` requires, across both directions: median absolute FPR
+error at least 0.50 lower than B0, worst-direction FPR no greater than 0.25, median anomaly
+recall at least 0.05, controlled FPR variance, and no target information. The already-known
+B0 stress-test result is FPR 1.0 in every run, so its cross-run variance is exactly zero:
+a literal variance reduction is mathematically impossible despite total operating-point
+failure. Before running any new method, the variance gate is therefore fixed as variance
+no greater than 0.0025 together with the worst-FPR gate; this prevents saturation from
+being rewarded while preserving a tight stability requirement. B4 must additionally
+beat B3 or it is discarded.
+
+`PROMISING_TARGET_NORMAL_CALIBRATION_ONLY` requires a monotone budget curve in aggregate,
+median FPR no greater than 0.10 with one normal video and no greater than 0.05 with four,
+at least 0.50 median absolute-error reduction from B0, and median anomaly recall at least
+0.05 at a qualifying budget. If FPR is repaired only by eliminating essentially all
+recall, the gate fails.
+
+Confidence statements use videos, directions, and stochastic seeds as units; frames are
+not treated as IID replicates. With only two target datasets, intervals are descriptive
+and no population-level unseen-scene claim is permitted.
+
+============================================================
+TRACK_A_SRN_FINAL_REPORT.md
+============================================================
+# Track A SRN Final Report
+
+**Primary status:** `EXTERNALLY_BLOCKED`
+**Decision time:** 2026-08-17 +0800
+**Evidence ceiling:** engineering validation of availability/provenance; no new
+unseen-scene evidence
+
+## Research question
+
+Track A was intended to decide whether low-capacity SRN trained and selected with ELOS on
+multiple source-normal scenes improves anomaly detection on a genuinely held-out scene
+while reducing independent scene-identity decodability. The Ped2/Avenue diagnostic is
+explicitly excluded from this question.
+
+## Bootstrap and prior-result verification
+
+The existing test suite passed, Python sources compiled, the DINOv2 checkpoint/cache
+checksums matched provenance, and the preserved raw-score artifacts were regenerated
+exactly by the Track B runner. Direct recomputation from the historical score files
+confirmed the prior numbers:
+
+| Historical diagnostic | Recomputed |
+|---|---:|
+| joint raw Gaussian AUROC | 0.6885 |
+| joint raw prototype AUROC, 3-seed mean | 0.6653 |
+| joint full SRN AUROC, 3-seed mean | 0.6677 |
+| full SRN − raw prototype AUROC | +0.0024 |
+| full SRN residual scene-probe accuracy | 1.0000 |
+| source-fixed target-normal FPR, both cross-dataset directions/scorers | 1.0000 |
+
+**Label:** exact-protocol scientific evidence for the previous two-seen-domain
+falsification study only. It is not an unseen-scene result and cannot activate or satisfy
+the Track A decision gate.
+
+## Authoritative asset audit
+
+| Candidate | Scientific suitability | Authoritative access outcome | Decision |
+|---|---|---|---|
+| ShanghaiTech Campus | 13 real scenes; preferred benchmark | official Google anchor empty; current OneDrive 403; two official-history mirrors timed out | blocked |
+| MSAD | 14 scenarios; official normal-only protocol | metadata/features public, but raw videos require reviewed request; no unattended DINOv2 extraction | blocked for the controlled backbone |
+| UBnormal | 29 virtual scenes; official split lists permit normal-only restriction | official 16,037,804,331-byte archive returned a 2,009-byte quota-exceeded HTML page | blocked |
+
+No anonymous or community re-upload was used. Official MSAD metadata checksums and the
+preserved UBnormal response are recorded in
+`analysis/track_a/asset_audit.json`. The official UBnormal repository was inspected at
+commit `8c77642bb72615988ace0451b94ec42f8953a525`.
+
+## Protocol state
+
+`TRACK_A_PROTOCOL_FREEZE.md` records a no-run protocol shell and the prospective
+success gate. It was deliberately not activated because no authoritative raw asset passed
+the acquisition barrier. Consequently:
+
+- no Track A feature cache was created;
+- no source/held-out scene allocation was chosen after labels;
+- no SRN/ELOS checkpoint was trained or selected;
+- no Track A comparison matrix, identity probe, retention diagnostic, or held-out anomaly
+  metric was run;
+- no failed download was reclassified as data.
+
+## Track A verdict
+
+`EXTERNALLY_BLOCKED`
+
+This status is about the missing authoritative input, not a scientific rescue of SRN.
+The current SRN formulation remains falsified in the earlier two-seen-domain protocol, but
+this sprint did not perform the stronger final unseen-scene closure requested here.
+
+## Supported and unsupported statements
+
+- **Engineering validation:** the current Ped2/Avenue implementation, official labels,
+  cache provenance, stored raw scores, and historical metrics are reproducible.
+- **Exact-protocol scientific evidence:** the previous two-seen-domain study does not show
+  useful SRN gain and does not suppress dataset identity.
+- **Unseen-scene evidence:** unavailable in this sprint.
+- **Supported:** authoritative ShanghaiTech/MSAD/UBnormal acquisition was attempted and
+  blocked for distinct documented reasons.
+- **Unsupported:** SRN succeeds or fails on a final held-out multi-scene benchmark; ELOS
+  adds value; SRN preserves event/motion evidence on an unseen scene.
+- **Speculation:** an official multi-scene run would likely stop the current formulation;
+  the prior negative result is not logically sufficient to claim that outcome.
+
+## Exact next experiment
+
+When one authoritative raw archive becomes available, verify its checksum/license and
+official scene map, instantiate the predeclared whole-scene protocol before final labels,
+extract the immutable DINOv2 ViT-S/14 catalog, and run the frozen baseline/SRN/ELOS matrix.
+Do not tune on the same held-out scenes and do not replace the backbone to rescue SRN.
+
+## Important artifacts
+
+- `TRACK_A_PROTOCOL_FREEZE.md`
+- `analysis/track_a/README.md`
+- `analysis/track_a/asset_audit.json`
+- `data/raw/msad/metadata/`
+- `logs/UBnormal_quota_exceeded_20260817.html`
+- `logs/download_ubnormal.log`
+
+============================================================
+TRACK_B_CALIBRATION_REPORT.md
+============================================================
+# Track B Calibration Report
+
+**Primary status:** `NO_CALIBRATION_ADVANTAGE`
+**Decision time:** 2026-08-17 +0800
+**Integrity:** PASS after independent repair verification
+**Evidence scope:** exact Ped2→Avenue and Avenue→Ped2 cross-dataset stress protocol;
+not multi-source unseen-scene evidence
+
+## Research question and information regimes
+
+Track B tests whether a detector can preserve a usable source-derived operating point when
+normal-score scale shifts. B-ZS uses source-normal data only. B-CAL may use cumulative,
+predeclared sets of 1, 2, or 4 target-normal training videos and is always labeled
+adaptation. Neither branch uses target anomalies or final target test-score statistics for
+fitting, selection, normalization, or threshold derivation.
+
+The shared immutable DINOv2 ViT-S/14 parent catalog has SHA-256
+`9d048d0fadeb9dd19393e1f04a507d6292c70abcf743e50a7b46093c6807cfd1`.
+Whole videos are disjoint. Final labels are official Ped2/Avenue masks and enter only
+`evaluate_scores`.
+
+## Implemented methods
+
+- B0: pooled source-validation q99.
+- B1: source mean/std affine invariance control.
+- B2: source median/MAD affine invariance control.
+- B3: median of per-source-video q99 thresholds.
+- B4: eight-coordinate PCA context plus ridge conditional location prediction on
+  `log1p(raw_score)`, selected with leave-one-whole-source-video-out normal FPR error.
+- B-CAL: target-normal q99, mean/std, median/MAD, and fixed empirical-CDF mappings at
+  budgets 1, 2, and 4.
+
+Scorers are 5-NN, shrinkage-0.1 Gaussian/Mahalanobis, and 32-prototype distance.
+Prototype seeds are 13, 29, and 43; deterministic methods run once. Gates average
+stochastic seeds within each direction-by-scorer cell, then weight the six cells equally.
+
+## Validation
+
+- 15 tests pass and all Python files compile.
+- Every recomputed raw score array matches its historical NPZ counterpart within
+  `rtol=atol=1e-8`.
+- Historical AUROC/probe/FPR values recompute within the declared tolerance.
+- Final output contains 170 run rows and 17 raw-run aggregates.
+- A fresh reviewer independently recomputed all 170 rows and both aggregation tables with
+  zero mismatches.
+- B-CAL NPZ artifacts retain the exact target-normal calibration scores and video IDs.
+- False-alarm events/hour means contiguous false-positive runs divided by total
+  represented test-video duration.
+
+## Strict source-only results
+
+Seed-balanced direction-by-scorer summaries:
+
+| Method | Median target-normal FPR | Worst FPR | Median recall | Median AUROC | Median FA / total video hour | Gate |
+|---|---:|---:|---:|---:|---:|---|
+| B0 pooled q99 | 1.0000 | 1.0000 | 1.0000 | 0.4556 | 321.25 | fail |
+| B1 source mean/std | 1.0000 | 1.0000 | 1.0000 | 0.4556 | 321.25 | fail |
+| B2 source median/MAD | 1.0000 | 1.0000 | 1.0000 | 0.4556 | 321.25 | fail |
+| B3 video-balanced q99 | 1.0000 | 1.0000 | 1.0000 | 0.4556 | 321.25 | fail |
+| B4 conditional location | 1.0000 | 1.0000 | 1.0000 | 0.3787 | 321.25 | fail |
+
+B1/B2 are expected to preserve decisions because the same monotone affine map is applied
+to source scores, test scores, and threshold. B3 changes the raw threshold but cannot
+bridge the dataset-scale gap. B4 selects alpha 0.001 in all ten raw runs, leaves FPR
+saturated, and degrades seed-balanced median AUROC from 0.4556 to 0.3787; it is discarded.
+
+**Observation:** all source-only thresholds flag every target-normal frame.
+**Interpretation:** none of the tested source-only mappings predicts the target score
+scale. Recall 1.0 is meaningless because specificity is zero.
+**Implication:** the strict source-only positive claim is rejected.
+**Next step:** do not tune this minimal family on the same Ped2/Avenue labels.
+
+**Evidence label:** exact-protocol scientific evidence for two cross-dataset directions.
+
+## Target-normal calibration-budget results
+
+Seed-balanced summaries show the central tradeoff:
+
+| Method | Budget | Median FPR | Worst FPR | Median recall | Median FA / total video hour |
+|---|---:|---:|---:|---:|---:|
+| target q99 | 1 | 0.01873 | 0.24862 | 0.01845 | 350.43 |
+| mean/std | 1 | 0.00230 | 0.03867 | 0.00748 | 14.93 |
+| median/MAD | 1 | 0.00000 | 0.02210 | 0.00061 | 0.00 |
+| empirical CDF | 1 | 0.01860 | 0.19337 | 0.01845 | 350.43 |
+| target q99 | 4 | 0.00092 | 0.00276 | 0.00623 | 5.97 |
+| mean/std | 4 | 0.00000 | 0.00276 | 0.00425 | 0.00 |
+| median/MAD | 4 | 0.00000 | 0.00000 | 0.00000 | 0.00 |
+| empirical CDF | 4 | 0.00000 | 0.00276 | 0.00492 | 0.00 |
+
+All four methods miss the frozen 0.05 median-recall gate at four videos. The apparent FPR
+repair is over-conservative: in Ped2→Avenue, most calibrated operating points make almost
+no detections. Some Avenue→Ped2 scorer cells retain more recall, but the effect is neither
+cross-direction stable nor a passing aggregate result.
+
+False-alarm event rate is not monotone in frame FPR: a small number of isolated false
+positives can form more events than a single long saturated false-positive run. For
+example, one-video target-q99 calibration has lower median frame FPR than B0 but higher
+median events/hour. Both quantities are therefore retained.
+
+**Observation:** limited target-normal data can move numerical FPR close to or below 1%.
+**Interpretation:** the tested estimators overshoot into an excessively conservative
+threshold because calibration-normal and final-test score distributions still differ.
+**Implication:** claim support is partial for FPR repair only; no usable calibration
+advantage is demonstrated.
+**Next step:** any new method must predeclare a joint FPR/recall criterion and be tested
+on genuinely unseen scenes, not tuned on these final labels.
+
+**Evidence label:** exact-protocol target-normal adaptation evidence, never zero-shot.
+
+## Ranking versus operating-point reliability
+
+Raw scorer AUROC is asymmetric: seed-balanced cells range from 0.3567 to 0.6929 with
+median 0.4556. Thus this stress test does not even show uniformly useful ranking. The
+monotone B-CAL mappings preserve raw ranking (empirical-CDF ties cause only negligible
+differences), while B4 changes and worsens it. Ranking quality and deployed-threshold
+behavior are reported separately throughout.
+
+## Prior work and novelty
+
+The focused primary-source audit found direct adjacent precedent. WACV 2023 studies
+zero-shot cross-domain VAD; NeurIPS 2024 studies multi-domain VAD; anomalous-sound work
+explicitly normalizes score distributions for a single cross-domain threshold; and a 2026
+speech-deepfake audit explicitly shows that oracle ranking can hide threshold failure.
+Conformal and contamination-transfer work additionally demonstrates that many guarantees
+or corrections require target covariates or the unlabeled target score mixture.
+
+**Novelty decision:** no broad calibration-method novelty claim is authorized. The
+defensible contribution is a narrow, reproducible negative VAD operating-point audit.
+
+## Statistical scope
+
+Prototype seeds are averaged before scorer/direction aggregation. Deterministic methods
+are not duplicated. With only two target datasets, the tables are descriptive; frames are
+not treated as IID replicates and no population-level confidence interval or unseen-scene
+generalization claim is made.
+
+## Invalidated attempts
+
+Two reporting attempts are preserved rather than erased:
+
+1. a complete scoring pass failed when a NumPy boolean was serialized to JSON;
+2. a later aggregate file inverted the meaning of the `worst` FPR column.
+
+The final run regenerates every output, passes assertions, and is the only accepted
+artifact set. Details are machine-readable in
+`analysis/track_b/invalidated_runs.json`.
+
+## Independent review
+
+The initial read-only audit returned `WARN` for seed weighting, unretained diagnostics,
+FA/hour definition, and absent calibration samples in B-CAL artifacts. All four were
+repaired and the regenerated follow-up verdict is `PASS`. A separate result-to-claim
+review judges B-ZS support `no`, B-CAL support `partial` only for FPR repair, and
+confirms `NO_CALIBRATION_ADVANTAGE`.
+
+Both completed reviewers are fresh GPT-family threads (Type-A). A configured DeepSeek
+cross-family call was attempted with raw primary artifacts but cancelled by the runtime;
+no Type-B cross-family acquittal is claimed.
+
+## Supported and unsupported claims
+
+- **Engineering validation:** leakage guards, cache provenance, historical score
+  reproduction, calibration artifact retention, and metric recomputation pass.
+- **Exact-protocol scientific evidence:** the tested source-only methods do not improve
+  transferred thresholds; limited target-normal calibration lowers FPR but fails the
+  recall gate.
+- **Unseen-scene evidence:** unavailable.
+- **Supported:** ranking and operating reliability can differ; B-CAL is adaptation; the
+  minimal learned model offers no advantage here.
+- **Unsupported:** calibration is generally impossible; target-normal calibration is
+  useless in all settings; the result generalizes to arbitrary cameras; the method is
+  novel; a positive paper claim.
+- **Speculation:** calibration-normal/test-normal drift, not anomaly-scale overlap alone,
+  causes the over-conservative budget curve. New data are needed to test this mechanism.
+
+## Paper decision
+
+No separate positive Track B paper is scientifically justified. The existing SRN
+falsification paper remains unchanged. The new outputs form a rigorous negative research
+report and do not warrant new XeLaTeX claims or tables.
+
+## Reproducibility artifacts
+
+- `TRACK_B_PROTOCOL_FREEZE.md`
+- `analysis/track_b/results_long.csv`
+- `analysis/track_b/seed_balanced_cells.csv`
+- `analysis/track_b/seed_balanced_summary.csv`
+- `analysis/track_b/summary.json`
+- `analysis/track_b/provenance.json`
+- `analysis/track_b/scores/`
+- `analysis/track_b/operating_point_reliability.{png,pdf}`
+- `analysis/track_b/calibration_budget_curve.{png,pdf}`
+- `scripts/run_score_calibration_study.py`
+- `scripts/analyze_score_calibration.py`
+- `src/restricted_bridge/calibration.py`
+- `tests/test_score_calibration.py`
+
+Final accepted hashes:
+
+- `results_long.csv`: `a2a5baa927a4618bbcef54f789bc9768e8d96771745a8f400ce9e5964906a1d1`
+- `results_aggregate.csv`: `24fb850ac34f72ae53a8e807dd3cbe7c80e42bc6fac8cea6dd68decfb826f256`
+- `summary.json`: `d421eb617b78c0550ce1f525a0b8c54b4676d0f87ae12a91a1d7afc49a63ea01`
+- `provenance.json`: `16199f0c163155a47790f28caeda8dc65c8eadcf2a232be728e0322a03a46b2d`
+
+============================================================
+TRACK_B_PRIOR_WORK.md
+============================================================
+# Track B Prior Work
+
+**Search completed:** 2026-08-17 +0800
+**Evidence class:** engineering literature audit; not a systematic-review claim
+**Search channels:** official proceedings, publisher/project pages, arXiv metadata/API,
+and the local paper library (no local PDFs matched).
+
+## Scope and search terms
+
+The audit targeted video anomaly detection (VAD) calibration, anomaly-score normalization
+under domain shift, source-only threshold transfer, normal-only calibration, conformal
+anomaly detection, domain-generalized scoring, multi-source calibration, and
+false-positive-controlled detection. Primary papers were preferred; later works were
+included through the sprint date. The central distinction is whether a method may use
+source normal data only, unlabeled target mixtures, declared target-normal data, or target
+anomaly labels.
+
+## Closest work matrix
+
+| Work | Exact task | Target information | Anomaly labels | Frozen-threshold transfer evaluated? | Closest overlap / boundary |
+|---|---|---|---|---|---|
+| Aich, Peng, Roy-Chowdhury, “Cross-Domain Video Anomaly Detection Without Target Domain Adaptation,” WACV 2023 ([official](https://openaccess.thecvf.com/content/WACV2023/html/Aich_Cross-Domain_Video_Anomaly_Detection_Without_Target_Domain_Adaptation_WACV_2023_paper.html)) | zero-shot cross-domain VAD | none at training/adaptation | no real source anomalies; generated pseudo-abnormal frames | evaluation emphasizes frame AUC, not source-fixed target-normal FPR | closest VAD zero-shot setting, but feature/prediction generalization rather than explicit score-scale calibration |
+| Cho et al., “Towards Multi-Domain Learning for Generalizable Video Anomaly Detection,” NeurIPS 2024 ([official](https://proceedings.neurips.cc/paper_files/paper/2024/hash/59eb2d8ce0e4830f80780f7f78c67dec-Abstract-Conference.html)) | multi-domain VAD with abnormal conflicts | multiple training domains | weakly supervised abnormal data are part of the benchmark/task | not the paper’s primary question | establishes multi-domain VAD infrastructure, but differs from normal-only calibration |
+| Carvalho et al., “Invariant Anomaly Detection under Distribution Shifts: A Causal Perspective,” NeurIPS 2023 ([official](https://proceedings.neurips.cc/paper_files/paper/2023/hash/b010241b9f1cdfc7d4c392db899cef86-Abstract-Conference.html)) | general anomaly detection under domain/covariate shift | multiple training environments | method is framed around normal-training anomaly detection; evaluation uses labeled anomalies | primarily OOD ranking/performance, not the deployed source threshold | representation-level invariance is close to Track A, not Track B’s score-level boundary |
+| Wilkinghoff et al., “Local Density-Based Anomaly Score Normalization for Domain Generalization,” IEEE TASLP 2026 / arXiv 2025 ([publisher](https://www.merl.com/publications/TR2026-010), [arXiv](https://arxiv.org/abs/2509.10951)) | anomalous sound detection across domains | source-side density/context; unseen domains at inference | normal-only system fitting; anomalies for evaluation | yes: the motivation explicitly identifies one-domain thresholds becoming suboptimal and the need for a single threshold | extremely close generic hypothesis and source-only normalization mechanism, but in sound rather than video |
+| Zhou and Wang, “When EER Hides Deployment Failure,” arXiv 2026 ([primary manuscript](https://arxiv.org/abs/2606.21584)) | threshold transfer for speech deepfake detectors | evaluates unlabeled target-time corrections | labeled target data for audit metrics, not method fitting | yes, directly audits transferred thresholds versus oracle EER | extremely close operational thesis; shows that ranking/oracle metrics can hide threshold failure and that corrections may collapse |
+| Perini, Vercruyssen, Davis, “Transferring the Contamination Factor … by Shape Similarity,” AAAI 2022 ([official](https://ojs.aaai.org/index.php/AAAI/article/view/20331)) | threshold/contamination transfer across related anomaly domains | unlabeled target score distribution | no labeled target data required | yes, but threshold depends on the target mixture score distribution | not strict zero-shot and not target-normal calibration; it is transductive target-mixture adaptation |
+| Tibshirani et al., “Conformal Prediction Under Covariate Shift,” NeurIPS 2019 ([official](https://proceedings.neurips.cc/paper_files/paper/2019/hash/8fb21ee7a2207526da55a679f0332de2-Abstract.html)) | conformal prediction with covariate shift | known likelihood ratio or unlabeled target covariates | supervised regression responses in its core setting | coverage transfer, not VAD threshold transfer | provides formal shift-aware calibration, but requires target covariates/ratio and assumptions absent from strict B-ZS |
+| Zhang et al., “Conformal Anomaly Detection in Event Sequences,” ICML 2025 ([official](https://proceedings.mlr.press/v267/zhang25dn.html)) | continuous-time event-sequence anomaly tests | calibration data under its conformal setting | anomaly labels are not used for fitting the detector | finite-sample FPR control is central | directly relevant to FPR reliability but neither VAD nor cross-domain source-only transfer |
+
+## Findings
+
+1. **Generic novelty is unavailable.** The score-scale/threshold-transfer problem is
+   explicit in anomalous sound detection and, by 2026, in speech deepfake auditing.
+   Track B must not claim to originate the ranking-versus-decision-boundary distinction.
+2. **The VAD-specific empirical audit remains a defensible narrow contribution.** The
+   close zero-shot VAD paper evaluates cross-domain detection, while the reviewed VAD
+   literature does not make source-fixed target-normal FPR and false alarms/hour its
+   central comparison.
+3. **Target-information regimes are often blurred in adjacent work.** Contamination
+   transfer and covariate-shift conformal methods may use unlabeled target mixtures or
+   target covariates. They are not evidence for strict source-only calibration.
+4. **A learned conditional normalizer needs a high bar.** Local-density source-only score
+   normalization is already established in another modality. A VAD version is interesting
+   only if it beats simple controls on multiple genuinely unseen scenes and preserves
+   anomaly recall.
+5. **Conformal guarantees do not automatically survive arbitrary scene shift.** Exchangeability
+   or correctly modeled covariate shift is a substantive assumption; applying an ordinary
+   source quantile to a shifted target is not conformal FPR control.
+
+## Novelty decision
+
+**No broad method novelty claim is authorized.** The present Ped2↔Avenue experiment is an
+exact-protocol VAD stress audit and a negative test of minimal controls. A future paper
+would require authoritative multi-scene VAD evidence, explicit operating-point metrics,
+and a result not already explained by local-density normalization or target-distribution
+adaptation. Until then, the strongest supportable positioning is a reproducibility-oriented
+negative finding, not a new calibration algorithm.
+
+## Search limitations
+
+This was a focused current audit, not an exhaustive systematic review. Search-engine and
+arXiv retrieval can miss terminology variants. Citation contexts were checked against
+official abstracts/pages and, where needed, paper text, but no claim of exhaustive coverage
+or priority is made.
+
+============================================================
+EXPERIMENT_AUDIT.md
+============================================================
+# Experiment Audit Report
+
+**Date:** 2026-08-17
+**Auditor:** fresh GPT-5.5 xhigh reviewer thread, read-only
+**Review type:** Type-A same-family independent review; configured DeepSeek cross-family
+call was cancelled by the runtime
+**Project:** SRN dual-track calibration sprint
+
+## Overall Verdict: PASS
+
+## Integrity Status: pass
+
+The first audit returned `WARN` for four reporting/provenance issues. Those issues were
+repaired without changing methods, labels, or final test access, the artifacts were fully
+regenerated, and the same reviewer returned `PASS` on the targeted follow-up.
+
+## Checks
+
+### A. Ground Truth Provenance: PASS
+
+Ped2 and Avenue labels originate from the official masks documented in
+`refine-logs/DATA_AND_FEATURE_PROVENANCE.md`. Active configs load immutable NPZ
+features, test metrics consume `data.label[test_index]`, and the loader rejects anomaly
+labels outside the final test split.
+
+### B. Score Normalization and Hidden Test Fitting: PASS
+
+B-ZS fitting, normalization, and thresholds use source-normal train/validation data only.
+B-CAL uses only the cumulative predeclared target-normal calibration videos. Neither
+branch uses final target test-score statistics or target anomaly labels for fitting,
+selection, mapping, or threshold derivation. Raw/source/test scores and thresholds are
+retained in per-method NPZ files.
+
+### C. Result Existence and Numeric Consistency: PASS
+
+The auditor independently recomputed all 170 NPZ-backed result rows with zero mismatches
+for thresholds, AUROC, AUPRC, FPR, recall, false-alarm events/hour, macro-video AUROC,
+quantiles, and anomaly medians. Aggregate and seed-balanced tables reproduce exactly from
+`results_long.csv`. Historical result recomputation also passes.
+
+### D. Dead Code and Retained Outputs: PASS after repair
+
+All calibration functions are called. The runner now retains every computed scalar
+diagnostic plus serialized per-scene/per-video outputs in `results_long.csv`.
+The generic `grouped_auroc` convenience wrapper is not called, but its underlying
+`grouped_auroc_values` implementation is exercised; this has no result impact.
+
+### E. Scope Assessment: PASS
+
+Claims are explicitly limited to two cross-dataset stress directions, three scorer
+families, and the declared prototype seeds. The files state that this is neither
+multi-source unseen-scene evidence nor a population-level result.
+
+### F. Leakage: PASS
+
+Whole-video isolation and absence of abnormal training/calibration labels are asserted by
+the data validator and recorded in provenance. B-ZS never accesses target calibration.
+B-CAL is explicitly target-normal adaptation, and test labels enter only final metrics.
+
+### G. Statistical Units and Implementation: PASS after repair
+
+Gate summaries now average stochastic seeds within each direction-by-scorer cell and
+weight the six cells equally. False-alarm events/hour is explicitly defined per total
+represented test-video hour. B-CAL NPZ artifacts now store the exact target-normal
+calibration scores and video IDs.
+
+## Invalidated attempts
+
+Two reporting attempts remain preserved in
+`analysis/track_b/invalidated_runs.json`: one NumPy-boolean serialization failure and
+one inverted aggregate worst-column calculation. Neither per-run metrics nor the frozen
+gate changed. Only the fully regenerated post-review artifacts are accepted.
+
+## Claim impact
+
+- **Supported:** Under this exact Ped2↔Avenue protocol, no tested source-only or
+  target-normal calibration method passes the frozen joint FPR/recall advantage gates.
+- **Supported:** B-CAL is target-normal adaptation, not zero-shot.
+- **Needs qualifier:** false alarms/hour means per total represented video hour.
+- **Unsupported:** comprehensive, multi-source unseen-scene, population-level, or general
+  no-calibration claims.
+
+## Reviewer limitation
+
+The reviewer was a fresh thread that read primary artifacts directly, but it is from the
+same GPT model family as the executor. A configured DeepSeek call was attempted with raw
+primary artifacts and cancelled by the runtime. Therefore this report is not represented
+as cross-family Type-B acquittal.
+
+============================================================
+analysis/track_b/summary.json
+============================================================
+{
+  "aggregate_rows": 17,
+  "evidence_scope": "exact Ped2-to-Avenue and Avenue-to-Ped2 cross-dataset stress protocol; not multi-source unseen-scene evidence",
+  "gate_aggregation_unit": "direction-by-scorer after averaging stochastic seeds",
+  "historical_results_recomputed": true,
+  "learned_method_retained": false,
+  "primary_status": "NO_CALIBRATION_ADVANTAGE",
+  "result_rows": 170,
+  "source_fpr_variance_cap": 0.0025,
+  "source_only_candidates": [
+    {
+      "fpr_variance": 0.0,
+      "median_absolute_fpr_error_improvement": 0.0,
+      "median_recall": 1.0,
+      "method": "B1_source_mean_std",
+      "passes_gate": false,
+      "worst_fpr": 1.0
+    },
+    {
+      "fpr_variance": 0.0,
+      "median_absolute_fpr_error_improvement": 0.0,
+      "median_recall": 1.0,
+      "method": "B2_source_median_mad",
+      "passes_gate": false,
+      "worst_fpr": 1.0
+    },
+    {
+      "fpr_variance": 0.0,
+      "median_absolute_fpr_error_improvement": 0.0,
+      "median_recall": 1.0,
+      "method": "B3_video_balanced_q99",
+      "passes_gate": false,
+      "worst_fpr": 1.0
+    },
+    {
+      "beats_video_balanced_control": false,
+      "fpr_variance": 0.0,
+      "median_absolute_fpr_error_improvement": 0.0,
+      "median_recall": 1.0,
+      "method": "B4_conditional_location",
+      "passes_gate": false,
+      "retained": false,
+      "worst_fpr": 1.0
+    }
+  ],
+  "target_normal_candidates": [
+    {
+      "by_budget": {
+        "1": {
+          "median_absolute_fpr_error": 0.010075783672063382,
+          "median_fpr": 0.018730623492938338,
+          "median_recall": 0.018453663793103446
+        },
+        "2": {
+          "median_absolute_fpr_error": 0.009454587208634745,
+          "median_fpr": 0.004209860378131722,
+          "median_recall": 0.013713069132909272
+        },
+        "4": {
+          "median_absolute_fpr_error": 0.009079189686924494,
+          "median_fpr": 0.0009208103130755064,
+          "median_recall": 0.006234481363687088
+        }
+      },
+      "method": "CAL_quantile_q99",
+      "monotone_aggregate_error": true,
+      "passes_gate": false
+    },
+    {
+      "by_budget": {
+        "1": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.002302025782688766,
+          "median_recall": 0.007483818770226536
+        },
+        "2": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.0050644567219152855,
+          "median_recall": 0.016686893203883498
+        },
+        "4": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.0,
+          "median_recall": 0.0042475728155339796
+        }
+      },
+      "method": "CAL_mean_std",
+      "monotone_aggregate_error": true,
+      "passes_gate": false
+    },
+    {
+      "by_budget": {
+        "1": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.0,
+          "median_recall": 0.0006067961165048543
+        },
+        "2": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.0,
+          "median_recall": 0.00424757281553398
+        },
+        "4": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.0,
+          "median_recall": 0.0
+        }
+      },
+      "method": "CAL_median_mad",
+      "monotone_aggregate_error": true,
+      "passes_gate": false
+    },
+    {
+      "by_budget": {
+        "1": {
+          "median_absolute_fpr_error": 0.010032724767481915,
+          "median_fpr": 0.01860144677919394,
+          "median_recall": 0.018453663793103446
+        },
+        "2": {
+          "median_absolute_fpr_error": 0.009454587208634745,
+          "median_fpr": 0.002612240211275692,
+          "median_recall": 0.009263230945207007
+        },
+        "4": {
+          "median_absolute_fpr_error": 0.01,
+          "median_fpr": 0.0,
+          "median_recall": 0.004919756444593237
+        }
+      },
+      "method": "CAL_empirical_cdf",
+      "monotone_aggregate_error": false,
+      "passes_gate": false
+    }
+  ]
+}
+
+============================================================
+analysis/track_b/invalidated_runs.json
+============================================================
+{
+  "invalidated_attempts": [
+    {
+      "time": "2026-08-17T21:31:00+08:00",
+      "classification": "report_serialization_bug",
+      "failure": "NumPy boolean was not JSON serializable while writing summary.json",
+      "scientific_outputs_accepted": false,
+      "raw_score_equality_checks_passed": true,
+      "repair": "convert gate flags to built-in booleans and regenerate"
+    },
+    {
+      "time": "2026-08-17T21:34:00+08:00",
+      "classification": "aggregate_reporting_bug",
+      "failure": "worst-column direction was inverted for threshold_false_positive_rate",
+      "scientific_outputs_accepted": false,
+      "per_run_metrics_affected": false,
+      "frozen_gate_affected": false,
+      "repair": "use an explicit higher-is-worse field set and regenerate"
+    }
+  ],
+  "final_run": {
+    "exit_status": 0,
+    "tests_passed": 15,
+    "result_rows": 170,
+    "primary_status": "NO_CALIBRATION_ADVANTAGE",
+    "post_review_regenerated": true
+  }
+}
+
+============================================================
+analysis/track_a/asset_audit.json
+============================================================
+{
+  "access_date": "2026-08-17",
+  "primary_status": "EXTERNALLY_BLOCKED",
+  "community_copies_used": false,
+  "model_runs_activated": false,
+  "candidates": [
+    {
+      "dataset": "ShanghaiTech Campus",
+      "authority": "official SVIP Lab dataset page and its official Git history",
+      "official_url": "https://svip-lab.github.io/dataset/campus_dataset.html",
+      "scene_count": 13,
+      "result": "blocked",
+      "evidence": [
+        "current Google Drive anchor is empty",
+        "current official OneDrive share returns HTTP 403",
+        "historical institutional mirror http://101.32.75.151:8181/dataset/ timed out",
+        "historical mirror http://download.impersonator.org:8181/dataset/ShanghaiTech/ timed out"
+      ]
+    },
+    {
+      "dataset": "MSAD",
+      "authority": "official MSAD project and NeurIPS 2024 Datasets and Benchmarks paper",
+      "official_url": "https://msad-dataset.github.io/",
+      "scenario_count": 14,
+      "result": "raw_video_form_gated",
+      "reason": "identity-bearing reviewed request is required for raw videos; no unattended DINOv2 extraction was possible",
+      "metadata": [
+        {"path": "data/raw/msad/metadata/MSAD_I3D_WS_Test.list", "bytes": 20332, "sha256": "9a05f8c8ff7d8ecb73d6c0938a116a8c8f3f0f0359938e1ec6caf903f2b10c76"},
+        {"path": "data/raw/msad/metadata/MSAD_I3D_WS_Train.list", "bytes": 38177, "sha256": "7533252a71ead60a555b92b66f1c4a1fba5aa91fc38cc7d2b5c2c46d5bc4e587"},
+        {"path": "data/raw/msad/metadata/anomaly_annotation.csv", "bytes": 8511, "sha256": "c3a31d5c7986942d768409aa22cd30fede9b98a0ea92cc9a187793942289cc17"},
+        {"path": "data/raw/msad/metadata/gt-MSAD-WS.npy", "bytes": 1151488, "sha256": "bc2cfd9b714e5bfd242dafa5bc55a2d4bea41d5c8032e20b161f8bf051d522d3"},
+        {"path": "data/raw/msad/metadata/video_msad_all_720.xlsx", "bytes": 39645, "sha256": "4efe2b5d133b8c6fb2836bd048c8f58db3b1029a8d6005537ed2b921fbb00dd1"}
+      ]
+    },
+    {
+      "dataset": "UBnormal",
+      "authority": "official GitHub repository and official Google Drive archive",
+      "official_url": "https://github.com/lilygeorgescu/UBnormal",
+      "official_repo_commit": "8c77642bb72615988ace0451b94ec42f8953a525",
+      "scene_count": 29,
+      "license": "CC BY-NC-ND 4.0 as stated by the official repository",
+      "advertised_archive_bytes": 16037804331,
+      "received_bytes": 2009,
+      "received_sha256": "69e471dc140e8f22cf53019e983c7e61c5e9451e28882f934399e5e96d14430d",
+      "result": "quota_exceeded_html",
+      "preserved_response": "logs/UBnormal_quota_exceeded_20260817.html"
+    }
+  ]
+}

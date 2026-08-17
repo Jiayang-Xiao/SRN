@@ -1,0 +1,605 @@
+{
+  "historical_verification": {
+    "all_pass": true,
+    "checks": {
+      "cross_dataset_source_threshold_target_normal_fpr": {
+        "expected_approx": 1.0,
+        "pass": true,
+        "recomputed_unique": [
+          1.0
+        ]
+      },
+      "joint_full_srn_auroc": {
+        "absolute_difference": 1.2646679746430856e-05,
+        "expected_approx": 0.6677,
+        "pass": true,
+        "recomputed": 0.6677126466797464
+      },
+      "joint_full_srn_delta_vs_raw_prototype": {
+        "absolute_difference": 3.894939865559544e-05,
+        "expected_approx": 0.0024,
+        "pass": true,
+        "recomputed": 0.0024389493986555952
+      },
+      "joint_full_srn_scene_probe": {
+        "absolute_difference": 0.0,
+        "expected_approx": 1.0,
+        "pass": true,
+        "recomputed": 1.0
+      },
+      "joint_raw_gaussian_auroc": {
+        "absolute_difference": 3.907159542193561e-05,
+        "expected_approx": 0.6885,
+        "pass": true,
+        "recomputed": 0.6884609284045781
+      },
+      "joint_raw_prototype_auroc": {
+        "absolute_difference": 2.6302718909243517e-05,
+        "expected_approx": 0.6653,
+        "pass": true,
+        "recomputed": 0.6652736972810908
+      }
+    }
+  },
+  "protocol": "TRACK_B_PROTOCOL_FREEZE.md",
+  "runs": [
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.npz",
+      "cache_sha256": "5322bc929803be0e1cdedd1752c827411ba32bb01ecc873f59e4eec23ae3647f",
+      "config": "configs/ped2_to_avenue_raw.yaml",
+      "direction": "ped2_to_avenue",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 23747,
+        "test_scenes": [
+          "avenue_camera_01"
+        ],
+        "train_scenes": [
+          "ped2_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "knn",
+      "seed": 13,
+      "source_validation_videos": [
+        "train013",
+        "train014",
+        "train015",
+        "train016"
+      ],
+      "target_calibration_videos": [
+        "train_01",
+        "train_02",
+        "train_03",
+        "train_04"
+      ],
+      "test_videos": [
+        "test_01",
+        "test_02",
+        "test_03",
+        "test_04",
+        "test_05",
+        "test_06",
+        "test_07",
+        "test_08",
+        "test_09",
+        "test_10",
+        "test_11",
+        "test_12",
+        "test_13",
+        "test_14",
+        "test_15",
+        "test_16",
+        "test_17",
+        "test_18",
+        "test_19",
+        "test_20",
+        "test_21"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.npz",
+      "cache_sha256": "5322bc929803be0e1cdedd1752c827411ba32bb01ecc873f59e4eec23ae3647f",
+      "config": "configs/ped2_to_avenue_raw.yaml",
+      "direction": "ped2_to_avenue",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 23747,
+        "test_scenes": [
+          "avenue_camera_01"
+        ],
+        "train_scenes": [
+          "ped2_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "gaussian",
+      "seed": 13,
+      "source_validation_videos": [
+        "train013",
+        "train014",
+        "train015",
+        "train016"
+      ],
+      "target_calibration_videos": [
+        "train_01",
+        "train_02",
+        "train_03",
+        "train_04"
+      ],
+      "test_videos": [
+        "test_01",
+        "test_02",
+        "test_03",
+        "test_04",
+        "test_05",
+        "test_06",
+        "test_07",
+        "test_08",
+        "test_09",
+        "test_10",
+        "test_11",
+        "test_12",
+        "test_13",
+        "test_14",
+        "test_15",
+        "test_16",
+        "test_17",
+        "test_18",
+        "test_19",
+        "test_20",
+        "test_21"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.npz",
+      "cache_sha256": "5322bc929803be0e1cdedd1752c827411ba32bb01ecc873f59e4eec23ae3647f",
+      "config": "configs/ped2_to_avenue_raw.yaml",
+      "direction": "ped2_to_avenue",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 23747,
+        "test_scenes": [
+          "avenue_camera_01"
+        ],
+        "train_scenes": [
+          "ped2_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "prototype",
+      "seed": 13,
+      "source_validation_videos": [
+        "train013",
+        "train014",
+        "train015",
+        "train016"
+      ],
+      "target_calibration_videos": [
+        "train_01",
+        "train_02",
+        "train_03",
+        "train_04"
+      ],
+      "test_videos": [
+        "test_01",
+        "test_02",
+        "test_03",
+        "test_04",
+        "test_05",
+        "test_06",
+        "test_07",
+        "test_08",
+        "test_09",
+        "test_10",
+        "test_11",
+        "test_12",
+        "test_13",
+        "test_14",
+        "test_15",
+        "test_16",
+        "test_17",
+        "test_18",
+        "test_19",
+        "test_20",
+        "test_21"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.npz",
+      "cache_sha256": "5322bc929803be0e1cdedd1752c827411ba32bb01ecc873f59e4eec23ae3647f",
+      "config": "configs/ped2_to_avenue_raw.yaml",
+      "direction": "ped2_to_avenue",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 23747,
+        "test_scenes": [
+          "avenue_camera_01"
+        ],
+        "train_scenes": [
+          "ped2_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "prototype",
+      "seed": 29,
+      "source_validation_videos": [
+        "train013",
+        "train014",
+        "train015",
+        "train016"
+      ],
+      "target_calibration_videos": [
+        "train_01",
+        "train_02",
+        "train_03",
+        "train_04"
+      ],
+      "test_videos": [
+        "test_01",
+        "test_02",
+        "test_03",
+        "test_04",
+        "test_05",
+        "test_06",
+        "test_07",
+        "test_08",
+        "test_09",
+        "test_10",
+        "test_11",
+        "test_12",
+        "test_13",
+        "test_14",
+        "test_15",
+        "test_16",
+        "test_17",
+        "test_18",
+        "test_19",
+        "test_20",
+        "test_21"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/ped2_to_avenue.npz",
+      "cache_sha256": "5322bc929803be0e1cdedd1752c827411ba32bb01ecc873f59e4eec23ae3647f",
+      "config": "configs/ped2_to_avenue_raw.yaml",
+      "direction": "ped2_to_avenue",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 23747,
+        "test_scenes": [
+          "avenue_camera_01"
+        ],
+        "train_scenes": [
+          "ped2_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "prototype",
+      "seed": 43,
+      "source_validation_videos": [
+        "train013",
+        "train014",
+        "train015",
+        "train016"
+      ],
+      "target_calibration_videos": [
+        "train_01",
+        "train_02",
+        "train_03",
+        "train_04"
+      ],
+      "test_videos": [
+        "test_01",
+        "test_02",
+        "test_03",
+        "test_04",
+        "test_05",
+        "test_06",
+        "test_07",
+        "test_08",
+        "test_09",
+        "test_10",
+        "test_11",
+        "test_12",
+        "test_13",
+        "test_14",
+        "test_15",
+        "test_16",
+        "test_17",
+        "test_18",
+        "test_19",
+        "test_20",
+        "test_21"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.npz",
+      "cache_sha256": "711933f709490e11ba0c4195b1a402361c641c4201fa2f3b3d83821bcad4b864",
+      "config": "configs/avenue_to_ped2_raw.yaml",
+      "direction": "avenue_to_ped2",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 17938,
+        "test_scenes": [
+          "ped2_camera_01"
+        ],
+        "train_scenes": [
+          "avenue_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "knn",
+      "seed": 13,
+      "source_validation_videos": [
+        "train_13",
+        "train_14",
+        "train_15",
+        "train_16"
+      ],
+      "target_calibration_videos": [
+        "train001",
+        "train002",
+        "train003",
+        "train004"
+      ],
+      "test_videos": [
+        "test001",
+        "test002",
+        "test003",
+        "test004",
+        "test005",
+        "test006",
+        "test007",
+        "test008",
+        "test009",
+        "test010",
+        "test011",
+        "test012"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.npz",
+      "cache_sha256": "711933f709490e11ba0c4195b1a402361c641c4201fa2f3b3d83821bcad4b864",
+      "config": "configs/avenue_to_ped2_raw.yaml",
+      "direction": "avenue_to_ped2",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 17938,
+        "test_scenes": [
+          "ped2_camera_01"
+        ],
+        "train_scenes": [
+          "avenue_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "gaussian",
+      "seed": 13,
+      "source_validation_videos": [
+        "train_13",
+        "train_14",
+        "train_15",
+        "train_16"
+      ],
+      "target_calibration_videos": [
+        "train001",
+        "train002",
+        "train003",
+        "train004"
+      ],
+      "test_videos": [
+        "test001",
+        "test002",
+        "test003",
+        "test004",
+        "test005",
+        "test006",
+        "test007",
+        "test008",
+        "test009",
+        "test010",
+        "test011",
+        "test012"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.npz",
+      "cache_sha256": "711933f709490e11ba0c4195b1a402361c641c4201fa2f3b3d83821bcad4b864",
+      "config": "configs/avenue_to_ped2_raw.yaml",
+      "direction": "avenue_to_ped2",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 17938,
+        "test_scenes": [
+          "ped2_camera_01"
+        ],
+        "train_scenes": [
+          "avenue_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "prototype",
+      "seed": 13,
+      "source_validation_videos": [
+        "train_13",
+        "train_14",
+        "train_15",
+        "train_16"
+      ],
+      "target_calibration_videos": [
+        "train001",
+        "train002",
+        "train003",
+        "train004"
+      ],
+      "test_videos": [
+        "test001",
+        "test002",
+        "test003",
+        "test004",
+        "test005",
+        "test006",
+        "test007",
+        "test008",
+        "test009",
+        "test010",
+        "test011",
+        "test012"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.npz",
+      "cache_sha256": "711933f709490e11ba0c4195b1a402361c641c4201fa2f3b3d83821bcad4b864",
+      "config": "configs/avenue_to_ped2_raw.yaml",
+      "direction": "avenue_to_ped2",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 17938,
+        "test_scenes": [
+          "ped2_camera_01"
+        ],
+        "train_scenes": [
+          "avenue_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "prototype",
+      "seed": 29,
+      "source_validation_videos": [
+        "train_13",
+        "train_14",
+        "train_15",
+        "train_16"
+      ],
+      "target_calibration_videos": [
+        "train001",
+        "train002",
+        "train003",
+        "train004"
+      ],
+      "test_videos": [
+        "test001",
+        "test002",
+        "test003",
+        "test004",
+        "test005",
+        "test006",
+        "test007",
+        "test008",
+        "test009",
+        "test010",
+        "test011",
+        "test012"
+      ]
+    },
+    {
+      "cache": "data/frozen_features/dinov2_vits14/experiments/avenue_to_ped2.npz",
+      "cache_sha256": "711933f709490e11ba0c4195b1a402361c641c4201fa2f3b3d83821bcad4b864",
+      "config": "configs/avenue_to_ped2_raw.yaml",
+      "direction": "avenue_to_ped2",
+      "integrity": {
+        "abnormal_training_labels": false,
+        "adjacent_frame_leakage": false,
+        "datasets": [
+          "avenue",
+          "ped2"
+        ],
+        "feature_dim": 384,
+        "samples": 17938,
+        "test_scenes": [
+          "ped2_camera_01"
+        ],
+        "train_scenes": [
+          "avenue_camera_01"
+        ],
+        "whole_video_split": true
+      },
+      "scorer": "prototype",
+      "seed": 43,
+      "source_validation_videos": [
+        "train_13",
+        "train_14",
+        "train_15",
+        "train_16"
+      ],
+      "target_calibration_videos": [
+        "train001",
+        "train002",
+        "train003",
+        "train004"
+      ],
+      "test_videos": [
+        "test001",
+        "test002",
+        "test003",
+        "test004",
+        "test005",
+        "test006",
+        "test007",
+        "test008",
+        "test009",
+        "test010",
+        "test011",
+        "test012"
+      ]
+    }
+  ],
+  "target_anomaly_labels_used_for_fit_or_selection": false,
+  "target_fpr": 0.01,
+  "target_test_statistics_used_for_fit": false
+}

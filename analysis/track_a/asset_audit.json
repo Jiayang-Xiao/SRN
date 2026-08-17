@@ -1,0 +1,49 @@
+{
+  "access_date": "2026-08-17",
+  "primary_status": "EXTERNALLY_BLOCKED",
+  "community_copies_used": false,
+  "model_runs_activated": false,
+  "candidates": [
+    {
+      "dataset": "ShanghaiTech Campus",
+      "authority": "official SVIP Lab dataset page and its official Git history",
+      "official_url": "https://svip-lab.github.io/dataset/campus_dataset.html",
+      "scene_count": 13,
+      "result": "blocked",
+      "evidence": [
+        "current Google Drive anchor is empty",
+        "current official OneDrive share returns HTTP 403",
+        "historical institutional mirror http://101.32.75.151:8181/dataset/ timed out",
+        "historical mirror http://download.impersonator.org:8181/dataset/ShanghaiTech/ timed out"
+      ]
+    },
+    {
+      "dataset": "MSAD",
+      "authority": "official MSAD project and NeurIPS 2024 Datasets and Benchmarks paper",
+      "official_url": "https://msad-dataset.github.io/",
+      "scenario_count": 14,
+      "result": "raw_video_form_gated",
+      "reason": "identity-bearing reviewed request is required for raw videos; no unattended DINOv2 extraction was possible",
+      "metadata": [
+        {"path": "data/raw/msad/metadata/MSAD_I3D_WS_Test.list", "bytes": 20332, "sha256": "9a05f8c8ff7d8ecb73d6c0938a116a8c8f3f0f0359938e1ec6caf903f2b10c76"},
+        {"path": "data/raw/msad/metadata/MSAD_I3D_WS_Train.list", "bytes": 38177, "sha256": "7533252a71ead60a555b92b66f1c4a1fba5aa91fc38cc7d2b5c2c46d5bc4e587"},
+        {"path": "data/raw/msad/metadata/anomaly_annotation.csv", "bytes": 8511, "sha256": "c3a31d5c7986942d768409aa22cd30fede9b98a0ea92cc9a187793942289cc17"},
+        {"path": "data/raw/msad/metadata/gt-MSAD-WS.npy", "bytes": 1151488, "sha256": "bc2cfd9b714e5bfd242dafa5bc55a2d4bea41d5c8032e20b161f8bf051d522d3"},
+        {"path": "data/raw/msad/metadata/video_msad_all_720.xlsx", "bytes": 39645, "sha256": "4efe2b5d133b8c6fb2836bd048c8f58db3b1029a8d6005537ed2b921fbb00dd1"}
+      ]
+    },
+    {
+      "dataset": "UBnormal",
+      "authority": "official GitHub repository and official Google Drive archive",
+      "official_url": "https://github.com/lilygeorgescu/UBnormal",
+      "official_repo_commit": "8c77642bb72615988ace0451b94ec42f8953a525",
+      "scene_count": 29,
+      "license": "CC BY-NC-ND 4.0 as stated by the official repository",
+      "advertised_archive_bytes": 16037804331,
+      "received_bytes": 2009,
+      "received_sha256": "69e471dc140e8f22cf53019e983c7e61c5e9451e28882f934399e5e96d14430d",
+      "result": "quota_exceeded_html",
+      "preserved_response": "logs/UBnormal_quota_exceeded_20260817.html"
+    }
+  ]
+}

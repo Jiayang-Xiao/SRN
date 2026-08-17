@@ -1,0 +1,8 @@
+{
+  "confidence_scope": "descriptive only; two target datasets do not support population inference",
+  "figure_data": "analysis/track_b/seed_balanced_cells.csv",
+  "input": "analysis/track_b/results_long.csv",
+  "input_rows": 170,
+  "seed_balanced_cells": 102,
+  "unit": "direction-by-scorer after averaging prototype seeds"
+}

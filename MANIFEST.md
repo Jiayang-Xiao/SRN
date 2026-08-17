@@ -102,3 +102,32 @@
 | 2026-08-17 03:25 | /paper-claim-audit | paper/PAPER_CLAIM_AUDIT.{md,json,html} | review | Fresh zero-context audit PASS; all 219 grouped numerical/config/scope items reconcile to raw evidence |
 | 2026-08-17 03:25 | /citation-audit | paper/CITATION_AUDIT.{md,json,html} | review | Twelve fresh per-entry web audits PASS after precision fixes; HTML fidelity review PASS |
 | 2026-08-17 03:25 | /research-pipeline | AUTONOMOUS_SPRINT_REPORT.md | review | Terminal unattended sprint report with STOP verdict, provenance, blockers, and exact next experiments |
+| 2026-08-17 21:13 | /research-pipeline | TRACK_A_PROTOCOL_FREEZE.md | implementation | Track A external-blocker protocol shell and frozen no-run decision |
+| 2026-08-17 21:13 | /research-pipeline | TRACK_B_PROTOCOL_FREEZE.md | implementation | Strict source-only and target-normal calibration protocol freeze |
+| 2026-08-17 21:13 | /research-pipeline | refine-logs/DUAL_TRACK_AUTONOMOUS_DECISIONS.md | implementation | Live dual-track decision ledger |
+| 2026-08-17 21:13 | /research-pipeline | refine-logs/DUAL_TRACK_AUTONOMOUS_SPRINT_LOG.md | implementation | Live dual-track execution log |
+| 2026-08-17 21:13 | /research-pipeline | refine-logs/TRACK_A_SRN_FINAL_REPORT.md | implementation | Live Track A evidence report |
+| 2026-08-17 21:13 | /research-pipeline | refine-logs/TRACK_B_CALIBRATION_REPORT.md | implementation | Live Track B evidence report |
+| 2026-08-17 21:13 | /research-lit | refine-logs/TRACK_B_PRIOR_WORK.md | implementation | Track B primary-source literature audit initialized |
+| 2026-08-17 21:40 | /research-lit | refine-logs/TRACK_B_PRIOR_WORK_20260817_214000.md | review | Timestamped primary-source threshold-transfer literature audit |
+| 2026-08-17 21:40 | /research-lit | refine-logs/TRACK_B_PRIOR_WORK.md | review | Latest literature audit; broad calibration novelty rejected |
+| 2026-08-17 21:40 | /research-wiki | research-wiki/papers/ and research-wiki/topics/score_calibration_threshold_transfer.md | idea-discovery | Eight relevant papers and score-calibration field map ingested |
+| 2026-08-17 21:55 | /research-pipeline | analysis/track_a/ | analysis | Authoritative multi-scene acquisition audit and machine-readable external blockers |
+| 2026-08-17 21:55 | /research-pipeline | src/restricted_bridge/calibration.py | implementation | Leakage-separated affine, empirical-CDF, video-balanced, and conditional calibration utilities |
+| 2026-08-17 21:55 | /research-pipeline | scripts/run_score_calibration_study.py | implementation | Frozen two-direction B-ZS/B-CAL experiment runner with provenance and gates |
+| 2026-08-17 21:55 | /analyze-results | scripts/analyze_score_calibration.py | analysis | Seed-balanced tables and deterministic operating-point/budget figures |
+| 2026-08-17 21:55 | /research-pipeline | tests/test_score_calibration.py | implementation | Calibration invariance, target-normal mapping, and whole-video cross-fit tests |
+| 2026-08-17 22:05 | /analyze-results | analysis/track_b/ | analysis | 170 result rows, score artifacts, seed-balanced summaries, provenance, hashes, and PNG/PDF figures |
+| 2026-08-17 22:05 | /experiment-audit | EXPERIMENT_AUDIT_20260817_220500.{md,json} | review | Timestamped independent audit: WARN repaired to PASS with 170-row recomputation |
+| 2026-08-17 22:05 | /experiment-audit | EXPERIMENT_AUDIT.{md,json} | review | Latest dual-track integrity verdict and evidence ceiling |
+| 2026-08-17 22:07 | /result-to-claim | .aris/traces/result-to-claim/2026-08-17_run01/ | review | Full fresh claim-gate prompt/response trace and seed-balanced follow-up |
+| 2026-08-17 22:07 | /experiment-audit | .aris/traces/experiment-audit/2026-08-17_run02/ | review | Full integrity audit and repair-verification trace |
+| 2026-08-17 22:10 | /result-to-claim | findings.md | review | Negative source-only verdict and partial FPR-only target-normal finding |
+| 2026-08-17 22:10 | /research-wiki | research-wiki/experiments/exp-score-calibration-ped2-avenue-20260817.md | review | High-confidence negative calibration experiment linked to rank-calibration idea |
+| 2026-08-17 22:10 | /research-pipeline | refine-logs/TRACK_A_SRN_FINAL_REPORT_20260817_215000.md | review | Timestamped Track A EXTERNALLY_BLOCKED report |
+| 2026-08-17 22:10 | /research-pipeline | refine-logs/TRACK_A_SRN_FINAL_REPORT.md | review | Latest Track A report |
+| 2026-08-17 22:10 | /analyze-results | refine-logs/TRACK_B_CALIBRATION_REPORT_20260817_221000.md | review | Timestamped Track B NO_CALIBRATION_ADVANTAGE report |
+| 2026-08-17 22:10 | /analyze-results | refine-logs/TRACK_B_CALIBRATION_REPORT.md | review | Latest Track B report |
+| 2026-08-17 22:15 | /research-pipeline | refine-logs/CURRENT_RESEARCH_STATE_20260817_221500.md | review | Timestamped terminal dual-track research state |
+| 2026-08-17 22:15 | /research-pipeline | refine-logs/CURRENT_RESEARCH_STATE.md | review | Latest terminal research state |
+| 2026-08-17 22:15 | /research-pipeline | DUAL_TRACK_AUTONOMOUS_SPRINT_REPORT.md | review | Terminal 26-part auditable report with exact statuses, blockers, results, and git handoff |
